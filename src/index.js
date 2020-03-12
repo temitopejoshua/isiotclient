@@ -5,14 +5,16 @@ import App from './App';
 import AddUser from './components/addUser'
 import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
+import UserDetail from './components/userDetail'
 
 
 const routing = (
     <Router>
-         <div>
-      <Route  path="/login" component={App} />
-      </div>
-        <div><Route   path="/adduser" component={AddUser} /></div>
+         
+      <Route exact path="/" component={App} />
+        <Route   path="/adduser" component={AddUser} />
+        <Route path="/:id" component={UserDetail}/>
+        
     </Router>
   )
 

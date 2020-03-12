@@ -1,4 +1,6 @@
 import React from 'react'
+import UserDetail from './userDetail'
+import { Link } from 'react-router-dom'
 
 
 
@@ -18,14 +20,14 @@ export default class Home extends React.Component {
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/registration/all',
+        fetch('http://localhost:8081/api/users',
             {
                 headers: { 'Authorization': token }
             })
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    users: responseData,
+                    users: responseData._embedded.users,
                 });
             })
             .catch(err => console.error(err));
@@ -35,20 +37,20 @@ export default class Home extends React.Component {
 
         this.fetchUsers()
 
+
     }
 
     render() {
 
+
         const dt = this.state.users.map(
-            
-            (user, index) => 
 
-            <div>
-                <p>{user.emailAddress + user.firstName + user.lastName}</p> 
-               
-                
+            (user, index) =>
 
-            </div>
+                <div>
+                    <Link to={"/" + user.id}> <p>{user.emailAddress}</p></Link>
+
+                </div>
 
         )
 
@@ -56,6 +58,7 @@ export default class Home extends React.Component {
 
 
             <div>
+
                 {dt}
             </div>
         );
@@ -63,3 +66,5 @@ export default class Home extends React.Component {
 
 
 }
+
+
