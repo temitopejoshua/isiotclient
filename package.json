@@ -10,6 +10,8 @@
     "jquery": "^3.4.1",
     "mdbreact": "^4.25.3",
     "popper.js": "^1.16.1",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.0",
