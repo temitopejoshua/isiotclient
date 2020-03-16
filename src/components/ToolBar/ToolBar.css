@@ -1,0 +1,17 @@
+.toolbar{
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #3dc3db;
+    height: 65px;
+    padding: 15px;
+    text-align: center;
+
+}
+
+
+.toolbar_logo a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}

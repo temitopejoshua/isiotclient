@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './AdminHome';
 
 
+
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -41,30 +42,29 @@ export default class Login extends React.Component {
     render() {
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
         return <div> 
-                {/* <Home/> */} <h1>Welcome Home</h1>
+                <Home/>
             </div>
         }
         else{
         return (
             <div>
                 <form>
-                    <h3>Sign In</h3>
+                    <h3 className="text-center">Sign In</h3>
                     <div className="form-group">
                     <label>Email Address</label>
                     <input type='text' placeholder='Enter email' name='emailAddress' className="form-control" onChange={this.handleChange}></input>
                     </div>
-
                     <div className="form-group">
-                    <label>Password</label>
+                    <label className="text-right">Password</label>
                     <input type='password' placeholder='Enter Password' name='password' className="form-control" onChange={this.handleChange}></input>
                     </div>
+                   
                 </form> 
                 <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
-                <p className="forget-pasword text-right">
+                    <p className="forget-pasword text-right">
                         Forget <a href="#">password?</a>
-                </p>
-                </div>
- 
+                    </p>
+            </div>
         );
         }
     }

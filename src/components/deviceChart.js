@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Doughnut as DeviceDougnut} from 'react-chartjs-2';
 
-export default class Clients extends Component{
+class DeviceChart extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -20,9 +20,10 @@ render(){
 
     const styles ={
         graphContainer :{
-            // border: '5px solid blue',
+            border: '5px solid red',
             padding: '15px',
-            width: '300px'
+            // width: '300px',
+            backgroundColor: ''
         }
     }
     return(
@@ -37,3 +38,4 @@ render(){
     )
 }
 }
+export default DeviceChart;

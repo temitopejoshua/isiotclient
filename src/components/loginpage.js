@@ -1,5 +1,6 @@
 import React from 'react';
-import Home from './AdminHome';
+import Home from './ClientList';
+import DashBoard from './dashboard'
 
 
 
@@ -42,29 +43,32 @@ export default class LoginPage extends React.Component {
     render() {
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
         return <div> 
-                <Home/>
+                <DashBoard/>
             </div>
         }
         else{
         return (
-            <div>
+        <div className="container">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-10 col-md-8 col-lg-6">
                 <form>
                     <h3 className="text-center">Sign In</h3>
                     <div className="form-group">
                     <label>Email Address</label>
                     <input type='text' placeholder='Enter email' name='emailAddress' className="form-control" onChange={this.handleChange}></input>
                     </div>
-
                     <div className="form-group">
                     <label className="text-right">Password</label>
                     <input type='password' placeholder='Enter Password' name='password' className="form-control" onChange={this.handleChange}></input>
                     </div>
-                    <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
-                    <p className="forget-pasword text-right">
-                        Forget <a href="#">password?</a>
-                    </p>
+                   
                 </form> 
+                <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
+                    <p className="forget-pasword text-right">
+                        Forget <a href="#">password?</a></p>
             </div>
+            </div>
+        </div> 
         );
         }
     }
