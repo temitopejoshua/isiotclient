@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Login from './components/login'
+import AdminLogin from './components/AdminLogin'
 
 
 class App extends React.Component {
@@ -12,7 +12,7 @@ class App extends React.Component {
 
       <div>
 
-          <Login/>
+          <AdminLogin/>
 
       </div>
     );

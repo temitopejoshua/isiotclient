@@ -1,7 +1,7 @@
 
 import React from 'react'
-import Home from './AdminHome'
-export default class Login extends React.Component {
+import  { Redirect } from 'react-router-dom'
+export default class AdminLogin extends React.Component {
 
     constructor(props) {
         super(props)
@@ -51,14 +51,12 @@ export default class Login extends React.Component {
 
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
 
-        return <div> 
-                <Home/>
-            </div>
+        return <Redirect to="/admin/home"/>
         }
         else{
         return (
             <div className="App">
-                <form>
+                <form method='POST'>
                     <input type='text' placeholder='Enter email' name='emailAddress' onChange={this.handleChange}></input>
                     <input type='password' placeholder='Enter Password' name='password' onChange={this.handleChange}></input>
                 </form>

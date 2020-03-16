@@ -13,7 +13,7 @@ export default class AdminHome extends React.Component {
 
         super(props)
         this.state = {
-            users: [],
+            user: {},
         }
     }
 
@@ -22,15 +22,14 @@ export default class AdminHome extends React.Component {
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
 
-        console.log(token)
-        fetch('http://localhost:8081/api/users',
+        fetch('http://localhost:8081/api/userhome',
             {
                 headers: { 'Authorization': token }
             })
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    users: responseData._embedded.users,
+                    user: responseData,
                 });
             })
             .catch(err => console.error(err));
@@ -46,20 +45,10 @@ export default class AdminHome extends React.Component {
     render() {
 
 
-        const dt = this.state.users.map(
-
-            (user, index) =>
-
-                <div>
-                    <Link to={"/user/" + user.id}> <p>{user.emailAddress}</p></Link>
-
-                </div>
-
-        )
-
+      
         if(sessionStorage.getItem("isAuthenticated") !== 'true'){
 
-            return <Redirect to="/admin"/>
+            return <Redirect to="/login"/>
             }
 
             else{
@@ -67,7 +56,9 @@ export default class AdminHome extends React.Component {
 
             <div>
 
-                {dt}
+        <h1>{this.state.user.firstName}</h1>
+        <h1>{this.state.user.lastName}</h1>
+        <h1>{this.state.user.emailAddress}</h1>
             </div>
         );
 

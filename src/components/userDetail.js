@@ -18,7 +18,6 @@ export default class UserDetail extends Component {
   componentWillMount(props) {
     // The dynamic URL segment we're interested in, "id",
     // is stored in the "params" property.
-    // const { params: { id } } = props
 
     const { match: { params } } = this.props;
 
@@ -65,6 +64,6 @@ export default class UserDetail extends Component {
 
 
 // Params should always be there...
-UserDetail.propTypes = {
-  params: PropTypes.object.isRequired,
-};
+// UserDetail.propTypes = {
+//   params: PropTypes.object.isRequired,
+// };
