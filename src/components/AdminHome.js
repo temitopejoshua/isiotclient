@@ -23,14 +23,14 @@ export default class AdminHome extends React.Component {
         const token = window.sessionStorage.getItem("jwt");
 
         console.log(token)
-        fetch('http://localhost:8081/api/users',
+        fetch('http://localhost:8081/api/clients',
             {
                 headers: { 'Authorization': token }
             })
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    users: responseData._embedded.users,
+                    users: responseData._embedded.clients,
                 });
             })
             .catch(err => console.error(err));
@@ -51,7 +51,7 @@ export default class AdminHome extends React.Component {
             (user, index) =>
 
                 <div>
-                    <Link to={"/user/" + user.id}> <p>{user.emailAddress}</p></Link>
+                    <Link to={"/clients/" + user.id}> <p>{user.emailAddress}</p></Link>
 
                 </div>
 

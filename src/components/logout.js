@@ -6,7 +6,6 @@ export default class Logout extends React.Component {
 
     logout = () => {
 
-        const tokenR = window.sessionStorage.getItem("jwt");        
         sessionStorage.removeItem("jwt");
         sessionStorage.removeItem("isAuthenticated")
 

@@ -22,7 +22,7 @@ export default class UserDetail extends Component {
     const { match: { params } } = this.props;
 
     const token = window.sessionStorage.getItem("jwt");
-    fetch('http://localhost:8081/api/users/' + params.id,
+    fetch('http://localhost:8081/api/clients/' + params.id,
       {
         headers: { 'Authorization': token }
       })
@@ -50,9 +50,10 @@ export default class UserDetail extends Component {
     return (
 
       <div>
-        <h1> {this.state.user.firstName} </h1>
-        <h1> {this.state.user.lastName} </h1>
-        <h1> {this.state.user.phoneNumber} </h1>
+        <h1> {this.state.user.name} </h1>
+        <h1> {this.state.user.emailAddress} </h1>
+                <h1>{this.state.user.numberOfDevices}</h1>
+
 
 
       </div>
