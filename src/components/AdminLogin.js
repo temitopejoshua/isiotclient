@@ -1,9 +1,10 @@
 import React from 'react';
-import Home from './AdminHome';
+import  { Redirect } from 'react-router-dom'
 
 
+// export default class Login extends React.Component {
 
-export default class Login extends React.Component {
+export default class AdminLogin extends React.Component {
 
     constructor(props) {
         super(props)
@@ -41,14 +42,15 @@ export default class Login extends React.Component {
 
     render() {
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
-        return <div> 
-                <Home/>
-            </div>
+        return <Redirect to="/admin/home"/>
         }
         else{
         return (
             <div>
-                <form>
+            <div className="container">
+              <div className="row justify-content-center align-items-center">
+              <div className="col-10 col-md-8 col-lg-6">
+              <form>
                     <h3 className="text-center">Sign In</h3>
                     <div className="form-group">
                     <label>Email Address</label>
@@ -64,6 +66,10 @@ export default class Login extends React.Component {
                     <p className="forget-pasword text-right">
                         Forget <a href="#">password?</a>
                     </p>
+              </div>
+              </div>
+              </div>  
+              
             </div>
         );
         }

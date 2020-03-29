@@ -1,64 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ClientList.css';
-import { Button } from 'react-bootstrap';
-import Pagination from './Pagination';
 
 
-export default class ClientList extends React.Component {
+
+export default class Devices extends React.Component {
     constructor(props) {
 
         super(props)
         this.state = {
-            clients: [],
+            devices: [],
+            numberOfDevices:0,
             loading: true,
-            clientsPerPage: 10,
+            devicesPerPage: 10,
             currentPage: 1,
         }
     }
-    fetchClients = () => {
+    fetchDevices = () => {
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/clients',
+        fetch('http://localhost:8081/api/devices',
             {
                 headers: { 'Authorization': token }
             })
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    clients: responseData._embedded.clients,
+                    devices: responseData._embedded.devices,
                     loading: false,
+                    numberOfDevices: responseData.page.totalElements,
                 });
             })
             .catch(err => console.error(err));
     }
     componentDidMount() {
-        this.fetchClients()
+        this.fetchDevices()
     }
     render() {
-    const {loading, currentPage, clientsPerPage, clients} = this.state;
-    //Get current Clients
-    const indexOfLastClient = currentPage * clientsPerPage;
-    const indexofFirstClient = indexOfLastClient - clientsPerPage;
-    const currentClients = clients.slice(indexofFirstClient, indexOfLastClient);
-     
-    //ChangePage
-    const paginate =(pageNumber) => this.pageNumber;
+        const {loading, numberOfDevices} = this.state;
 
-
-        
         var row =1;
-        const clientData = this.state.clients.map(
-            (client, index) =>
+
+        const deviceData = this.state.devices.map(
+            (device, index) =>
                 <tr key={index}>
                     <td>{row++}</td>
-                    <td>{client.name}</td>
-                    <td>{client.emailAddress}</td>
-                    <td>{client.isActive}</td>
-                    <td><Button>Update</Button><Button>Suspend</Button></td>
-                    <td><Link to ={"/user/"+client.id}>View user</Link></td>
+                    <td>{device.count}</td>
+                    <td>{device.app_eui}</td>
+                    <td>{device.adr}</td>
+                    <td>{device.delete}</td>
+                    <td>UpdateSuspend</td>
+                    <td><Link to ={"/user/"+device.id}>View user</Link></td>
                 </tr>
+                
         )
         if (loading){
             return <div class="spinner-border text-info" role="status">
@@ -70,28 +65,22 @@ export default class ClientList extends React.Component {
             <div className="row mb-4">
                 <div className="col-sm-12 grid-margin">
                 <div className="card h-100">
-                <h4 className="card-header">Client List</h4>
+                <h4 className="card-header">Device List</h4>
                 <div className="card-body">
                 <table className="table table-hover table-striped table-responsive text">
                 <thead className="bg-danger">
                 <tr>
                    <th scope="col">S/N</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email Address</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">{numberOfDevices}</th>
+                  <th scope="col">Assigned</th>
+                  <th scope="col">Unassigned</th>
                   <th scope="col">Action</th>
-                  <th scope="col">User Details</th>
                 </tr>
                 </thead>
                 <tbody>
-                {clientData}
+                {deviceData}
                 </tbody>
                 </table>
-                <Pagination 
-                clientsPerPage={clientsPerPage} 
-                totalClients={clients.length} 
-                paginate={paginate}
-                />
                 </div>
                 </div>
                 </div>

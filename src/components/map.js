@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 
 const mapStyles={
-    width: '100%',
-    height: '100%'
+    width: '50%',
+    height: '50%'
 };
 
 export class MapContainer extends Component{
@@ -32,7 +32,9 @@ export class MapContainer extends Component{
         const {google} = this.props;
 
         if (loading){
-            return null;
+            return <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>;
         }
         return(
             <Map google={google}
@@ -45,7 +47,6 @@ export class MapContainer extends Component{
         );
     }
 }
-
 
 export default GoogleApiWrapper({
     apiKey:'AIzaSyAsNfHrXa6btGOb7L6Pz5mW-WaUkz8Swq8&libraries=geometry,drawing,places'

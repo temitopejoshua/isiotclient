@@ -38,19 +38,19 @@ export default class SideDrawer extends Component{
                             <NavIcon>
                                 <i className="fa fa-fw fa-users" style={{fontSize: '1.7em' }}/>
                             </NavIcon>
-                            <NavText><Nav.Link href="/clients">Users</Nav.Link></NavText>
+                            <NavText><Nav.Link href="/clients">Clients</Nav.Link></NavText>
                         </NavItem>
                         <NavItem eventKey="charts">
                             <NavIcon>
                                 <i className="fa fa-fw fa-line-chart" style={{fontSize: '1.7em' }}/>
                             </NavIcon>
-                            <NavText >Devices</NavText>
+                            <NavText><Nav.Link href="/devices">Devices</Nav.Link></NavText>
                         </NavItem>
                         <NavItem eventKey="/settings">
                             <NavIcon>
                                 <i className="fa fa-fw fa-settings" style={{fontSize: '1.7em' }}/>
                             </NavIcon>
-                            <NavText>Settings</NavText>
+                            <NavText>Profile</NavText>
                         </NavItem>
                     </SideNav.Nav>
                 </SideNav>

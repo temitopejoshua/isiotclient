@@ -2,10 +2,11 @@ import './dashboard.css';
 import { Navbar, Nav, NavDropdown, Form,  FormControl, Button} from 'react-bootstrap';
 import React, {Component} from 'react';
 import ClientList from './ClientList';
-import GraphCard from './graphcard';
+import GraphCard from './Card';
 import SideDrawer from './sideDrawer';
-import MapContainer from './map';
 // import SideNav from './sidenav';
+
+
 
 
 
@@ -47,6 +48,7 @@ export default class DashBoard extends Component{
           {/* <MapContainer/> */}
           </div>
     <div>
+    <h1 className="text-primary mb-3">Client Table</h1>
       <ClientList/>
     </div>
     </main>
