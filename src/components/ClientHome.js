@@ -137,7 +137,7 @@
 
 
                             <GoogleApiWrapper/>
-                            <div hidden={this.state.deviceIsEmpty}>
+                            <div hidden={!this.state.deviceIsEmpty}>
                                 <table class="table" style={{ marginTop: '350px' }}>
                                     <thead class="thead-dark">
                                         <tr>
@@ -154,7 +154,7 @@
                                 </table>
                             </div>
 
-                            <h3 hidden={!this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
+                            <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
                         </div>
 
                     </div>

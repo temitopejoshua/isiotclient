@@ -33,7 +33,7 @@ export default class Register extends React.Component {
             }
         );
 
-        if (this.state.emailAddress.length < 5 && this.state.password == this.state.passwordRepeat) {
+        if (this.state.emailAddress.length < 5 && this.state.password === this.state.passwordRepeat) {
 
             this.setState({ loading: true })
         }

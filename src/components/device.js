@@ -65,9 +65,3 @@ export default class Device extends Component {
   }
 }
 
-
-
-// Params should always be there...
-// UserDetail.propTypes = {
-//   params: PropTypes.object.isRequired,
-// };

@@ -71,11 +71,7 @@
                         <td>{i++}</td>
                         <td>{device.name}</td>
                         <td>{device.category.name}</td>
-                        <div>
-                            <Link to={"/device/" + device.devEui}>view </Link> /
-                    <Link to={"/device/" + device.devEui}>delete</Link>
-
-                        </div>
+                           <Link to={"/device/" + device.devEui}>view</Link> 
 
 
 
@@ -106,7 +102,7 @@
                         <div class="main">
 
                             <GoogleApiWrapper/>
-                            <div hidden={this.state.deviceIsEmpty}>
+                            <div hidden={!this.state.deviceIsEmpty}>
                                 <table class="table" style={{ marginTop: '350px' }}>
                                     <thead class="thead-dark">
                                         <tr>
@@ -119,7 +115,7 @@
                                     <tbody>{tableRows}</tbody>
                                 </table>
                             </div>
-                            <h3 hidden={!this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
+                            <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
 
                         </div>
 
