@@ -60,8 +60,26 @@ class MapContainer extends React.Component {
                 initialCenter={{ lat: 47.444, lng: -122.176 }}
             >
                 {dt}
-                <Marker position={{ lat: 48.00, lng: -122.00}}  onClick={() => console.log("You clicked me")} onHove={() =>alert("You hovered")}/>
+                <Marker position={{ lat: 48.00, lng: -122.00}}  onClick={() => console.log("You clicked me")} onHover={() =>console.log("You Hover me")}/>
             </Map>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+
+
+
+
+
+
             </div>
         );
     }
@@ -72,6 +90,6 @@ export default GoogleApiWrapper({
 })(MapContainer);
 
 const mapStyles = {
-    width: '70%',
-    height: '50%',
+    width: '96%',
+    height: '400px',
 };

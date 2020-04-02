@@ -1,0 +1,144 @@
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #0e2cda;
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .client-profile {
+
+    width:'25%'; 
+    height:'100%';
+     margin:0;
+      display:'inline-block';
+       line-height:'80px';
+        vertical-align:'middle';
+         text-align:'center';
+  }
+  .fgmv {
+    background-color:'white';
+    height:'47%';
+    border-radius:'10px'; 
+    margin: '8px'; 
+    width:'100%';
+    word-wrap:'break-word';
+  }
+
+  .cardB {
+
+    background-color: white;
+    margin-top: 10px;
+    width: max-content;
+    margin: 15px;
+    margin-left: 0;
+
+  
+  }
+  .homeIcon {
+    color: blue;
+    font-size: 35px;
+    padding: 0px;
+
+  }
+
+  .otherSec {
+    margin:4px;
+
+  }
+
+  .deviceTable {
+
+    width: inherit;
+    margin-top: unset;
+    font-family: fantasy;
+    font-size: medium;
+    text-align: center;
+    font-style: normal;
+  }
+  .validationError{
+
+    color: red;
+  }
+  .tableHead{
+
+    background-color: #0e2cda;
+    color: wheat;
+  }
+  .mapMargin{
+
+    margin-top: 40px;
+  }
+  .customProfile{
+
+
+    background-color: white;
+    margin-left: 20px;
+    border-radius: 10px;
+    padding: 0;
+    word-wrap: break-word;
+    margin: 8px;
+    height: 47%;
+    width: 100%;
+  }
+  .customProfile2{
+
+
+    background-color: white;
+    border-radius: 10px;
+    word-wrap: break-word;
+    height: 47%;
+    margin: 7px;
+    width: 100%;
+    padding: 0;
+  }
+  .profileIcon{
+
+    width: 25%;
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    line-height: 80px;
+    vertical-align:middle;
+    text-align: center;
+
+  }
+.icon{
+   color: blue ;
+   font-size: 30px;
+   padding: 10px;
+}
+h4{
+
+  font-family: fantasy;
+  font-style: italic;
+  font-weight: bold;
+  color: #0e2cda;
+}

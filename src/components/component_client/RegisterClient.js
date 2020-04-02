@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-
-
+import { validateAll } from 'indicative/validator'
+import styles from './client_style.css'
 
 
 
@@ -15,13 +15,14 @@ export default class Register extends React.Component {
         this.state = {
             emailAddress: '',
             password: '',
-            passwordRepeat: '',
+            password_confirmation: '',
             phoneNumber: '',
             name: '',
             address: '',
-            registrationResponse: {},
             isRegistered: false,
-            loading: true
+            deactivateSubmitButton: true,
+            errors: {},
+            errs: ''
         }
     }
 
@@ -29,25 +30,84 @@ export default class Register extends React.Component {
         this.setState(
             {
                 [event.target.name]: event.target.value,
+                errors:{},
+                errs:''
 
             }
         );
 
-        if (this.state.emailAddress.length < 5 && this.state.password === this.state.passwordRepeat) {
-
-            this.setState({ loading: true })
+        const data = this.state
+        const rules= {
+            name: 'required|string',
+            emailAddress: 'required|email',
+            password: 'required|string|min:6|confirmed',
+            address: 'required|string',
+            phoneNumber: 'required|string|min:6'
         }
-        else {
+        const messages = {
 
-            this.setState({ loading: false })
+            required: 'This {{field}} is required',
+            'email.email': 'The email is invalid.',
+            'password.confirmed': 'The password doesn\'t match',
+            'password.min': 'Password is too short'
         }
+
+        validateAll(data, rules, messages).then(() =>{
+
+            console.log('success')
+            this.setState({deactivateSubmitButton:false})
+        }).catch((errors) =>{
+
+            console.log(errors);
+            //show errors to user
+            const formattedErrors={}
+            errors.forEach( error => formattedErrors[error.field] = error.message)
+            this.setState({errors:formattedErrors, deactivateSubmitButton:true})
+        })
+
+
 
     }
 
-    addUser = (event) => {
+    register = (data) =>{
 
-        // event.preventDefault();
 
+        fetch('http://localhost:8081/api/clients/',
+        {
+            crossDomain: true,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+
+
+            if (response.status === 201) {
+                this.setState({
+                    isRegistered: true,
+                })
+            }
+
+            else{
+                this.setState({errs:this.state.emailAddress+ "\nalready exists"})
+
+            }
+
+        })
+        .catch((err) => {
+            console.error(err);
+            this.setState({errs:err.toString()})
+        });
+
+
+    }
+
+    handleSubmit = (event) => {
+
+        event.preventDefault();
+        
         const user = {
             emailAddress: this.state.emailAddress,
             password: this.state.password,
@@ -57,31 +117,9 @@ export default class Register extends React.Component {
 
         };
 
-        fetch('http://localhost:8081/api/clients/',
-            {
-                crossDomain: true,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(user)
-            })
-            .then((response) => {
+        this.register(user)
 
-
-                if (response.status === 201) {
-                    this.setState({
-                        isRegistered: true,
-                        registrationResponse: response.json
-
-
-                    })
-                }
-
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+       
 
 
 
@@ -90,7 +128,6 @@ export default class Register extends React.Component {
     render() {
 
 
-        const { loading } = this.state.loading
 
         if (this.state.isRegistered) {
 
@@ -112,40 +149,49 @@ export default class Register extends React.Component {
                         <div class="signup-content">
                             <div class="signup-form">
                                 <h2 class="form-title">Sign up</h2>
-                                <form method="POST" class="register-form" id="register-form">
+                                <form method="POST" class="register-form" id="register-form" onSubmit={this.handleSubmit}>
                                     <div class="form-group">
                                         <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input placeholder="Name" name="name" onChange={this.handleChange}></input>
                                     </div>
+                                    <p class="validationError">{this.state.errors.name}</p>
+
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                        <input type='email' required name='emailAddress' required placeholder="Email Address" onChange={this.handleChange}></input>
+                                        <input type='email'  name='emailAddress'  placeholder="Email Address" onChange={this.handleChange}></input>
                                     </div>
+                                    <p class="validationError">{this.state.errors.emailAddress}</p>
+
                                     <div class="form-group">
                                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type='password' required name='password' required placeholder="Password" onChange={this.handleChange}></input>
-
+                                        <input type='password'  name='password'  placeholder="Password" onChange={this.handleChange}></input>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type='password' required name='passwordRepeat' required placeholder="Re-Type Password" onChange={this.handleChange}></input>
+                                        <input type='password'  name='password_confirmation'  placeholder="Re-Type Password" onChange={this.handleChange}></input>
                                     </div>
+                                    <p class="validationError">{this.state.errors.password}</p>
+
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-phone-in-talk"></i></label>
                                         <input type='text' name='phoneNumber' placeholder="Phone Number" onChange={this.handleChange}></input>
                                     </div>
+                                        <p class="validationError">{this.state.errors.phoneNumber}</p>
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
                                         <input type='text' name='address' placeholder="Home or Office Address" onChange={this.handleChange}></input>
                                     </div>
+                                        <p class="validationError">{this.state.errors.address}</p>
+                                    <div class="form-group form-button">
+                                    <button type="submit" class="btn btn-primary btn-lg" disabled={this.state.deactivateSubmitButton} >Register </button>
 
+                                </div>
+                                        <p class="validationError">{this.state.errs}</p>
 
                                 </form>
 
-                                <div class="form-group form-button">
-                                    <button type="submit" class="form-submit" onClick={this.addUser} disabled={this.state.loading}>Register </button>
-
-                                </div>
+                               
                             </div>
                             <div class="signup-image">
                                 <figure><img src="images/signup-image.jpg" alt="sing up image"></img></figure>

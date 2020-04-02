@@ -1,7 +1,7 @@
     import React from 'react'
     import { Link } from 'react-router-dom'
     import { Redirect } from 'react-router-dom'
-    import '../style.css'
+    import styles from './client_style.css'
     import GoogleApiWrapper from './Map'
 
 
@@ -100,11 +100,17 @@
                         </div>
 
                         <div class="main">
+                        <div class="col-12 otherSec">
+                            <div class="row mapMargin">
+                                <GoogleApiWrapper/>
+                            </div>
+                            <div class="row">
+                                       <h4><i class="fas fa-plus"></i>  Create Device</h4>
+                               </div>
+                            <div hidden={!this.state.deviceIsEmpty} class="row deviceTable">
 
-                            <GoogleApiWrapper/>
-                            <div hidden={!this.state.deviceIsEmpty}>
-                                <table class="table" style={{ marginTop: '350px' }}>
-                                    <thead class="thead-dark">
+                                <table class="table table-bordered">
+                                    <thead class="table-info tableHead">
                                         <tr>
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
@@ -117,6 +123,7 @@
                             </div>
                             <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
 
+                        </div>
                         </div>
 
                     </div>

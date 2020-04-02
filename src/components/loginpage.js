@@ -1,10 +1,10 @@
 import React from 'react';
-import  { Redirect } from 'react-router-dom'
+import Home from './ClientList';
+import DashBoard from './dashboard'
 
 
-// export default class Login extends React.Component {
 
-export default class AdminLogin extends React.Component {
+export default class LoginPage extends React.Component {
 
     constructor(props) {
         super(props)
@@ -31,7 +31,7 @@ export default class AdminLogin extends React.Component {
                 const jwtToken = res.headers.get('Authorization');
                 if (jwtToken !== null) {
                     sessionStorage.setItem("jwt", jwtToken);
-                    sessionStorage.setItem("isAuthenticated");
+                    sessionStorage.setItem("isAuthenticated", true);
                     this.setState({
                         isAuthenticated: true,
                     });
@@ -42,15 +42,16 @@ export default class AdminLogin extends React.Component {
 
     render() {
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
-        return <Redirect to="/admin/home"/>
+        return <div> 
+                <DashBoard/>
+            </div>
         }
         else{
         return (
-            <div>
-            <div className="container">
-              <div className="row justify-content-center align-items-center">
-              <div className="col-10 col-md-8 col-lg-6">
-              <form>
+        <div className="container">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-10 col-md-8 col-lg-6">
+                <form>
                     <h3 className="text-center">Sign In</h3>
                     <div className="form-group">
                     <label>Email Address</label>
@@ -64,13 +65,10 @@ export default class AdminLogin extends React.Component {
                 </form> 
                 <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
                     <p className="forget-pasword text-right">
-                        Forget <a href="#">password?</a>
-                    </p>
-              </div>
-              </div>
-              </div>  
-              
+                        Forget <a href="#">password?</a></p>
             </div>
+            </div>
+        </div> 
         );
         }
     }
