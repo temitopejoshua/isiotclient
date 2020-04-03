@@ -3,8 +3,7 @@ import {Button} from 'react-bootstrap';
 import DeviceChart from './deviceChart';
 import MapContainer from './map'; 
 import './Admin.css';
-
-import user from './user.png'
+import user1 from './user.svg'
 import settings from './settings.png'
 import devices from './devices.png'
 import temperature from './temperature.png'
@@ -69,7 +68,7 @@ fetchClients = () => {
     getTime =() =>{
       var hours = new Date().getHours();
       var mins = new Date().getMinutes();
-      var time = hours + '/' + mins
+      var time = hours + ':' + mins
       this.setState({ currentMinute: time })
         }
 
@@ -97,13 +96,13 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={user} style={{ height: "50px", width: "50px", color: "red"}}/>
+                          <img src={user1} style={{ height: "50px", width: "50px", fill:'%23000'}}/>
                         </div>
                         </div>
                       </div>
                       </div>
                       <div className="card-footer">
-                      <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
+                      <small className="text-muted">Last updated {this.state.currentMinute}</small>
                       </div>
                   </div>
                 </div>
@@ -125,7 +124,7 @@ fetchClients = () => {
                       </div>
                       </div>
                       <div className="card-footer">
-                      <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
+                      <small className="text-muted">Last updated {this.state.currentMinute}</small>
                       </div>
                   </div>
                 </div>
@@ -147,7 +146,7 @@ fetchClients = () => {
                       </div>
                       </div>
                       <div className="card-footer">
-                      <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
+                      <small className="text-muted">Last updated {this.state.currentMinute}</small>
                       </div>
                   </div>
                 </div>
@@ -158,7 +157,7 @@ fetchClients = () => {
                       <div className="row">
                         <div className="col-8">
                           <h3 className="mb-2">{this.state.numberOfDevices}</h3>
-                          <div className="mb-0">Temperature Sensor</div>
+                          <div className="mb-0">Devices</div>
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
@@ -168,7 +167,7 @@ fetchClients = () => {
                       </div>
                       </div>
                       <div className="card-footer">
-                      <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
+                      <small className="text-muted">Last updated {this.state.currentMinute}</small>
                       </div>
                   </div>
                 </div>
@@ -178,72 +177,3 @@ fetchClients = () => {
         );
     }
 }
-
-
-
-
-
-
-// <div className="col-12 col-md-6 col-xl d-flex">
-//                   <div className="card flex-fill">
-//                     <div className="card-body py-4">
-//                       <div className="row">
-//                         <div className="col-8">
-//                           <h3 className="mb-2">{this.state.numberOfClients}</h3>
-//                           <div className="mb-0">Clients</div>
-//                         </div>
-//                         <div className="col-4 ml-auto text-right">
-//                           <div className="d-inline-block mt-2">
-//                           <img src={user} style={{ height: "8rem", color: "red"}}/>
-//                         </div>
-//                         </div>
-//                       </div>
-//                       </div>
-//                       <div className="card-footer">
-//                       <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
-//                       </div>
-//                   </div>
-//                 </div>
-
-
-//                 <div className="col-lg-3 mb-3 grid-margin">
-//                   <div className="card h-100">
-//                       {/* <h5 className="card-header icon">Temperature Sensor</h5> */}
-//                       <div className="card-body icon row">
-//                         <img src={temperature} style={{ height: "8rem", color: "red"}}/>
-//                         {/* <h1 className="icon">Temperature Sensor</h1><br/> */}
-//                         <h1>{this.state.numberOfTempSensor}</h1>
-//                       </div>
-//                       <div className="card-footer">
-//                       <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
-//                       </div>
-//                   </div>
-//                 </div>
-
-//                 <div className="col-lg-3 mb-3 grid-margin">
-//                   <div className="card h-100">
-//                       {/* <h5 className="card-header icon">Geolocation Sensor</h5> */}
-//                       <div className="card-body icon row">
-//                         <img src={geolocation} style={{ height: "8rem", color: "red"}}/>
-//                         <h1>{this.state.numberOfGeoSensor}</h1>
-//                       </div>
-//                       <div className="card-footer">
-//                       <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
-//                       </div>
-//                   </div>
-//                 </div>
-
-//                 <div className="col-lg-3 mb-3 grid-margin">
-//                   <div className="card h-100">
-//                       {/* <h5 className="card-header icon">Devices</h5> */}
-//                       <div className="card-body icon row">
-//                         <img src={devices} style={{ height: "8rem", color: "red"}}/>
-//                         <h1>{this.state.numberOfDevices}</h1>
-//                       </div>
-//                       <div className="card-footer">
-//                       <small className="text-muted">Last updated {this.state.currentMinute} mins ago</small>
-//                       </div>
-//                   </div>
-//                 </div>
-//             </div>
-//             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import Home from './ClientList';
-import DashBoard from './dashboard'
+import Home from './component_admin/ClientList';
 
 
 
@@ -43,7 +42,7 @@ export default class LoginPage extends React.Component {
     render() {
         if(sessionStorage.getItem("isAuthenticated") === 'true'){
         return <div> 
-                <DashBoard/>
+                
             </div>
         }
         else{

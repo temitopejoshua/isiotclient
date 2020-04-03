@@ -37,13 +37,23 @@ export class MapContainer extends Component{
           </div>;
         }
         return(
-            <Map google={google}
-                initialCenter={userLocation}
-                styles={mapStyles}
-                zoom={16}
-            >
-            <Marker/>
-            </Map>
+            <div className="row">
+                <div className="col-12 col-lg-12 d-flex">
+                <div className="card flex-fill w-100">
+                <h4 className="card-header">Locations</h4>
+                    <div className="card-body p-2"></div>
+                    <div style={{height: "350px"}}>
+                    <Map google={google}
+                    initialCenter={userLocation}
+                    zoom={16}
+                    styles={mapStyles}
+                    >
+                    <Marker/>
+                     </Map>
+                     </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

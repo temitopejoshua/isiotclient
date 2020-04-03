@@ -30,7 +30,7 @@ export default class SideDrawer extends Component{
                         </NavItem>
                         <NavItem eventKey="map">
                             <NavIcon>
-                                <i className="fa fa-fw fa-account" style={{fontSize: '1.7em' }}/>
+                                <i className="fa fa-fw fa-users" style={{fontSize: '1.7em' }}/>
                             </NavIcon>
                             <NavText><Nav.Link href="/maps">Maps</Nav.Link></NavText>
                         </NavItem>
@@ -48,7 +48,7 @@ export default class SideDrawer extends Component{
                         </NavItem>
                         <NavItem eventKey="/settings">
                             <NavIcon>
-                                <i className="fa fa-fw fa-settings" style={{fontSize: '1.7em' }}/>
+                                <i className="fa fa-fw fa-line-chart" style={{fontSize: '1.7em' }}/>
                             </NavIcon>
                             <NavText>Profile</NavText>
                         </NavItem>
