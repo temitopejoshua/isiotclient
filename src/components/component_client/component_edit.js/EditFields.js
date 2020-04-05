@@ -1,7 +1,6 @@
 import React from 'react'
 import SkyLight from 'react-skylight'
-import { Redirect } from 'react-router-dom'
-import { ThemeProvider } from 'react-bootstrap';
+import styles from '../client_style.css'
 
 
 class EditFields extends React.Component {
@@ -44,21 +43,41 @@ class EditFields extends React.Component {
         return (
             <div>
                 <SkyLight hideOnOverlayClicked ref="addDialog">
-                    <form>
+                    <div class="p-5">
+                        <form class="form">
 
-                        <input type='text' placeholder="address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
-                        <input type='text' placeholder="name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
-                        <input type='text' placeholder="phoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
+                            <div class="form-group mb-3">
+                                
+                                <input type='text' class="form-control input-a" placeholder="address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
+                            </div>
+                            <div class="form-group mb-3">
+                                
+                                <input type='text' class="form-control input-a" placeholder="name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
+                            </div>
+                            <div class="form-group">
+                                
+                                <input type='text' class="form-control input-a" placeholder="phoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
+                            </div>
 
 
-                        <button onClick={this.handleSubmit} type="Submit">Save</button>
-                        <button onClick={this.cancelSubmit}>Cancel</button>
-                    </form>
+                            <button onClick={this.handleSubmit} type="Submit" class="btn btn-success">Save</button>
+                            <button onClick={this.cancelSubmit} class="btn btn-danger ml-3">Cancel</button>
+                        </form>
+                    </div>
                 </SkyLight>
                 <div>
-                <button  style={{backgroundColor:'Transparent', border:'none'}}
-                        onClick={() => this.refs.addDialog.show()}><i class="fas fa-user-edit icon"  ></i>
-                        </button>
+                {/* <button  style={{backgroundColor:'Transparent', border:'none'}}
+                        onClick={() => this.refs.addDialog.show()}><i class="fas fa-user-edit bigicon mb-3"  ></i>
+                        </button> */}
+
+                        
+                            <div onClick={() => this.refs.addDialog.show()} class="card eqh round-small card-default">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-edit col bigicon mb-3"></i>
+                                    <p>Edit profile</p>
+                                </div>
+                            </div>
+        
 
 
                 </div>

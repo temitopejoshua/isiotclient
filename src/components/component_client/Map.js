@@ -1,5 +1,6 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import React from 'react';
+import styles from './client_style.css'
 
 class MapContainer extends React.Component {
 
@@ -51,7 +52,7 @@ class MapContainer extends React.Component {
 
     )
         return (
-            <div>
+            <div class="map-a">
                 <h6>Location</h6>
             <Map
                 google={this.props.google}
@@ -63,16 +64,7 @@ class MapContainer extends React.Component {
                 <Marker position={{ lat: 48.00, lng: -122.00}}  onClick={() => console.log("You clicked me")} onHover={() =>console.log("You Hover me")}/>
             </Map>
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+          
 
 
 
@@ -92,4 +84,5 @@ export default GoogleApiWrapper({
 const mapStyles = {
     width: '96%',
     height: '400px',
+    position: 'relative',
 };

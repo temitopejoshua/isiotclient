@@ -9,8 +9,8 @@ class ChangePassword extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password:'',
-            
+            password: '',
+
         }
     }
 
@@ -27,7 +27,7 @@ class ChangePassword extends React.Component {
         this.props.handleEdit(password);
         this.refs.addDialog.hide();
         this.props.fetchData()
-        
+
     }
 
     cancelSubmit = (event) => {
@@ -41,20 +41,30 @@ class ChangePassword extends React.Component {
         return (
             <div>
                 <SkyLight hideOnOverlayClicked ref="addDialog">
-                    <form>
+                    <div class="p-5">
+                        <form>
+                            <div class="form-group">
+                                <input type='password' class="form-control input-a" placeholder="Password" name='password' onChange={this.handleChange} />
+                            </div>
 
-                        <input type='password' placeholder="Password"  name='password' onChange={this.handleChange} />
-                        <input type='password' placeholder="Re-type Password"  name='passwordRepeat' onChange={this.handleChange} />
+                            <div class="form-group">
+                                <input type='password' class="form-control input-a" placeholder="Re-type Password" name='passwordRepeat' onChange={this.handleChange} />
+                            </div>
 
-
-                        <button onClick={this.handleSubmit} type="Submit">Save</button>
-                        <button onClick={this.cancelSubmit}>Cancel</button>
-                    </form>
+                            <div class="form-group">
+                                <button class="btn btn-success" onClick={this.handleSubmit} type="Submit">Save</button>
+                                <button class="btn btn-danger ml-3" onClick={this.cancelSubmit}>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </SkyLight>
                 <div>
-                    <button  style={{backgroundColor:'Transparent', border:'none'}}
-                        onClick={() => this.refs.addDialog.show()}><i class="fas fa-unlock-alt col icon" ></i>
-                        </button>
+                    <div onClick={() => this.refs.addDialog.show()} class="card eqh round-small card-default">
+                        <div class="card-body text-center">
+                            <i class="fas fa-unlock-alt col bigicon mb-3"></i>
+                            <p>Change Password</p>
+                        </div>
+                    </div>
 
 
                 </div>

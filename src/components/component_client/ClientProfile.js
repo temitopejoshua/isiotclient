@@ -93,82 +93,71 @@ export default class Profile extends Component {
                     <Link to={"/client/devices"}>Devices</Link>
                 </div>
                 <div class="main">
-                    <div class="row" style={{ height: '100vh', }}>
 
-                        <div class=" col-3" style={{ backgroundColor: 'white', marginLeft: '20px', borderRadius: '10px', padding: '30px' }}>
-                            <div style={{ color: 'blue', fontSize: '300px', padding: '20px' }}>
-                                <i class="fas fa-user" style={{ marginLeft: "-40px" }}></i>
-                                <h3 class="">Welcome!</h3>
-                                <h1>{this.state.client.name}</h1>
+                    <div class="col-md-12">
+                        <div class="vh-100">
+                            <div class="row">
+
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="card round-small card-default">
+                                        <div class="card-body p-5">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="pic">
+                                                        <img src="images/dummyprofile.jpg"></img>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h1 class="mb-5">{this.state.client.name}</h1>
+
+                                                    <p><i class="fas fa-envelope"></i> &nbsp; {this.state.client.emailAddress}</p>
+                                                    <p><i class="fas fa-mobile"></i> &nbsp; {this.state.client.phoneNumber}</p>
+                                                    <p><i class="fas fa-map-marker-alt"></i> &nbsp; {this.state.client.address}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="row row-eq-height">
+                                        <div class="col-md-3 mt-3">
+                                            <div class="card eqh round-small default">
+                                                <div class="card-body text-center">
+
+                                                    <h2 class=" bigicon mb-3"> {this.state.client.numberOfDevices} </h2>
+                                                    <p>Number of devices</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 mt-3 action">
+                                            <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
+                                        </div>         
+
+                                        <div class="col-md-3 mt-3 action">
+                                            
+                                                    <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
+                        
+                                            
+                                        </div>
+
+                                        <a href="/logout" class="col-md-3 mt-3 action">
+                                            <div class="card eqh round-small card-default">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-sign-out-alt bigicon mb-3"></i>
+                                                    <p>Log out</p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-                        <div class=" col-8">
-
-                            <div class="row customProfile">
-                                <div class="profileIcon">
-                                    <i class="fas fa-envelope-square col icon" ></i>
-                                    <h4>{this.state.client.emailAddress}</h4>
-
-                                </div>
-
-                                <div class="profileIcon" >
-                                    <i class="fas fa-map-marker-alt col icon"></i>
-                                    <h4>{this.state.client.address}</h4>
-
-                                </div>
-                                <div class="profileIcon">
-                                    <i class="fas fa-mobile icon"></i>
-                                    <h4>{this.state.client.phoneNumber}</h4>
-                                </div>
-                                <div class="profileIcon">
-                                    <i class="fas fa-sort-numeric-up col icon"></i>
-                                    <h4>Number of Devices: {this.state.client.numberOfDevices}</h4>
-
-
-                                </div>
-
-
-                            </div>
-
-                            <div class="row customProfile2">
-
-                                <div class="profileIcon">
-                                    <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                                    <h4>Change Password</h4>
-
-                                </div>
-
-                                <div class="profileIcon">
-                                    <a href="/logout"
-                                    ><i class="fas fa-sign-out-alt icon"></i>
-                                    </a>
-                                    <h4>Logout</h4>
-
-
-                                </div>
-
-                                <div class="profileIcon">
-                                    <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                                    <h4>Edit Profile</h4>
-
-                                </div>
-
-                                <div class="profileIcon">
-                                    <i class="fas fa-angle-double-right icon"></i>
-                                    <h4>{this.state.client.active ? "Active" : "Suspended"}</h4>
-
-                                </div>
-
-                               
-                            </div>
-
-
-                        </div>
-
                     </div>
-
-
 
                 </div>
 

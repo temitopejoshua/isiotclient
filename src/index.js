@@ -18,6 +18,9 @@ import DashBoard from './components/dashboard'
 import Table from './components/Table';
 import Devices from './components/Devices';
 import UserDetail from './components/userDetail'
+import ActivateAccount from './components/component_client/ActivateAccount'
+import ForgetPassword from './components/component_client/ForgetPassword'
+import ResetPassword from './components/component_client/ResetPassword'
 
 
 import AdminPage from './components/AdminPage';
@@ -29,12 +32,16 @@ const routing = (
     <Route exact path="/admin" component={App} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/clients/:id" component={UserDetail} />
+    <Route exact path="/" component={ClientLogin} />
     <Route exact path="/login" component={ClientLogin} />
     <Route excat path="/home" component={ClientHome} />
     <Route exact path="/logout" component={Logout} />
     <Route exact path="/device/:id" component={Device} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/client/devices" component={ClientDevices} />
+    <Route exact path="/activate" component={ActivateAccount}/>
+    <Route exact path="/resetpassword" component={ResetPassword} />
+    <Route exact path="/forgetpassword" component={ForgetPassword}/>
 
 
 

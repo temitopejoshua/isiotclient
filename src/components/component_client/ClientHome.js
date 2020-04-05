@@ -17,8 +17,92 @@ export default class ClientHome extends React.Component {
         super(props)
         this.state = {
             client: {},
-            devices: [],
-            deviceIsEmpty: false,
+            devices: [
+                {
+                    name: "Test1",
+                    category: {
+                        name: "Test"
+                    }
+    
+                    },
+                    {
+                        name: "Test2",
+                        category: {
+                            name: "Test"
+                        }
+        
+                        },
+                        {
+                            name: "Test3",
+                            category: {
+                                name: "Test"
+                            }
+            
+                            },
+                            {
+                                name: "Test4",
+                                category: {
+                                    name: "Test"
+                                }
+                
+                                },
+                                {
+                                    name: "Test5",
+                                    category: {
+                                        name: "Test"
+                                    }
+                    
+                                    },
+                                    {
+                                        name: "Test6",
+                                        category: {
+                                            name: "Test"
+                                        }
+                        
+                                        },
+                                        {
+                                            name: "Test7",
+                                            category: {
+                                                name: "Test"
+                                            }
+                            
+                                            },
+                                            {
+                                                name: "Test8",
+                                                category: {
+                                                    name: "Test"
+                                                }
+                                
+                                                },
+                                                {
+                                                    name: "Test9",
+                                                    category: {
+                                                        name: "Test"
+                                                    }
+                                    
+                                                    },
+                                                    {
+                                                        name: "Test10",
+                                                        category: {
+                                                            name: "Test"
+                                                        }
+                                        
+                                                        },
+                                                        {
+                                                            name: "Test11",
+                                                            category: {
+                                                                name: "Test"
+                                                            }
+                                            
+                                                            },
+                                                            {
+                                                                name: "Test12",
+                                                                category: {
+                                                                    name: "Test"
+                                                                }
+                                                
+                                                                }
+            ],
         }
     }
 
@@ -35,27 +119,17 @@ export default class ClientHome extends React.Component {
             .then((responseData) => {
                 this.setState({
                     client: responseData,
-                    devices: responseData.devices
+                    // devices: responseData.devices
                 });
             })
             .catch(err => console.error(err));
     }
 
-    checkDevices = () => {
 
-        if (this.state.devices.length < 1)
-            this.setState({ deviceIsEmpty: true })
-
-        else {
-            this.setState({ deviceIsEmpty: false })
-        }
-    }
 
     componentDidMount() {
 
         this.fetchUsers()
-        this.checkDevices()
-
 
     }
 
@@ -63,7 +137,8 @@ export default class ClientHome extends React.Component {
 
         var i = 1;
         var id = this.state.client.id
-        const tableRows = this.state.devices.map(
+        const data =  this.state.devices.slice(0,5)
+        const tableRows = data.map(
 
             (device, index) =>
                 <tr key={index}>
@@ -73,8 +148,7 @@ export default class ClientHome extends React.Component {
                     <td>{device.name}</td>
                     <td>{device.category.name}</td>
                     <div>
-                        <Link to={"/device/" + device.devEui}>view </Link> /
-                             <Link to={"/device/" + device.devEui}>delete</Link>
+                        <Link to={"/device/" + device.devEui}>View </Link>
 
                     </div>
 
@@ -106,33 +180,52 @@ export default class ClientHome extends React.Component {
                     <div class="main">
                         <div class="col-12 otherSec">
                             <div>
-                                <div class="row">
-                                    <div class="col-2 cardB">
-                                        <i class="fab fa-ethereum homeIcon"></i>
-                                        <h5 class="card-title">Others</h5>
+                                <div class="row no-border">
 
-                                        <p class="card-text">{this.state.client.numberOfDevices}</p>
 
+                                    <div class="col-md-3 mt-3">
+                                        <div class="card card-default">
+                                            <div class="card-body">
+                                                <i class="fas fa-mobile-alt homeIcon"></i>
+                                                <h5 class="card-title">Devices</h5>
+                                                <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="card card-default">
+                                            <div class="card-body">
+                                                <i class="fas fa-thermometer homeIcon"></i>
+                                                <h5 class="card-title">Temperature Sensor</h5>
+                                                <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 mt-3">
+                                        <div class="card card-default">
+                                            <div class="card-body">
+                                                <i class="fas fa-map-marker-alt col homeIcon"></i>
+
+                                                <h5 class="card-title">Geolocation Sensor</h5>
+                                                <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                            </div>
+                                        </div>
 
                                     </div>
 
-                                    <div class="col-3 cardB">
+                                    <div class="col-md-3 mt-3">
+                                        <div class="card card-default">
+                                            <div class="card-body">
+                                                <i class="fab fa-ethereum homeIcon"></i>
+                                                <h5 class="card-title">Others</h5>
 
-                                        <i class="fas fa-thermometer homeIcon"></i>
-                                        <h5 class="card-title">Temperature Sensor</h5>
-                                        <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                            </div>
 
-                                    </div>
-                                    <div class="col-3 cardB">
-                                        <i class="fas fa-mobile-alt homeIcon"></i>
-                                        <h5 class="card-title">Devices</h5>
-                                        <p class="card-text">{this.state.client.numberOfDevices}</p>
-                                    </div>
-                                    <div class="col-3 cardB">
-                                        <i class="fas fa-map-marker-alt col homeIcon"></i>
-
-                                        <h5 class="card-title">Geolocation Sensor</h5>
-                                        <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                        </div>
 
                                     </div>
 
@@ -142,35 +235,39 @@ export default class ClientHome extends React.Component {
 
 
                             </div>
-                            <div class="row">
-                                <h5>Welcome {this.state.client.name}!</h5>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-md-12">
+                                    <h5>Welcome {this.state.client.name}!</h5>
+                                </div>
 
                             </div>
 
 
                             <div class="row">
-                                <GoogleApiWrapper />
+                                <div class="col-md-12 mb-5">
+                                    <GoogleApiWrapper />
+                                </div>
                             </div>
 
 
-                            <div hidden={!this.state.deviceIsEmpty} class="row deviceTable">
-                                <table class="table table-bordered">
-                                    <thead class="table-info tableHead">
-                                        <tr>
+                            <div class="row deviceTable">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead class="tableHead">
+
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Device Type</th>
                                             <th scope="col">Action</th>
 
 
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>{tableRows}</tbody>
-                                </table>
+                                        </thead>
+
+                                        <tbody>{tableRows}</tbody>
+                                    </table>
+                                </div>
                             </div>
-
-                            <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
                         </div>
                     </div>
                 </div>

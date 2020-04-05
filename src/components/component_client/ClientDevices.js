@@ -16,8 +16,92 @@
             super(props)
             this.state = {
                 client: {},
-                devices: [],
-                deviceIsEmpty: false,
+                devices: [
+                    {
+                        name: "Test1",
+                        category: {
+                            name: "Test"
+                        }
+        
+                        },
+                        {
+                            name: "Test2",
+                            category: {
+                                name: "Test"
+                            }
+            
+                            },
+                            {
+                                name: "Test3",
+                                category: {
+                                    name: "Test"
+                                }
+                
+                                },
+                                {
+                                    name: "Test4",
+                                    category: {
+                                        name: "Test"
+                                    }
+                    
+                                    },
+                                    {
+                                        name: "Test5",
+                                        category: {
+                                            name: "Test"
+                                        }
+                        
+                                        },
+                                        {
+                                            name: "Test6",
+                                            category: {
+                                                name: "Test"
+                                            }
+                            
+                                            },
+                                            {
+                                                name: "Test7",
+                                                category: {
+                                                    name: "Test"
+                                                }
+                                
+                                                },
+                                                {
+                                                    name: "Test8",
+                                                    category: {
+                                                        name: "Test"
+                                                    }
+                                    
+                                                    },
+                                                    {
+                                                        name: "Test9",
+                                                        category: {
+                                                            name: "Test"
+                                                        }
+                                        
+                                                        },
+                                                        {
+                                                            name: "Test10",
+                                                            category: {
+                                                                name: "Test"
+                                                            }
+                                            
+                                                            },
+                                                            {
+                                                                name: "Test11",
+                                                                category: {
+                                                                    name: "Test"
+                                                                }
+                                                
+                                                                },
+                                                                {
+                                                                    name: "Test12",
+                                                                    category: {
+                                                                        name: "Test"
+                                                                    }
+                                                    
+                                                                    }
+                ],
 
             }
         }
@@ -35,25 +119,16 @@
                 .then((responseData) => {
                     this.setState({
                         client: responseData,
-                        devices: responseData.devices
+                        // devices: responseData.devices
                     });
                 })
                 .catch(err => console.error(err));
         }
-        checkDevices = () => {
-
-            if(this.state.devices.length < 1)
-                this.setState({deviceIsEmpty:true})
-
-                else{
-                    this.setState({deviceIsEmpty:false})
-                }
-    }
+       
 
         componentDidMount() {
 
             this.fetchUsers()
-            this.checkDevices()
 
 
         }
@@ -102,15 +177,17 @@
                         <div class="main">
                         <div class="col-12 otherSec">
                             <div class="row mapMargin">
-                                <GoogleApiWrapper/>
+                                <div class="col-md-12">
+                                    <GoogleApiWrapper/>
+                                </div>
                             </div>
-                            <div class="row">
-                                       <h4><i class="fas fa-plus"></i>  Create Device</h4>
-                               </div>
-                            <div hidden={!this.state.deviceIsEmpty} class="row deviceTable">
+                            
+                            <button class="btn btn-secondary mt-4 mb-5"><i class="fas fa-plus"></i> &nbsp; Create Device</button>
+                               
+                            <div class="row deviceTable">
 
                                 <table class="table table-bordered">
-                                    <thead class="table-info tableHead">
+                                    <thead class="tableHead">
                                         <tr>
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
@@ -121,7 +198,6 @@
                                     <tbody>{tableRows}</tbody>
                                 </table>
                             </div>
-                            <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
 
                         </div>
                         </div>

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { validateAll } from 'indicative/validator'
 import styles from './client_style.css'
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 
 
@@ -22,11 +23,14 @@ export default class Register extends React.Component {
             isRegistered: false,
             deactivateSubmitButton: true,
             errors: {},
-            errs: ''
+            errs: '',
+            loading: false
         }
     }
 
     handleChange = (event) => {
+
+        event.preventDefault()
         this.setState(
             {
                 [event.target.name]: event.target.value,
@@ -71,7 +75,7 @@ export default class Register extends React.Component {
 
     register = (data) =>{
 
-
+            this.setState({loading:true})
         fetch('http://localhost:8081/api/clients/',
         {
             crossDomain: true,
@@ -91,7 +95,10 @@ export default class Register extends React.Component {
             }
 
             else{
-                this.setState({errs:this.state.emailAddress+ "\nalready exists"})
+                this.setState({
+                    errs:this.state.emailAddress+ "\nalready exists",
+                    loading:false
+            })
 
             }
 
@@ -152,35 +159,35 @@ export default class Register extends React.Component {
                                 <form method="POST" class="register-form" id="register-form" onSubmit={this.handleSubmit}>
                                     <div class="form-group">
                                         <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input placeholder="Name" name="name" onChange={this.handleChange}></input>
+                                        <input placeholder="Name" name="name" onInput={this.handleChange}></input>
                                     </div>
                                     <p class="validationError">{this.state.errors.name}</p>
 
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                        <input type='email'  name='emailAddress'  placeholder="Email Address" onChange={this.handleChange}></input>
+                                        <input type='email'  name='emailAddress'  placeholder="Email Address" onInput={this.handleChange}></input>
                                     </div>
                                     <p class="validationError">{this.state.errors.emailAddress}</p>
 
                                     <div class="form-group">
                                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type='password'  name='password'  placeholder="Password" onChange={this.handleChange}></input>
+                                        <input type='password'  name='password'  placeholder="Password" onInput={this.handleChange}></input>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type='password'  name='password_confirmation'  placeholder="Re-Type Password" onChange={this.handleChange}></input>
+                                        <input type='password'  name='password_confirmation'  placeholder="Re-Type Password" onInput={this.handleChange}></input>
                                     </div>
                                     <p class="validationError">{this.state.errors.password}</p>
 
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-phone-in-talk"></i></label>
-                                        <input type='text' name='phoneNumber' placeholder="Phone Number" onChange={this.handleChange}></input>
+                                        <input type='text' name='phoneNumber' placeholder="Phone Number" onInput={this.handleChange}></input>
                                     </div>
                                         <p class="validationError">{this.state.errors.phoneNumber}</p>
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
-                                        <input type='text' name='address' placeholder="Home or Office Address" onChange={this.handleChange}></input>
+                                        <input type='text' name='address' placeholder="Home or Office Address" onInput={this.handleChange}></input>
                                     </div>
                                         <p class="validationError">{this.state.errors.address}</p>
                                     <div class="form-group form-button">
@@ -191,6 +198,11 @@ export default class Register extends React.Component {
 
                                 </form>
 
+                                <ClipLoader
+                                            size={30}
+                                            color={"blue"}
+                                            loading={this.state.loading}
+                                        />
                                
                             </div>
                             <div class="signup-image">
