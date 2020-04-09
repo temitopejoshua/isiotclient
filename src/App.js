@@ -1,6 +1,4 @@
 import React from 'react';
-import LoginPage from './components/loginpage'
-import './App.css';
 import AdminLogin from './components/component_admin/AdminLogin'
 
 

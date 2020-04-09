@@ -1,8 +1,6 @@
 import React from 'react';
-import  { Redirect } from 'react-router-dom'
-
-
-// export default class Login extends React.Component {
+import  { Redirect } from 'react-router-dom';
+// import './form_style.css';
 
 export default class AdminLogin extends React.Component {
 
@@ -13,11 +11,18 @@ export default class AdminLogin extends React.Component {
             emailAddress: '',
             password: '',
             isAuthenticated: false,
+            loginButtonDisabled: true,
+            errors: ''
         }
     }
+
     handleChange = (event) => {
         this.setState(
-            { [event.target.name]: event.target.value }
+            {
+                [event.target.name]: event.target.value,
+                loginButtonDisabled: false,
+                errors: ''
+            }
         );
     }
 
@@ -36,42 +41,54 @@ export default class AdminLogin extends React.Component {
                         isAuthenticated: true,
                     });
                 }
+                else {
+                    this.setState({ errors: "Email address and password does not match" })
+                }
             })
-            .catch(err => console.error(err))
+            .catch(errors => console.error(errors))
     }
 
     render() {
-        if(sessionStorage.getItem("isAuthenticated") === 'true'){
-        return <Redirect to="/admin/home"/>
+
+        if (sessionStorage.getItem("isAuthenticated") === 'true') {
+            return <Redirect to="/admin/home" />
         }
-        else{
-        return (
-            <div>
-            <div className="container">
-              <div className="row justify-content-center align-items-center">
-              <div className="col-10 col-md-8 col-lg-6">
-              <form>
-                    <h3 className="text-center">Sign In</h3>
-                    <div className="form-group">
-                    <label>Email Address</label>
-                    <input type='text' placeholder='Enter email' name='emailAddress' className="form-control" onChange={this.handleChange}></input>
+        else {
+            return (
+                <section class="sign-in">
+                    <div class="container">
+                        <div class="signin-content">
+                            <div class="signin-image">
+                                <figure><img src="images/signin-image.jpg" alt="sign up"></img></figure>
+                                <a href="/register" class="signup-image-link">Create an account</a>
+                            </div>
+                            <div class="signin-form">
+                                <h2 class="form-title">Admin Sign in</h2>
+                                <form method="POST" class="register-form" id="login-form">
+                                    <div class="form-group">
+                                        <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                        <input type='text' placeholder='Enter email' name='emailAddress' onChange={this.handleChange}></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type='password' placeholder='Enter Password' name='password' onChange={this.handleChange}></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                    </div>
+
+                                </form>
+                                <div class="form-group form-button">
+                                    <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
+                                </div>
+                                <p class="validationError">{this.state.errors}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-group">
-                    <label className="text-right">Password</label>
-                    <input type='password' placeholder='Enter Password' name='password' className="form-control" onChange={this.handleChange}></input>
-                    </div>
-                   
-                </form> 
-                <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
-                    <p className="forget-pasword text-right">
-                        Forget <a href="#">password?</a>
-                    </p>
-              </div>
-              </div>
-              </div>  
-              
-            </div>
-        );
+                </section>
+            );
+
         }
     }
 }

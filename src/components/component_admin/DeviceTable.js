@@ -9,16 +9,16 @@ const DeviceTable = ({devices, loading}) =>{
       </div>;
     }
 
-    var row =1;
+    // var row =1;
     const deviceData = devices.map(
         (device, index) =>
             <tr key={index++}>
                 <td>{index}</td>
                 <td>{device.name}</td>
                 <td>{device.devEui}</td>
-                <td>{device.isAssigned}</td>
+                <td>{device.assigned ? "Yes": "No"}</td>
                 <td><i class="fa fa-close">Suspend</i></td>
-                <td><Link to ={"/user/"+device.id}>View</Link></td>
+                <td><Link to ={"/admin/deviceinfo/"+device.id}>View</Link></td>
             </tr>
     )
     return (
@@ -31,7 +31,7 @@ const DeviceTable = ({devices, loading}) =>{
                   <th scope="col">Device Eui</th>
                   <th scope="col">Assigned</th>
                   <th scope="col">Action</th>
-                  <th scope="col">User Details</th>
+                  <th scope="col">Device Details</th>
                 </tr>
                 </thead>
                 <tbody>

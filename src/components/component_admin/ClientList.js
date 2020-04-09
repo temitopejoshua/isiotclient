@@ -36,12 +36,9 @@ export default class ClientList extends React.Component {
     }
     render() {
     const {loading, currentPage, clientsPerPage, clients} = this.state;
-    //Get current Clients
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexofFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients = clients.slice(indexofFirstClient, indexOfLastClient);
-     
-    //ChangePage
     const paginate =(pageNumber) => this.pageNumber;
         return (
         <div>

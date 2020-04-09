@@ -1,17 +1,8 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
-import DeviceChart from './deviceChart';
-import MapContainer from './map'; 
-import './Admin.css';
 import user1 from './user.svg'
-import settings from './settings.png'
 import devices from './devices.png'
 import temperature from './temperature.png'
 import geolocation from './location.png'
-
-
-import axios from 'axios';
-
 
 
 export default class Card extends Component{
@@ -62,30 +53,23 @@ fetchClients = () => {
       .catch(err => console.error(err));
 }
 
-
-
-
     getTime =() =>{
       var hours = new Date().getHours();
       var mins = new Date().getMinutes();
       var time = hours + ':' + mins
       this.setState({ currentMinute: time })
         }
-
-    
-        componentDidMount() {
+    componentDidMount() {
           this.fetchDevices();
           this.fetchClients();
           this.getTime();
             
-        }
+    }
 
     render(){
         return(
             <div>
             <div className="row">
-
-
                 <div className="col-12 col-md-6 col-xl d-flex">
                   <div className="card flex-fill">
                     <div className="card-body py-4">
@@ -96,7 +80,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={user1} style={{ height: "50px", width: "50px", fill:'%23000'}}/>
+                          <img src={user1} alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
                         </div>
                         </div>
                       </div>
@@ -118,7 +102,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={temperature} style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src={temperature} alt="temp" style={{height: "50px", width: "50px", color: "red"}}/>
                         </div>
                         </div>
                       </div>
@@ -136,11 +120,11 @@ fetchClients = () => {
                       <div className="row">
                         <div className="col-8">
                           <h3 className="mb-2">{this.state.numberOfGeoSensor}</h3>
-                          <div className="mb-0">Temperature Sensor</div>
+                          <div className="mb-0">Geolocation Sensor</div>
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={geolocation} style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src={geolocation} alt="geo" style={{height: "50px", width: "50px", color: "red"}}/>
                         </div>
                         </div>
                       </div>
@@ -161,7 +145,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={devices} style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src={devices} alt="devices" style={{height: "50px", width: "50px", color: "red"}}/>
                         </div>
                         </div>
                       </div>

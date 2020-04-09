@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import './nav.css';
-import user1 from './user.svg'
-import logo from './is-logo.png'
+import logo from './is-logo.png';
 
 
 export default class SideNav extends Component{
 
     render(){
-
         return(
 	    <div>
 		<nav className="sidebar">
@@ -22,13 +20,13 @@ export default class SideNav extends Component{
             		</a>
 					</li>
 					<li className="nav-item">
-						<a href="/clients" className="font-weight-bold nav-link">
-						<i className="fa fa-fw fa-users" style={{fontSize: '1.5em' }}/><span className="align-middle">Clients</span>
+						<a href="/admin/clients" className="font-weight-bold nav-link">
+						<i className="fa fa-fw fa-users nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Clients</span>
             		</a>
 					</li>
 					<li className="nav-item">
 						<a href="#ui" data-toggle="collapse" className="font-weight-bold nav-link collapsed">
-						<i className="fa fa-bar-chart" style={{fontSize: '1.5em' }}/><span className="align-middle">Devices</span>
+						<i className="fa fa-bar-chart nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Devices</span>
             			</a>
 						<ul id="ui" className="sidebar-dropdown list-unstyled collapse ">
 							<li className="nav-item"><a className="nav-link" data-toggle="pills" href="/admin/devices">Device Table</a></li>
@@ -36,20 +34,20 @@ export default class SideNav extends Component{
 							<li className="nav-item"><a className="nav-link" href="#">Geolocation Sensor</a></li>
 						</ul>
 					</li>
-					<li className="nav-item">
-						<a href="/notification" className="font-weight-bold nav-link">
+					{/* <li className="nav-item">
+						<a href="/#" className="font-weight-bold nav-link">
 						<i className="fa fa-fw fa-bell" style={{fontSize: '1.5em' }}/><span className="align-middle">Notifications</span>
               			<span className="sidebar-badge badge badge-warning">New</span>
             			</a>
-					</li>
+					</li> */}
 					<li className="nav-item">
-						<a href="/maps" data-toggle="" className="font-weight-bold nav-link">
-						<i className="fa fa-fw fa-map" style={{fontSize: '1.5em' }}/><span className="align-middle">Location</span>
+						<a href="/admin/maps" data-toggle="" className="font-weight-bold nav-link">
+						<i className="fas fa-map-marker-alt nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Location</span>
             		</a>
 					</li>
 					<li className="nav-item">
 						<a href="#auth" data-toggle="collapse" className="font-weight-bold nav-link">
-						<i className="material-icons" style={{fontSize: '1.5em' }}>settings</i><span className="align-middle">Settings</span>
+						<i className="material-icons nav-icon" style={{fontSize: '1.5em' }}>settings</i><span className="align-middle">Settings</span>
             			</a>
 						<ul id="auth" className="sidebar-dropdown list-unstyled collapse ">
 							<li className="nav-item"><a className="nav-link" href="/resetpassword">Reset Password</a></li>

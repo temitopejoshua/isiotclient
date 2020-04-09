@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper_page {
     -webkit-box-align: stretch;
     align-items: stretch;
     display: -webkit-box;
@@ -73,14 +73,12 @@
 .sidebar a.active {
     background-color: #01e2ff;
     color: white;
-    border-radius: 8px;
 }
 
 
 .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
-    border-radius: 8px;
   }
 
 
@@ -101,7 +99,7 @@ div.main {
     
 }
 
-.main {
+.main_page {
     width: 100%;
     min-height: 100vh;
     transition: all .4s ease-in-out;
@@ -128,4 +126,38 @@ div.main {
 
 .row_card{
   margin-bottom: 30px;
+}
+
+
+.not_found{
+  background-image: url("/images/404_page.jpg");
+  height: 600px;
+  background-repeat: no-repeat;
+  /* background-size: 700px 700px; */
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.not_found_text{
+  text-align: center;
+}
+
+
+.nav-icon{
+  color:#01e2ff;
+  padding-right: 10px;
+}
+
+.device-icon{
+  color:white;
+  font-size: larger;
+  background-color: #01e2ff;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+.modal-btn{
+  margin: 5px;
 }

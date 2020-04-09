@@ -1,20 +1,25 @@
-import { Navbar, Nav, NavDropdown, Form,  FormControl, Button, CardGroup} from 'react-bootstrap';
 import React, {Component} from 'react';
 import ClientList from './ClientList';
 import Devices from './Devices';
 import GraphCard from './Card';
-import SideDrawer from './sideDrawer';
 import BarGraph from './BarGraph';
 import MapContainer from './map';
 import TopNavBar from './TopNavbar';
-import './Admin.css';
 import SideNav from './Sidenav'; 
 import Footer from './footer';
+import { Redirect } from 'react-router-dom';
 
 
 
 export default class AdminPage extends Component{
+    
     render(){
+
+        if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+            return <Redirect to="/admin/login" />
+        }
+
+        else {
         return(
 
             <div className="wrapper">
@@ -45,4 +50,5 @@ export default class AdminPage extends Component{
             </div>
         );
     }
+}
 }

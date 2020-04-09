@@ -14,7 +14,8 @@ export default class Footer extends Component{
                         <div className="row text-muted">
                            <div className="col-6 text-left">
                             <p>
-                            <a href="/admin/home" className="muted">                                        <img src={logo} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/><span>Internet Solutions</span></a>
+                            <a href="/admin/home" className="muted">                                        
+                            <img src={logo} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/><span>Internet Solutions</span></a>
                             </p>
                            </div>
                            <div className="col-6 text-right">

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Pagination from './Pagination';
 import DeviceTable from './DeviceTable';
-
+import './Admin.css'; 
 
 
 export default class Devices extends React.Component {
@@ -11,7 +10,6 @@ export default class Devices extends React.Component {
         super(props)
         this.state = {
             devices: [],
-            numberOfDevices:0,
             loading: true,
             devicesPerPage: 5,
             currentPage: 1,
@@ -30,7 +28,6 @@ export default class Devices extends React.Component {
                 this.setState({
                     devices: responseData._embedded.devices,
                     loading: false,
-                    numberOfDevices: responseData.page.totalElements,
                 });
             })
             .catch(err => console.error(err));
@@ -41,7 +38,7 @@ export default class Devices extends React.Component {
 
     render() {
 
-        const {loading,numberOfDevices, currentPage, devicesPerPage, devices} = this.state;
+        const {loading,currentPage, devicesPerPage, devices} = this.state;
 
         const indexOfLastDevice = currentPage * devicesPerPage;
         const indexofFirstDevice = indexOfLastDevice - devicesPerPage;
@@ -51,7 +48,8 @@ export default class Devices extends React.Component {
         const paginate =(pageNumber) => this.setState({currentPage: pageNumber})
     
         return (
-        <div>
+        <div className="">
+            <div className="">
             <div className="row">
                 <div className="col-sm-12 col-lg-12 grid-margin">
                 <div className="card h-100">
@@ -71,7 +69,8 @@ export default class Devices extends React.Component {
                 </div>
                 </div>
                 </div>
-                </div>
+            </div>
+            </div>
         </div>
         );
     }

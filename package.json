@@ -12,6 +12,7 @@
     "bootstrap-less": "^3.3.8",
     "google-maps-react": "^2.0.2",
     "immutable": "^4.0.0-rc.12",
+    "indicative": "^7.4.4",
     "jquery": "^3.4.1",
     "mdbreact": "^4.25.3",
     "popper.js": "^1.16.1",
@@ -27,6 +28,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "react-simple-card": "^2.0.2",
+    "react-skylight": "^0.5.1",
     "reactstrap": "^8.4.1",
     "rsuite": "^4.3.0"
   },

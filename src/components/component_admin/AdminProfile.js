@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import SideNav from './Sidenav'; 
-import user1 from './user.svg'
+import user1 from './user.svg';
+import EditFields from './EditProfile/EditUserFields';
+import {Redirect} from 'react-router-dom';
 
 
 export default class AdminProfile extends Component{
     constructor(props){
         super(props)
         this.state={
-            client: {},
+            admin: {},
         }
     }
 
-    fetchClient = () => {
-        // Read the token from the session storage
-        // and include it to Authorization header
+    fetchAdmin = () => {
         const token = window.sessionStorage.getItem("jwt");
         fetch('http://localhost:8081/api/clients/access',
             {
@@ -22,18 +22,39 @@ export default class AdminProfile extends Component{
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    client: responseData,
+                    admin: responseData,
                 });
             })
             .catch(err => console.error(err));
     }
-    componentDidMount() {
-        this.fetchClient()
+
+    handleEdit = (data) => {
+
+        const url = "http://localhost:8081/api/clients/" + this.state.admin.id
+
+        fetch(url, {
+            crossOrigin: true,
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response))
+            .then(this.fetchData);
+
     }
 
+    componentDidMount() {
+        this.fetchAdmin()
+    }
 
     render(){
-        const user = window.sessionStorage.getItem("user");
+        if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+            return <Redirect to="/admin/login" />
+        }
+
+        else {
         return(
             <div className="wrapper">
                 <div>
@@ -48,7 +69,7 @@ export default class AdminProfile extends Component{
                                     <div className="card-body text-center">
                                     <div className="sidebar-user">
 					                    <img src={user1} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
-                                        <div className="font-weight-bold">{this.state.client.name}</div>
+                                        <div className="font-weight-bold">{this.state.admin.name}</div>
 					                    <small>IOT Admin</small>
 				                        </div>
                                     </div>
@@ -73,13 +94,13 @@ export default class AdminProfile extends Component{
                                             <div className="col-6">
                                                 <h6 className="font-weight-bold">Full Name</h6>
                                                 <hr/>
-                                                <h6>{this.state.client.name}</h6>
+                                                <h6>{this.state.admin.name}</h6>
                                             </div>
                                             <div className="col-6">
                                                 <h6 className="font-weight-bold">Email Address</h6>
                                                 
                                                 <hr/>
-                                                <h6>{this.state.client.emailAddress}</h6>
+                                                <h6>{this.state.admin.emailAddress}</h6>
                                             </div>
                                         </div>
                                         <div className="row row_card">
@@ -87,17 +108,17 @@ export default class AdminProfile extends Component{
                                                 <h6 className="font-weight-bold">Phone Number</h6>
                                                 
                                                 <hr/>
-                                                <h6>{this.state.client.phoneNumber}</h6>
+                                                <h6>{this.state.admin.phoneNumber}</h6>
                                             </div>
                                             <div className="col-6">
                                                 <h6 className="font-weight-bold">Address</h6>
                                                 <hr/>
-                                                <h6>{this.state.client.address}</h6>
+                                                <h6>{this.state.admin.address}</h6>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="card-footer">
-                                            <button className="btn btn-primary">Edit Profile</button>
+                                            <EditFields fetchData={this.fetchAdmin} handleEdit={this.handleEdit} data={this.state.admin} />
                                         </div>
                                 </div>
                                 <div className="card profile_card">
@@ -146,4 +167,5 @@ export default class AdminProfile extends Component{
             </div>
         );
     }
+  }
 }

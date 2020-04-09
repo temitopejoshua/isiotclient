@@ -16,7 +16,7 @@ const ClientsTable = ({ clients, loading }) => {
                 <td>{row++}</td>
                 <td>{client.name}</td>
                 <td>{client.emailAddress}</td>
-                <td>{client.isActive}</td>
+                <td>{client.active ? "Active" : "Suspended"}</td>
                 <td><i class="fa fa-close">Suspend</i></td>
                 <td><Link to ={"/user/"+client.id}>View</Link></td>
             </tr>
