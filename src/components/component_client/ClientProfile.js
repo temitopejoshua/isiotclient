@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import EditEmail from './component_edit.js/EditEmail'
 import EditFields from './component_edit.js/EditFields'
 import { Redirect } from 'react-router-dom'
 import ChangePassword from './component_edit.js/ChangePassword'
 import styles from './client_style.css'
+import BounceLoader from 'react-spinners/BounceLoader'
+
 
 
 
@@ -20,6 +20,7 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             client: {},
+            loading: true
         }
     }
 
@@ -51,15 +52,11 @@ export default class Profile extends Component {
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    client: responseData
+                    client: responseData,
+                    loading: false
                 });
 
-                console.log("Fetched Successfully " + responseData.name)
-
-
             })
-
-        console.log("This is the id ")
 
     }
 
@@ -75,8 +72,6 @@ export default class Profile extends Component {
 
 
     render() {
-
-        var id = this.state.client.id
 
         if (sessionStorage.getItem("isAuthenticated") !== 'true') {
 
@@ -94,65 +89,80 @@ export default class Profile extends Component {
                 </div>
                 <div class="main">
 
-                    <div class="col-md-12">
-                        <div class="vh-100">
-                            <div class="row">
+                    <div class="loaderTemp" hidden={!this.state.loading}>
+
+                        <div>
+                            <BounceLoader
+
+                                size={100}
+                                color={"grey"}
+                                loading={this.state.loading}
+
+                            />
+                        </div>
+
+                    </div>
+                    <div hidden={this.state.loading}>
+                        <div class="col-md-12">
+                            <div class="vh-100">
+                                <div class="row">
 
 
-                                <div class="col-md-12 mt-3">
-                                    <div class="card round-small card-default">
-                                        <div class="card-body p-5">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="pic">
-                                                        <img src="images/dummyprofile.jpg"></img>
+                                    <div class="col-md-12 mt-3">
+                                        <div class="card round-small card-default">
+                                            <div class="card-body p-5">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="pic">
+                                                            <img src="images/dummyprofile.jpg"></img>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <h1 class="mb-5">{this.state.client.name}</h1>
+
+                                                        <p><i class="fas fa-envelope"></i> &nbsp; {this.state.client.emailAddress}</p>
+                                                        <p><i class="fas fa-mobile"></i> &nbsp; {this.state.client.phoneNumber}</p>
+                                                        <p><i class="fas fa-map-marker-alt"></i> &nbsp; {this.state.client.address}</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-9">
-                                                    <h1 class="mb-5">{this.state.client.name}</h1>
-
-                                                    <p><i class="fas fa-envelope"></i> &nbsp; {this.state.client.emailAddress}</p>
-                                                    <p><i class="fas fa-mobile"></i> &nbsp; {this.state.client.phoneNumber}</p>
-                                                    <p><i class="fas fa-map-marker-alt"></i> &nbsp; {this.state.client.address}</p>
-                                                </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <div class="row row-eq-height">
-                                        <div class="col-md-3 mt-3">
-                                            <div class="card eqh round-small default">
-                                                <div class="card-body text-center">
+                                    <div class="col-md-12">
+                                        <div class="row row-eq-height">
+                                            <div class="col-md-3 mt-3">
+                                                <div class="card eqh round-small default">
+                                                    <div class="card-body text-center">
 
-                                                    <h2 class=" bigicon mb-3"> {this.state.client.numberOfDevices} </h2>
-                                                    <p>Number of devices</p>
+                                                        <h2 class=" bigicon mb-3"> {this.state.client.numberOfDevices} </h2>
+                                                        <p>Number of devices</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-3 mt-3 action">
-                                            <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                                        </div>         
-
-                                        <div class="col-md-3 mt-3 action">
-                                            
-                                                    <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                        
-                                            
-                                        </div>
-
-                                        <a href="/logout" class="col-md-3 mt-3 action">
-                                            <div class="card eqh round-small card-default">
-                                                <div class="card-body text-center">
-                                                    <i class="fas fa-sign-out-alt bigicon mb-3"></i>
-                                                    <p>Log out</p>
-                                                </div>
+                                            <div class="col-md-3 mt-3 action">
+                                                <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
                                             </div>
-                                        </a>
 
+                                            <div class="col-md-3 mt-3 action">
+
+                                                <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
+
+
+                                            </div>
+
+                                            <a href="/logout" class="col-md-3 mt-3 action">
+                                                <div class="card eqh round-small card-default">
+                                                    <div class="card-body text-center">
+                                                        <i class="fas fa-sign-out-alt bigicon mb-3"></i>
+                                                        <p>Log out</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>

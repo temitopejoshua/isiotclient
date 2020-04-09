@@ -63,7 +63,7 @@ export default class Register extends React.Component {
         }).catch((errors) =>{
 
             console.log(errors);
-            //show errors to user
+            //show errors to clients
             const formattedErrors={}
             errors.forEach( error => formattedErrors[error.field] = error.message)
             this.setState({errors:formattedErrors, deactivateSubmitButton:true})
@@ -113,9 +113,8 @@ export default class Register extends React.Component {
 
     handleSubmit = (event) => {
 
-        event.preventDefault();
-        
-        const user = {
+        event.preventDefault();        
+        const client = {
             emailAddress: this.state.emailAddress,
             password: this.state.password,
             name: this.state.name,
@@ -124,7 +123,7 @@ export default class Register extends React.Component {
 
         };
 
-        this.register(user)
+        this.register(client)
 
        
 
@@ -140,10 +139,20 @@ export default class Register extends React.Component {
 
             return (
                 <div>
-                    <h5>Account verification email has been sent to {this.state.emailAddress} </h5>
-                    <a href="/login"> Login Here</a>
-
-
+                   <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-12 no-border">
+                        <div class="card card-s">
+                            <div class="card-body">
+                            <h3>Check your email</h3>
+                                    <h5>We've sent an email to {this.state.emailAddress},
+                                    click the link in the email to activate your account</h5>
+                                    <h5>If you don't see the email, check other places it might be, like your junk, spam, or other folders.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>)
         }
 

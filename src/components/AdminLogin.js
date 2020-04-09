@@ -14,20 +14,23 @@ export default class AdminLogin extends React.Component {
             password: '',
             isAuthenticated: false,
             error: '',
-            loading:false
+            loading: false,
         }
     }
     handleChange = (event) => {
         this.setState(
-            { [event.target.name]: event.target.value,
-            error: '' }
+            {
+                [event.target.name]: event.target.value,
+                error: ''
+            }
         );
     }
 
     login = () => {
 
         this.setState({
-            loading:true
+            loading: true,
+            error: ''
         })
         const user = { emailAddress: this.state.emailAddress, password: this.state.password };
         fetch('http://localhost:8081/login', {
@@ -43,21 +46,20 @@ export default class AdminLogin extends React.Component {
                     });
                 }
 
-                else{
+                else {
 
                     this.setState({
-
                         error: 'Email Address and Password does not match',
-                        loading:false
-                        
+                        loading: false,
+
                     })
                 }
             })
             .catch(err => console.error(err));
+        
+                     this.checkAdmin()
 
-            this.checkAdmin()
 
-      
     }
 
     checkAdmin = () => {
@@ -71,17 +73,18 @@ export default class AdminLogin extends React.Component {
 
         }
 
-        else{
+        else {
 
             this.setState({
                 error: 'Access Denied',
-                loading:false
+                loading: false
             });
 
         }
 
 
     }
+
 
     render() {
         if (sessionStorage.getItem("isAuthenticated") === 'true') {
@@ -107,15 +110,16 @@ export default class AdminLogin extends React.Component {
                                 </form>
                                 <button color="success" className="btn btn-primary btn-block" onClick={this.login}>Login</button>
                                 <ClipLoader
-                                                size={15}
-                                                color={"blue"}
-                                                loading={this.state.loading}
-                                            />
+                                    size={15}
+                                    color={"blue"}
+                                    loading={this.state.loading}
+                                />
                                 <p className="forget-pasword text-right">
                                     Forget <a href="/forgetpassword">password?</a>
                                 </p>
                             </div>
-                                <p style={{color: 'red'}}>{this.state.error}</p>
+                            <p style={{ color: 'red' }}>{this.state.error}</p>
+
                         </div>
                     </div>
 
@@ -128,7 +132,6 @@ export default class AdminLogin extends React.Component {
 function validateAdmin() {
 
     const token = window.sessionStorage.getItem("jwt");
-
 
     fetch('http://localhost:8081/api/clients/access',
         {

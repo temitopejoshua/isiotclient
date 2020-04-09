@@ -2,7 +2,7 @@ import React from 'react'
 import SkyLight from 'react-skylight'
 import styles from '../client_style.css'
 
-
+//React Component for editing clients name, address and phone number
 class EditFields extends React.Component {
 
     constructor(props) {
@@ -66,10 +66,6 @@ class EditFields extends React.Component {
                     </div>
                 </SkyLight>
                 <div>
-                {/* <button  style={{backgroundColor:'Transparent', border:'none'}}
-                        onClick={() => this.refs.addDialog.show()}><i class="fas fa-user-edit bigicon mb-3"  ></i>
-                        </button> */}
-
                         
                             <div onClick={() => this.refs.addDialog.show()} class="card eqh round-small card-default">
                                 <div class="card-body text-center">

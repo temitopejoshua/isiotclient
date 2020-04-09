@@ -56,7 +56,7 @@ export default class ClientLogin extends React.Component {
 
                 else {
                     this.setState({
-                        errors: "Email address and password does not match",
+                        errors: "Sorry, that didn\'t work please try again",
                         loading: false
                     })
 

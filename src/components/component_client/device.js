@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
+import BounceLoader from 'react-spinners/BounceLoader'
 
 
 export default class Device extends Component {
@@ -11,6 +11,7 @@ export default class Device extends Component {
     super(props)
     this.state = {
       device: {},
+      loading: true
     }
   }
 
@@ -30,7 +31,8 @@ export default class Device extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          device: responseData.device
+          device: responseData.device,
+          loading: false
         });
       })
 
@@ -45,20 +47,39 @@ export default class Device extends Component {
 
     if (sessionStorage.getItem("isAuthenticated") !== 'true') {
 
-        return <Redirect to="/login" />
+      return <Redirect to="/login" />
     }
 
 
     return (
 
       <div>
-        <h1>Activation: {this.state.device.activation} </h1>
-        <h1>App Eui: {this.state.device.app_eui} </h1>
-        <h1>Dev Eui: {this.state.device.dev_eui} </h1>
-        <h1>Apps Key: {this.state.device.appskey} </h1>
-        <h1>Band: {this.state.device.band} </h1>
 
 
+        <div class="loaderTemp" hidden={!this.state.loading}>
+
+          <div>
+            <BounceLoader
+
+              size={100}
+              color={"grey"}
+              loading={this.state.loading}
+
+            />
+          </div>
+
+        </div>
+
+
+
+        <div hidden={this.state.loading}>
+          <h1>Activation: {this.state.device.activation} </h1>
+          <h1>App Eui: {this.state.device.app_eui} </h1>
+          <h1>Dev Eui: {this.state.device.dev_eui} </h1>
+          <h1>Apps Key: {this.state.device.appskey} </h1>
+          <h1>Band: {this.state.device.band} </h1>
+
+        </div>
       </div>
     );
 

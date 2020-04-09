@@ -45,6 +45,7 @@ const routing = (
 
 
 
+
     <Route path="/clients" component={ClientList} />
     <Route path="/devices" component={Devices} />
     {/* <Route exact path="/admin/home" component={Table}/> */}

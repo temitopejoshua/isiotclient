@@ -16,13 +16,13 @@ export default class ForgetPassword extends React.Component {
             emailAddress: '',
             error: '',
             sentSuccessfully: false,
-            loading:false
+            loading: false
         }
     }
 
     handleSubmit = () => {
 
-            this.setState({loading:true})
+        this.setState({ loading: true })
         fetch('http://localhost:8081/api/clients/forgetpassword?emailAddress=' + this.state.emailAddress,
             {
                 crossDomain: true,
@@ -34,7 +34,7 @@ export default class ForgetPassword extends React.Component {
 
                     this.setState({
                         error: 'Email ' + this.state.emailAddress + ' does not exist',
-                        loading:false
+                        loading: false
                     })
                 }
 
@@ -74,17 +74,20 @@ export default class ForgetPassword extends React.Component {
         if (this.state.sentSuccessfully) {
 
             return (
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-12 no-border">
-                        <div class="card card-s">
-                            <div class="card-body">
-                                <h3>Follow the link sent to your email</h3>
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-12 no-border">
+                            <div class="card card-s">
+                                <div class="card-body">
+                                    <h3>Check your email</h3>
+                                    <h5>We've sent an email to {this.state.emailAddress},
+                                    click the link in the email to reset your password</h5>
+                                    <h5>If you don't see the email, check other places it might be, like your junk, spam, or other folders.</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             )
         }
 
@@ -107,18 +110,18 @@ export default class ForgetPassword extends React.Component {
 
                                     </form>
                                     <div class="form-group form-button mt-3">
-                                        <button type="submit" class="btn btn-primary btn-lg" onClick={this.handleSubmit}>Submit                                         
+                                        <button type="submit" class="btn btn-primary btn-lg" onClick={this.handleSubmit}>Submit
                                          </button>
                                     </div>
 
                                     <p class="validationError">{this.state.error}</p>
 
                                     <MoonLoader
-                                            size={30}
-                                            color={"blue"}
-                                            loading={this.state.loading}
-                                        />
-                                 
+                                        size={30}
+                                        color={"blue"}
+                                        loading={this.state.loading}
+                                    />
+
                                 </div>
                                 <div class="signup-image">
                                     <figure><img src="images/signup-image.jpg" alt="sing up image"></img></figure>
