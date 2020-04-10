@@ -44,6 +44,9 @@ export default class AdminLogin extends React.Component {
                     this.setState({
                         isAuthenticated: true,
                     });
+
+                    this.checkAdmin()
+
                 }
 
                 else {
@@ -57,7 +60,6 @@ export default class AdminLogin extends React.Component {
             })
             .catch(err => console.error(err));
         
-                     this.checkAdmin()
 
 
     }
