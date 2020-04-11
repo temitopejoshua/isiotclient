@@ -8,14 +8,6 @@
     position: relative;
 }
 
-
-
-.icon{
-    align-items: center;
-    color: cornflowerblue;
-}
-
-
 .div_margin{
     margin-top: 10px;
 }
@@ -34,23 +26,49 @@
     text-align: center;
 }
 
-@media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-}
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 700px) {
     .sidebar a {
       text-align: center;
       float: none;
+      width: 100px;
+      color: white;
     }
-  }
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 100px;
+      background-color: #01e2ff;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+    div.main {
+      margin-left: 100px;
+      padding: 1px 16px;
+      height: 100%;
+    }
+    .icon{
+      align-items: center;
+      color: white;
+    }
+    .sidebar a {
+      display: block;
+      color:white;
+      padding: 10px;
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      background-color:white;
+      color:#01e2ff;
+    }
+    .nav-icon{
+      color:white;
+      padding-right: 10px;
+    }
+}
 
+@media screen and (min-width: 700px) {
 .sidebar {
     margin: 0;
     padding: 0;
@@ -60,34 +78,36 @@
     height: 100%;
     overflow: auto;
   }
-
-
+  div.main {
+    margin-left: 255px;
+    padding: 1px 16px;
+    height: 100%;
+  }
   .sidebar a {
     display: block;
     color: black;
     padding: 16px;
     text-decoration: none;
   }
-
-
-.sidebar a.active {
+  .sidebar a.active {
     background-color: #01e2ff;
     color: white;
+  }
+  .icon{
+    align-items: center;
+    color: cornflowerblue;
+  }
+  .nav-icon{
+    color:#01e2ff;
+    padding-right: 10px;
+  }
 }
-
 
 .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
   }
 
-
-div.main {
-    margin-left: 255px;
-    padding: 1px 16px;
-    height: 100%;
-}
-   
 
 .sidebar-brand {
     font-size: 1.3rem;
@@ -109,10 +129,7 @@ div.main {
 
 .profile_card{
     border-radius: 8px;
-    /* border: 1px solid gray; */
     margin: 0px 0px 20px 0px;
-    /* background: red; */
-    /* height: 100%; */
 }
 
 .profile_card_row{
@@ -140,12 +157,6 @@ div.main {
 
 .not_found_text{
   text-align: center;
-}
-
-
-.nav-icon{
-  color:#01e2ff;
-  padding-right: 10px;
 }
 
 .device-icon{

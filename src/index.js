@@ -27,7 +27,7 @@ const routing = (
     <Router>
     <Switch>
     <Route exact path="/admin/deviceinfo/:id" component={DeviceInfo}/>
-    <Route exact path="/adminprofile" component={AdminProfile} />
+    <Route exact path="/admin/profile" component={AdminProfile} />
     <Route exact path="/admin/maps" component={AdminMap}/>
     <Route exact path="/admin/clients" component={ClientPage}/>
     <Route exact path="/admin/devices" component={DevicePage}/>
@@ -36,7 +36,7 @@ const routing = (
     <Route exact path="/admin/logout" component={Logout}/>
     <Route exact path="/admin" component={App} />
     <Route exact path="/register" component={Register} />
-    <Route exact path="/clients/:id" component={UserDetail} />
+    <Route exact path="/admin/clients/:id" component={UserDetail} />
     <Route exact path="/login" component={ClientLogin} />
     <Route excat path="/home" component={ClientHome} />
     <Route exact path="/logout" component={Logout} />

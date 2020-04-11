@@ -65,6 +65,7 @@ export default class DevicePage extends React.Component {
                 <DeviceTable 
                 devices={currentDevices} 
                 loading={loading}
+                
                 />
                 <Pagination 
                 objectsPerPage={devicesPerPage} 

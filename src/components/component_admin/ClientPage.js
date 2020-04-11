@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Pagination from './Pagination';
-import ClientsTable from './ClientsTable';
 import SideNav from './Sidenav';
+import { Link } from 'react-router-dom';
 
 
 export default class ClientPage extends React.Component {
@@ -40,8 +40,20 @@ export default class ClientPage extends React.Component {
     const indexOfLastClient = currentPage * clientsPerPage;
     const indexofFirstClient = indexOfLastClient - clientsPerPage;
     const currentClients = clients.slice(indexofFirstClient, indexOfLastClient);
-    const paginate =(pageNumber) => this.pageNumber;
+    const paginate =(pageNumber) => this.setState({currentPage: pageNumber})
 
+    var row =1;
+    const clientData = clients.map(
+        (client, index) =>
+            <tr key={index}>
+                <td>{row++}</td>
+                <td>{client.name}</td>
+                <td>{client.emailAddress}</td>
+                <td>{client.active ? "Active" : "Suspended"}</td>
+                <td><Link to ={"/admin/clients/"+client.id}><i class="fa fa-close">Suspend</i></Link></td>
+                <td><Link to ={"/admin/clients/"+client.id}>View</Link></td>
+            </tr>
+    )
 
     if (sessionStorage.getItem("isAuthenticated") !== 'true') {
         return <Redirect to="/admin/login" />
@@ -54,15 +66,27 @@ export default class ClientPage extends React.Component {
             <div>
                 <SideNav/>
             </div>
-            <div className="row mb-4 main">
-                <div className="col-sm-12 grid-margin">
-                    <div className="card h-100">
+            <div className="main">
+                <div className="card flex-fill w-100">
                     <h4 className="card-header">Client List</h4>
                     <div className="card-body">
-                        <ClientsTable
-                        loading={loading}
-                        clients={clients}
-                        />
+                    <div className="table-responsive">
+                    <table className="table table-hover table-striped">
+                        <thead style={{background: "#01e2ff", color: "white" }}>
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email Address</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                                <th scope="col">User Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {clientData}
+                        </tbody>
+                        </table>
+                        </div>
                         <Pagination 
                         objectsPerPage={clientsPerPage} 
                         totalObjects={clients.length} 
@@ -75,7 +99,6 @@ export default class ClientPage extends React.Component {
                 </div>
                 </div>
             </div>
-        </div>
         );
     }
 

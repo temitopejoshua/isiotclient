@@ -1,6 +1,6 @@
 import React from 'react';
 import  { Redirect } from 'react-router-dom';
-// import './form_style.css';
+import axios from 'axios';
 
 export default class AdminLogin extends React.Component {
 
@@ -11,8 +11,7 @@ export default class AdminLogin extends React.Component {
             emailAddress: '',
             password: '',
             isAuthenticated: false,
-            loginButtonDisabled: true,
-            errors: ''
+            error: ''
         }
     }
 
@@ -20,8 +19,7 @@ export default class AdminLogin extends React.Component {
         this.setState(
             {
                 [event.target.name]: event.target.value,
-                loginButtonDisabled: false,
-                errors: ''
+                error: ''
             }
         );
     }
@@ -36,17 +34,31 @@ export default class AdminLogin extends React.Component {
                 const jwtToken = res.headers.get('Authorization');
                 if (jwtToken !== null) {
                     sessionStorage.setItem("jwt", jwtToken);
-                    sessionStorage.setItem("isAuthenticated", true);
-                    this.setState({
-                        isAuthenticated: true,
-                    });
+                    this.checkAdmin()
                 }
                 else {
-                    this.setState({ errors: "Email address and password does not match" })
+                    this.setState({ error: "Email address and password does not match" })
                 }
             })
             .catch(errors => console.error(errors))
     }
+
+
+    checkAdmin = () =>{
+        
+        if (validateAdmin()){
+            sessionStorage.setItem("isAuthenticated", true);
+            this.setState({
+                isAuthenticated: true,
+            });
+        }
+        else{
+            this.setState({
+                error: "Access Denied"
+            })
+        }
+    }
+
 
     render() {
 
@@ -80,9 +92,9 @@ export default class AdminLogin extends React.Component {
 
                                 </form>
                                 <div class="form-group form-button">
-                                    <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
+                                    <button onClick={this.login} class="form-submit">Login</button>
                                 </div>
-                                <p class="validationError">{this.state.errors}</p>
+                                <p class="validationError">{this.state.error}</p>
                             </div>
                         </div>
                     </div>
@@ -90,5 +102,31 @@ export default class AdminLogin extends React.Component {
             );
 
         }
+    }
+}
+
+
+
+function validateAdmin () {
+    const token = window.sessionStorage.getItem("jwt");
+    axios.get('http://localhost:8081/api/clients/access',
+    {
+        headers: {'Authorization': token}
+    })
+    .then((response) => {
+        sessionStorage.setItem("status", response.data.admin)
+        console.log("admin status"+response.data.admin)
+    })
+    .catch(e => console.error(e));
+
+
+    const status = sessionStorage.getItem("status")
+    sessionStorage.removeItem("status")
+    if(status === "true"){
+        console.log(status)
+        return true
+    }
+    else{
+        return false
     }
 }

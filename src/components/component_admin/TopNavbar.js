@@ -56,7 +56,7 @@ export default class TopNavBar extends Component{
 							<div className="dropdown-menu dropdown-menu-right">
 								<a className="dropdown-item" href="pages-profile.html">Profile</a>
 								<div className="dropdown-divider"></div>
-								<a className="dropdown-item" href="/adminprofile">My Profile</a>
+								<a className="dropdown-item" href="/admin/profile">My Profile</a>
                                 <a className="dropdown-item" href="/#">Activity Log</a>
 								<a className="dropdown-item" href="/#">Account Settings</a>
                                 <a className="dropdown-item" href="/logout">Sign Out</a>

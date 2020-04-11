@@ -27,25 +27,25 @@ export default class AdminPage extends Component{
                     <SideNav/>
                 </div>
                 <div className="main">
-                <div>
-                    <TopNavBar/>
-                </div>
-                <div className="div_margin"> 
-                    <GraphCard/>
-                </div>
-                <div className="div_margin"> 
-                    <BarGraph/>
-                </div>
-                <div className="row div_margin">
-                   <div className="col-lg-6"> <ClientList/></div>
-                    <div className="col-lg-6"><Devices/></div>   
-                </div>
-                <div className="div_margin"> 
-                    <MapContainer/>
-                </div>
-                <div className="div_margin"> 
-                    <Footer/>
-                </div>
+                    <div>
+                        <TopNavBar/>
+                    </div>
+                    <div className="div_margin"> 
+                        <GraphCard/>
+                    </div>
+                    <div className="div_margin"> 
+                        <BarGraph/>
+                    </div>
+                    <div className="row div_margin">
+                        <div className="col-lg-6"> <ClientList/></div>
+                        <div className="col-lg-6"><Devices/></div>   
+                    </div>
+                    <div className="div_margin"> 
+                        <MapContainer/>
+                    </div>
+                    <div className="div_margin"> 
+                        <Footer/>
+                    </div>
                 </div>
             </div>
         );

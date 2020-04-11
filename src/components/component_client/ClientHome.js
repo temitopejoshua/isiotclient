@@ -165,7 +165,7 @@ export default class ClientHome extends React.Component {
 
                                 </div>
                             </div>
-                            <div  className="">
+                            <div  className="card-space">
                                <div className="card flex-fill w-100">
                                     <h4 className="card-header">Locations</h4>
                                     <div className="card-body p-2"></div>
@@ -173,7 +173,7 @@ export default class ClientHome extends React.Component {
                                     <GoogleApiWrapper/>
                                     </div>
                                 </div>
-                                <div className="card flex-fill w-100">
+                                <div className="card flex-fill w-100 card-space">
                                 <h4 className="card-header">Device Table</h4>
                                 <div className="card-body">
                                 <div hidden={!this.state.deviceIsEmpty} class="deviceTable">

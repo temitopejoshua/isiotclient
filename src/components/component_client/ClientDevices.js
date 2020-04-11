@@ -75,19 +75,25 @@ export default class ClientDevices extends React.Component {
                         <div class="">
                             <SideNav/>
                         </div>
-
                         <div class="main">
-                        <div class="col-12 otherSec">
-                            <div class="row mapMargin">
+                        <div class="">
+                            <div className="card flex-fill w-100">
+                                <h4 className="card-header">Locations</h4>
+                                <div className="card-body p-2"></div>
+                                <div style={{height: "400px"}}>
                                 <GoogleApiWrapper/>
+                                </div>
                             </div>
-                            <div class="row">
+                            <div>
+                            <div>
                                 <UploadDevice/>
-                               </div>
-                            <div hidden={!this.state.deviceIsEmpty} class="row deviceTable">
-
+                            </div>
+                            <div className="card flex-fill w-100">
+                                <h4 className="card-header">Device Table</h4>
+                                <div className="card-body">
+                                <div hidden={!this.state.deviceIsEmpty} class="deviceTable">
                                 <table class="table table-bordered">
-                                    <thead class="table-info tableHead">
+                                    <thead class="table tableHead">
                                         <tr>
                                             <th scope="col">S/N</th>
                                             <th scope="col">Name</th>
@@ -97,25 +103,15 @@ export default class ClientDevices extends React.Component {
                                     </thead>
                                     <tbody>{tableRows}</tbody>
                                 </table>
+                                </div>
+                                </div>
+                                </div>
+                                <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
                             </div>
-                            <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
-
                         </div>
                         </div>
-
                     </div>
-
                 );
-
             }
         }
-
-
     }
-
-
-
-
-
-
-

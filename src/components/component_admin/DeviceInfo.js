@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Redirect } from 'react-router-dom';
 import EditDeviceFields from './EditProfile/EditDeviceFields';
+import SideNav from './Sidenav'; 
+import { Button } from 'react-bootstrap';
 
 
 export default class DeviceInfo extends Component {
@@ -8,6 +10,7 @@ export default class DeviceInfo extends Component {
     super(props)
     this.state = {
       device: {},
+      category: {},
     }
   }
 
@@ -41,12 +44,8 @@ fetchData = () => {
           });
           console.log("Fetched Successfully " + responseData.name)
       })
-
   console.log("This is the id ")
 
-}
-componentWillMount(props) {
-  this.fetchData()
 }
 
 
@@ -63,11 +62,12 @@ componentWillMount(props) {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          // device: responseData.device
-          device: responseData
+          device: responseData,
+          category: responseData.category,
         });
       })
     console.log("This is the id " + params.id)
+    this.fetchData()
 }
   
 
@@ -75,76 +75,91 @@ componentWillMount(props) {
     if (sessionStorage.getItem("isAuthenticated") !== 'true') {
         return <Redirect to="/admin/login" />
     }
-    return (
 
+    const redButton = <Button className="btn btn-danger"></Button>
+    const greenButton = <Button className="btn btn-success"></Button>
+
+
+    return (
+      <div>
+      <div>
+        <SideNav/>
+      </div>
+      <div className="main">
       <div className="card flex-fill w-100">
         <h4 className="card-header">Device Information(IS Database)</h4>
           <div className="card-body  device-info">
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Name</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.name} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.name} readOnly></input>
               </div>
           </div>
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Eui</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.devEui} readOnly></input>
+                  <input type='text' class="form-control"  placeholder={this.state.device.devEui} readOnly></input>
               </div>
           </div>
 
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Activation</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.activation} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.activation} readOnly></input>
               </div>
           </div>
 
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Application Eui</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.app_eui} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.app_eui} readOnly></input>
               </div>
           </div>
 
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Applications Keys</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.appskey} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.appskey} readOnly></input>
               </div>
           </div>
 
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Band</label>
                   <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.band} readOnly></input>
+                  <input type='text' class="form-control"  placeholder={this.state.device.band} readOnly></input>
               </div>
           </div>
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Class</label>
                   <div class="col-lg-8 col-sm-9 ">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.deviceClass} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.deviceClass} readOnly></input>
               </div>
           </div>
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Category</label>
                   <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.category} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.category.name} readOnly></input>
+              </div>
+          </div>
+          <div className="form-group row">
+                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Assigned</label>
+                  <div class="col-sm-9 col-lg-8 ">
+                  {this.state.device.assigned? greenButton:redButton}
               </div>
           </div>
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Last Updated</label>
                   <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.uploadedDate} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.uploadedDate} readOnly></input>
               </div>
           </div>
           <div className="form-group row">
                   <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Date Created</label>
                   <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.device.uploadedDate} readOnly></input>
+                  <input type='text' class="form-control" placeholder={this.state.device.uploadedDate} readOnly></input>
               </div>
           </div>
-          <div className="form-group row" >
+          <div className="form-group row col-lg-6" >
             <EditDeviceFields 
             fetchData={this.fetchData}
             handleEdit={this.handleEdit}
@@ -152,6 +167,8 @@ componentWillMount(props) {
             />
           </div>
           </div>
+          </div>
+      </div>
       </div>
     );
   }

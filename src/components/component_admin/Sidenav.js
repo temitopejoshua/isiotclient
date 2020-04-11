@@ -15,8 +15,8 @@ export default class SideNav extends Component{
                 </div>
 				<ul className="nav flex-column nav-pills">
 				<li className="nav-item">
-						<a href="/admin/home" className="font-weight-bold nav-link" className="active">
-						<i className="fa fa-fw fa-home" style={{fontSize: '1.5em' }}/><span className="align-middle">Home</span>
+						<a href="/admin/home" className="font-weight-bold nav-link">
+						<i className="fa fa-fw fa-home nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">HomePage</span>
             		</a>
 					</li>
 					<li className="nav-item">
@@ -51,7 +51,7 @@ export default class SideNav extends Component{
             			</a>
 						<ul id="auth" className="sidebar-dropdown list-unstyled collapse ">
 							<li className="nav-item"><a className="nav-link" href="/resetpassword">Reset Password</a></li>
-							<li className="nav-item"><a className="nav-link" href="/adminprofile">User Profile</a></li>
+							<li className="nav-item"><a className="nav-link" href="/admin/profile">User Profile</a></li>
 							<li className="nav-item"><a className="nav-link" href="/settings">Settings</a></li>
 						</ul>
 					</li>
