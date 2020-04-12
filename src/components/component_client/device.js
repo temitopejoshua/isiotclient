@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { ThemeProvider } from 'react-bootstrap';
 import GoogleApiWrapper from './Map'
-// import MapContainer from './Map'
 
 
 
@@ -163,7 +162,6 @@ export default class Device extends Component {
 
                 <div class="col-md-12 mb-5">
                   <GoogleApiWrapper />
-                  {/* <MapContainer/> */}
                 </div>
               </div>
             </div>
