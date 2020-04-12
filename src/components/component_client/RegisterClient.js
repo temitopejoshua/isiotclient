@@ -8,8 +8,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 export default class Register extends React.Component {
 
-
-
     constructor(props) {
         super(props);
 
@@ -30,18 +28,18 @@ export default class Register extends React.Component {
 
     handleChange = (event) => {
 
-        event.preventDefault()
+        // event.preventDefault()
         this.setState(
             {
                 [event.target.name]: event.target.value,
-                errors:{},
-                errs:''
+                errors: {},
+                errs: ''
 
             }
         );
 
         const data = this.state
-        const rules= {
+        const rules = {
             name: 'required|string',
             emailAddress: 'required|email',
             password: 'required|string|min:6|confirmed',
@@ -49,71 +47,63 @@ export default class Register extends React.Component {
             phoneNumber: 'required|string|min:6'
         }
         const messages = {
-
             required: 'This {{field}} is required',
             'email.email': 'The email is invalid.',
             'password.confirmed': 'The password doesn\'t match',
             'password.min': 'Password is too short'
         }
 
-        validateAll(data, rules, messages).then(() =>{
-
+        validateAll(data, rules, messages).then(() => {
             console.log('success')
-            this.setState({deactivateSubmitButton:false})
-        }).catch((errors) =>{
+            this.setState({ deactivateSubmitButton: false })
+        }).catch((errors) => {
 
             console.log(errors);
             //show errors to clients
-            const formattedErrors={}
-            errors.forEach( error => formattedErrors[error.field] = error.message)
-            this.setState({errors:formattedErrors, deactivateSubmitButton:true})
+            const formattedErrors = {}
+            errors.forEach(error => formattedErrors[error.field] = error.message)
+            this.setState({ errors: formattedErrors, deactivateSubmitButton: true })
         })
-
-
-
     }
 
-    register = (data) =>{
+    register = (data) => {
 
-            this.setState({loading:true})
+        this.setState({ loading: true })
         fetch('http://localhost:8081/api/clients/',
-        {
-            crossDomain: true,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-
-
-            if (response.status === 201) {
-                this.setState({
-                    isRegistered: true,
-                })
-            }
-
-            else{
-                this.setState({
-                    errs:this.state.emailAddress+ "\nalready exists",
-                    loading:false
+            {
+                crossDomain: true,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
             })
-
-            }
-
-        })
-        .catch((err) => {
-            console.error(err);
-            this.setState({errs:err.toString()})
-        });
+            .then((response) => {
 
 
+                if (response.status === 201) {
+                    this.setState({
+                        isRegistered: true,
+                    })
+                }
+
+                else {
+                    this.setState({
+                        errs: this.state.emailAddress + "\nalready exists",
+                        loading: false
+                    })
+
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                this.setState({ errs: err.toString() })
+            });
     }
 
     handleSubmit = (event) => {
 
-        event.preventDefault();        
+        event.preventDefault();
         const client = {
             emailAddress: this.state.emailAddress,
             password: this.state.password,
@@ -125,41 +115,36 @@ export default class Register extends React.Component {
 
         this.register(client)
 
-       
+
 
 
 
     }
 
     render() {
-
-
-
         if (this.state.isRegistered) {
 
             return (
                 <div>
-                   <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-12 no-border">
-                        <div class="card card-s">
-                            <div class="card-body">
-                            <h3>Check your email</h3>
-                                    <h5>We've sent an email to {this.state.emailAddress},
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-12 no-border">
+                                <div class="card card-s">
+                                    <div class="card-body">
+                                        <h3>Check your email</h3>
+                                        <h5>We've sent an email to {this.state.emailAddress},
                                     click the link in the email to activate your account</h5>
-                                    <h5>If you don't see the email, check other places it might be, like your junk, spam, or other folders.</h5>
+                                        <h5>If you don't see the email, check other places it might be, like your junk, spam, or other folders.</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
                 </div>)
         }
 
         else {
             return (
-
-
                 <section class="signup">
                     <div class="container">
                         <div class="signup-content">
@@ -174,18 +159,18 @@ export default class Register extends React.Component {
 
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                        <input type='email'  name='emailAddress'  placeholder="Email Address" onInput={this.handleChange}></input>
+                                        <input type='email' name='emailAddress' placeholder="Email Address" onInput={this.handleChange}></input>
                                     </div>
                                     <p class="validationError">{this.state.errors.emailAddress}</p>
 
                                     <div class="form-group">
                                         <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type='password'  name='password'  placeholder="Password" onInput={this.handleChange}></input>
+                                        <input type='password' name='password' placeholder="Password" onChange={this.handleChange}></input>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type='password'  name='password_confirmation'  placeholder="Re-Type Password" onInput={this.handleChange}></input>
+                                        <input type='password' name='password_confirmation' placeholder="Re-Type Password" onChange={this.handleChange}></input>
                                     </div>
                                     <p class="validationError">{this.state.errors.password}</p>
 
@@ -193,26 +178,26 @@ export default class Register extends React.Component {
                                         <label for="re-pass"><i class="zmdi zmdi-phone-in-talk"></i></label>
                                         <input type='text' name='phoneNumber' placeholder="Phone Number" onInput={this.handleChange}></input>
                                     </div>
-                                        <p class="validationError">{this.state.errors.phoneNumber}</p>
+                                    <p class="validationError">{this.state.errors.phoneNumber}</p>
                                     <div class="form-group">
                                         <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
                                         <input type='text' name='address' placeholder="Home or Office Address" onInput={this.handleChange}></input>
                                     </div>
-                                        <p class="validationError">{this.state.errors.address}</p>
+                                    <p class="validationError">{this.state.errors.address}</p>
                                     <div class="form-group form-button">
-                                    <button type="submit" class="btn btn-primary btn-lg" disabled={this.state.deactivateSubmitButton} >Register </button>
+                                        <button type="submit" class="btn btn-primary btn-lg" disabled={this.state.deactivateSubmitButton} >Register </button>
 
-                                </div>
-                                        <p class="validationError">{this.state.errs}</p>
+                                    </div>
+                                    <p class="validationError">{this.state.errs}</p>
 
                                 </form>
 
                                 <ClipLoader
-                                            size={30}
-                                            color={"blue"}
-                                            loading={this.state.loading}
-                                        />
-                               
+                                    size={30}
+                                    color={"blue"}
+                                    loading={this.state.loading}
+                                />
+
                             </div>
                             <div class="signup-image">
                                 <figure><img src="images/signup-image.jpg" alt="sing up image"></img></figure>
@@ -221,14 +206,8 @@ export default class Register extends React.Component {
                         </div>
                     </div>
                 </section>
-
-
-
-
             );
-
         }
-
     }
 }
 

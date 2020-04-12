@@ -57,7 +57,7 @@ export default class AdminHome extends React.Component {
 
         )
 
-        if(sessionStorage.getItem("isAuthenticated") !== 'true'){
+        if(sessionStorage.getItem("isAdmin") !== 'true'){
 
             return <Redirect to="/admin"/>
             }

@@ -5,25 +5,18 @@ import { Redirect } from 'react-router-dom'
 import ChangePassword from './component_edit.js/ChangePassword'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
-
-
-
-
-
+import SideNav from './SideNav';
 
 
 export default class Profile extends Component {
 
-
     constructor(props) {
-
         super(props)
         this.state = {
             client: {},
             loading: true
         }
     }
-
 
     handleEdit = (data) => {
 
@@ -55,19 +48,11 @@ export default class Profile extends Component {
                     client: responseData,
                     loading: false
                 });
-
             })
 
     }
-
     componentWillMount(props) {
-
-
         this.fetchData()
-
-
-
-
     }
 
 
@@ -82,10 +67,8 @@ export default class Profile extends Component {
         return (
 
             <div>
-                <div class="sidenav">
-                    <Link to="/home">Home</Link>
-                    <Link to={"/profile"} style={{ color: 'blue' }}>Profile</Link>
-                    <Link to={"/client/devices"}>Devices</Link>
+                <div>
+                    <SideNav />
                 </div>
                 <div class="main">
 
@@ -170,10 +153,10 @@ export default class Profile extends Component {
                     </div>
 
                 </div>
-
             </div>
-        );
 
+        );
     }
 }
+
 

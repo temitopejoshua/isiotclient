@@ -1,7 +1,5 @@
 import React from 'react'
 import SkyLight from 'react-skylight'
-import { Redirect } from 'react-router-dom'
-import { ThemeProvider } from 'react-bootstrap';
 
 
 class ChangePassword extends React.Component {

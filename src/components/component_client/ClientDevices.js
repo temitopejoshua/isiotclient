@@ -5,6 +5,9 @@ import styles from './client_style.css'
 import GoogleApiWrapper from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
+import SideNav from './SideNav';
+import UploadDevice from '../component_admin/UploadDevice'
+
 
 
 
@@ -140,7 +143,7 @@ export default class ClientDevices extends React.Component {
 
     render() {
 
-        const td = <PaginatedList
+        const tableData = <PaginatedList
             list={this.state.devices}
             itemsPerPage={5}
             renderList={(list) => (
@@ -189,12 +192,9 @@ export default class ClientDevices extends React.Component {
 
 
                 <div>
-                    <div class="sidenav">
-                        <Link to="/home">Home</Link>
-                        <Link to={"/profile"}>Profile</Link>
-                        <Link to={"/client/devices"} style={{ color: 'blue' }}>Devices</Link>
-
-                    </div>
+                   <div>
+                    <SideNav />
+                </div>
 
                     <div class="main">
 
@@ -222,9 +222,9 @@ export default class ClientDevices extends React.Component {
                                 <button class="btn btn-secondary mt-4 mb-5"><i class="fas fa-plus"></i> &nbsp; Create Device</button>
 
                                 <div>
-                                    {td}
+                                    {tableData}
                                 </div>
-
+                                <UploadDevice/>
 
                             </div>
                         </div>

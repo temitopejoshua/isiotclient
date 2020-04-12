@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
+import SideNav from './SideNav'
 
 import GoogleApiWrapper from './Map'
 
@@ -11,10 +12,7 @@ import GoogleApiWrapper from './Map'
 
 export default class ClientHome extends React.Component {
 
-
-
     constructor(props) {
-
         super(props)
         this.state = {
             client: {},
@@ -131,9 +129,7 @@ export default class ClientHome extends React.Component {
 
 
     componentDidMount() {
-
         this.fetchUsers()
-
     }
 
     render() {
@@ -152,30 +148,17 @@ export default class ClientHome extends React.Component {
                         <Link to={"/device/" + device.devEui}>View </Link>
 
                     </div>
-
-
-
-
-
                 </tr>)
 
-
-
         if (sessionStorage.getItem("isAuthenticated") !== 'true') {
-
             return <Redirect to="/login" />
         }
 
-
         else {
             return (
-
-
                 <div>
-                    <div class="sidenav">
-                        <Link to="/home" style={{ color: 'blue' }}>Home</Link>
-                        <Link to={"/profile"}>Profile</Link>
-                        <Link to={"/client/devices"}>Devices</Link>
+                    <div>
+                        <SideNav />
                     </div>
 
 
@@ -185,13 +168,13 @@ export default class ClientHome extends React.Component {
                         <div class="loaderTemp" hidden={!this.state.loading}>
 
                             <div>
-                            <BounceLoader
+                                <BounceLoader
 
-                                size={100}
-                                color={"grey"}
-                                loading={this.state.loading}
+                                    size={100}
+                                    color={"grey"}
+                                    loading={this.state.loading}
 
-                            />
+                                />
                             </div>
 
                         </div>

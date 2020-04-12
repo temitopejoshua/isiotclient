@@ -24,7 +24,6 @@
   
   .main {
     margin-left: 160px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
   }
   
@@ -73,9 +72,8 @@
 
   }
 
-  .otherSec {
-    margin:4px;
-
+  .card-space {
+    margin-top: 15px;
   }
 
   .deviceTable {
@@ -97,8 +95,6 @@
     margin-top: 20px;
   }
   .customProfile{
-
-
     background-color: white;
     margin-left: 20px;
     border-radius: 10px;
@@ -109,8 +105,6 @@
     width: 100%;
   }
   .customProfile2{
-
-
     background-color: white;
     border-radius: 10px;
     word-wrap: break-word;
@@ -219,4 +213,136 @@ h4{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.sidebar-user {
+  padding: 3px;
+  color: #01e2ff;
+  text-align: center;
+  height: 50;
+}
+
+.user-image {
+  font-size: 150px;
+}
+
+/* .nav-icon{
+  color:#01e2ff;
+  padding-right: 10px;
+} */
+
+
+.device-info{
+  width: 500px;
+}
+
+
+
+/* MINE STYLE */
+
+.mine * {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: #666666;
+  font-weight: normal;
+  text-decoration-style: none;
+  font-style: normal;
+  outline: 0;
+}
+
+.mine .input-a:focus{
+  outline: 0 !important;
+}
+
+.device{
+  position: relative;
+  height: auto;
+  border: 1px solid #a7aab8;
+  background-color: rgba(81, 177, 180, 0.05);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+.device .head{
+  /* height: 50px; */
+  font-size: 80%;
+  margin-bottom: 40px;
+}
+.device .head span{
+  border: 1px solid #01e2ff;
+  padding: 1px 7px;
+  border-radius: 100px;
+  margin: 3px;
+}
+
+/* FOR STYLING THE CHECKBOX */
+input[type="checkbox"].checkbox-custom{
+  display: none;
+}
+.check input[type="checkbox"] + label{
+  width: 90px;
+  height: 30px;
+  background-color: #db1515;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+}
+.check input[type="checkbox"] + label::after{
+  content: 'OFF';
+  width: 50px;
+  height: 24px;
+  background-color: white;
+  border-radius: 100px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  text-align: center;
+  line-height: 24px;
+  vertical-align: middle;
+  color: #db1515;
+  animation-name: unchecking;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-delay: 0;
+}
+.check input[type="checkbox"]:checked + label{
+  background-color: rgb(35, 206, 35);
+}
+.check input[type="checkbox"]:checked + label::after{
+  content: 'ON';
+  left: 37px;
+  animation-name: checking;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-delay: 0;
+  color: rgb(35, 206, 35);
+}
+@keyframes checking{
+  0%{
+    left: 3px;
+    width: 50px;
+  }
+  30%{
+    left: 3px;
+    width: 84px;
+  }
+  100%{
+    left: 37px;
+    width: 50px;
+  }
+}
+
+@keyframes unchecking{
+  0%{
+    left: 37px;
+    width: 50px;
+  }
+  30%{
+    left: 3px;
+    width: 84px;
+  }
+  100%{
+    left: 3px;
+    width: 50px;
+  }
 }
