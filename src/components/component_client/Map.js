@@ -7,7 +7,7 @@ class MapContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stores: [{ lat: 47.49855629475769, lng: -122.14184416996333 },
+            stores: [
             { latitude: 47.359423, longitude: -122.021071 },
             { latitude: 47.2052192687988, longitude: -121.988426208496 },
             { latitude: 47.6307081, longitude: -122.1434325 },
@@ -24,7 +24,7 @@ class MapContainer extends React.Component {
                 lat: store.latitude,
                 lng: store.longitude
             }}
-                onClick={() => console.log("You clicked me!")} title={"Hi ISN"} />
+                title={"Hi ISN"} />
         })
     }
 
@@ -50,7 +50,7 @@ class MapContainer extends React.Component {
                 </Map>
 
 
-
+                
 
 
 
