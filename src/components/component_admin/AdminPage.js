@@ -41,7 +41,8 @@ export default class AdminPage extends Component{
                         <div className="col-lg-6"><Devices/></div>   
                     </div>
                     <div className="div_margin"> 
-                        <MapContainer/>
+                        <MapContainer
+                        />
                     </div>
                     <div className="div_margin"> 
                         <Footer/>

@@ -35,6 +35,7 @@ export default class DevicePage extends React.Component {
             })
             .catch(err => console.error(err));
     }
+
     componentDidMount() {
         this.fetchDevices()
     }

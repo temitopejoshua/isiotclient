@@ -77,10 +77,10 @@ export default class UploadDevice extends Component {
             this.setState({errors:formattedErrors})
         })
     }
-
+4
     upload = (data) =>{
 
-        fetch('http://localhost:8081/api/devices/',
+        fetch('http://localhost:8081/api/devices2/',
         {
             crossDomain: true,
             method: 'POST',
