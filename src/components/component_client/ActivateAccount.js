@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
-import { isRecord } from 'immutable'
 
 export default class ActivateAccount extends React.Component {
 
@@ -61,7 +60,7 @@ export default class ActivateAccount extends React.Component {
 
     render() {
 
-       const loginLink = <Link to="/login">Login here</Link>
+        const loginLink = <Link to="/login">Login here</Link>
 
         return ((
 
@@ -88,8 +87,8 @@ export default class ActivateAccount extends React.Component {
                                 <div class="card card-s">
                                     <div class="card-body">
                                         <h5>{this.state.info}</h5>
-                                        
-                                                {loginLink}
+
+                                        {loginLink}
 
                                     </div>
                                 </div>
@@ -98,7 +97,7 @@ export default class ActivateAccount extends React.Component {
                     </div>
                 </div>
 
-             
+
             </div>
 
 
@@ -109,7 +108,7 @@ export default class ActivateAccount extends React.Component {
 
 
 }
-
+//Function that gets parameter token from the url
 function params(path) {
     return new URLSearchParams(path).get("token")
 }

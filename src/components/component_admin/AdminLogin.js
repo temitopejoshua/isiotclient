@@ -1,6 +1,6 @@
 import React from 'react';
-import  { Redirect } from 'react-router-dom';
-// import './form_style.css';
+import { Redirect } from 'react-router-dom';
+import './form_style.css';
 
 export default class AdminLogin extends React.Component {
 
@@ -65,6 +65,7 @@ export default class AdminLogin extends React.Component {
                 isAuthenticated: true,
             });
 
+            return true
         }
 
         else {
@@ -73,7 +74,9 @@ export default class AdminLogin extends React.Component {
                 errors: 'Access Denied',
                 loading: false
             });
-                console.log(this.state.errors)
+            console.log(this.state.errors)
+
+            return false
         }
 
 

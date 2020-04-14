@@ -8,6 +8,7 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
 
 
+
 export default class Profile extends Component {
 
     constructor(props) {

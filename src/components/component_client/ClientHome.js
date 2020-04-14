@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav'
+import MapContainer from './Map'
 
-import GoogleApiWrapper from './Map'
 
 
 
@@ -17,8 +17,11 @@ export default class ClientHome extends React.Component {
         this.state = {
             client: {},
             loading: true,
-            devices: []
-            
+            devices: [],
+            location: [
+                { latitude: 47.359423, longitude: -122.021071 },
+            ]
+
         }
     }
 
@@ -163,7 +166,7 @@ export default class ClientHome extends React.Component {
 
                                 <div class="row">
                                     <div class="col-md-12 mb-5">
-                                        <GoogleApiWrapper />
+                                        <MapContainer location={this.state.location} />
                                     </div>
                                 </div>
 

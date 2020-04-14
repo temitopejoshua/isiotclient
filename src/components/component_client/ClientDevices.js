@@ -2,11 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import styles from './client_style.css'
-import GoogleApiWrapper from './Map'
+import MapContainer from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
-import UploadDevice from '../component_admin/UploadDevice'
 
 
 
@@ -23,92 +22,10 @@ export default class ClientDevices extends React.Component {
         this.state = {
             client: {},
             loading: true,
-            devices: [
-                {
-                    name: "Test1",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test2",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test3",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test4",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test5",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test6",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test7",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test8",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test9",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test10",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test11",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test12",
-                    category: {
-                        name: "Test"
-                    }
-
-                }
-            ],
+            devices: [],
+            location: [
+                { latitude: 47.359423, longitude: -122.021071 },
+              ]
 
         }
     }
@@ -215,7 +132,7 @@ export default class ClientDevices extends React.Component {
                             <div class="col-12 otherSec">
                                 <div class="row mapMargin">
                                     <div class="col-md-12">
-                                        <GoogleApiWrapper />
+                                        <MapContainer location={this.state.location} />
                                     </div>
                                 </div>
 
@@ -224,7 +141,6 @@ export default class ClientDevices extends React.Component {
                                 <div>
                                     {tableData}
                                 </div>
-                                <UploadDevice/>
 
                             </div>
                         </div>

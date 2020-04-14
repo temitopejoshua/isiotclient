@@ -1,5 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import BounceLoader from 'react-spinners/BounceLoader'
+
 
 export default class ResetPassword extends React.Component {
 
@@ -10,7 +12,8 @@ export default class ResetPassword extends React.Component {
 
             isSuccessful: false,
             password: '',
-            client: {}
+            client: {},
+            loading:true
 
         }
 
@@ -27,12 +30,10 @@ export default class ResetPassword extends React.Component {
 
                 this.setState(
                     {
-                        client: responseData
+                        client: responseData,
+                        loading:false
                     }
                 )
-
-                console.log("data")
-                console.log(this.state.client)
 
             })
             .catch(err => console.error("Error occured here"));
@@ -91,6 +92,8 @@ export default class ResetPassword extends React.Component {
 
     render() {
 
+
+        
         if(this.state.client.status === 400){
         return (
 
@@ -113,33 +116,50 @@ export default class ResetPassword extends React.Component {
 
         else{
             return(
-                <section class="signup">
-                <div class="container">
-                    <div class="signup-content">
-                        <div class="signup-form">
-                            <h2 class="form-title">Change Password</h2>
-                            <form class="register-form" id="register-form">
-                
-                                <div class="form-group">
-                                    <label for="email"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type='password' placeholder="Password"  name='password' onChange={this.handleChange} />
-                                </div>
-                
-                                <div class="form-group">
-                                    <label for="email"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type='password' placeholder="Re-type Password"  name='passwordRepeat' onChange={this.handleChange} />
-                                </div>
+                <div>
+                      <div class="loaderTemp" hidden={!this.state.loading}>
 
-                                <div class="form-group form-button">
-                                <button type="submit" class="btn btn-primary btn-lg" onClick={this.handleSubmit}>Submit </button>
+                            <div>
+                                <BounceLoader
+
+                                    size={100}
+                                    color={"grey"}
+                                    loading={this.state.loading}
+
+                                />
                             </div>
-                            </form>                
-                
+
+                            </div>
+                    <div hidden={this.state.loading}>
+                        <section class="signup">
+                        <div class="container">
+                            <div class="signup-content">
+                                <div class="signup-form">
+                                    <h2 class="form-title">Change Password</h2>
+                                    <form class="register-form" id="register-form">
+                        
+                                        <div class="form-group">
+                                            <label for="email"><i class="zmdi zmdi-lock"></i></label>
+                                            <input type='password' placeholder="Password"  name='password' onChange={this.handleChange} />
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label for="email"><i class="zmdi zmdi-lock"></i></label>
+                                            <input type='password' placeholder="Re-type Password"  name='passwordRepeat' onChange={this.handleChange} />
+                                        </div>
+
+                                        <div class="form-group form-button">
+                                        <button type="submit" class="btn btn-primary btn-lg" onClick={this.handleSubmit}>Submit </button>
+                                    </div>
+                                    </form>                
+                        
+                                </div>
+                            
+                            </div>
                         </div>
-                       
-                    </div>
+                        </section>
                 </div>
-                </section>
+                </div>
                 
 
             )

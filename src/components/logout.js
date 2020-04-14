@@ -8,6 +8,8 @@ export default class Logout extends React.Component {
         sessionStorage.removeItem("jwt");
         sessionStorage.removeItem("isAuthenticated")
         sessionStorage.removeItem("isAdmin")
+        sessionStorage.removeItem("status")
+
     }
     componentWillMount() {
       this.logout();
