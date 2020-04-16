@@ -41,7 +41,7 @@ export default class Register extends React.Component {
         const rules = {
             name: 'required|string',
             emailAddress: 'required|email',
-            password: 'required|string|min:6|confirmed',
+            password: 'required|string|min:6',
             address: 'required|string',
             phoneNumber: 'required|string|min:6'
         }

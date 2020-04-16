@@ -74,12 +74,16 @@ export default class UploadDevice extends Component {
     }
     upload = (data) =>{
 
-        fetch('http://localhost:8081/api/devices2/',
+        const token = window.sessionStorage.getItem("jwt");
+
+
+        fetch('http://localhost:8081/api/devices2/', 
         {
             crossDomain: true,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(data)
         })
