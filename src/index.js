@@ -17,15 +17,23 @@ import Device from './components/component_client/device'
 import Profile from './components/component_client/ClientProfile'
 import ClientDevices from './components/component_client/ClientDevices'
 import UserDetail from './components/userDetail'
+import ActivateAccount from './components/component_client/ActivateAccount'
+import ForgetPassword from './components/component_client/ForgetPassword'
+import ResetPassword from './components/component_client/ResetPassword'
+import ClientList from './components/component_admin/ClientList'
+import Devices from './components/component_admin/Devices'
 import AdminPage from './components/component_admin/AdminPage';
 import DeviceInfo from './components/component_admin/DeviceInfo';
+import DeleteDevice from './components/component_admin/DeleteDevice';
 import NotFound from './components/component_admin/NotFound';
+
 
 
 const routing = (
 
     <Router>
     <Switch>
+    <Route exact path="/admin/device/:id" component={DeleteDevice}/>
     <Route exact path="/admin/deviceinfo/:id" component={DeviceInfo}/>
     <Route exact path="/admin/profile" component={AdminProfile} />
     <Route exact path="/admin/maps" component={AdminMap}/>
@@ -37,12 +45,20 @@ const routing = (
     <Route exact path="/admin" component={App} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/admin/clients/:id" component={UserDetail} />
+
+    {/* Client Route */}
+    <Route exact path="/" component={ClientLogin} />
     <Route exact path="/login" component={ClientLogin} />
     <Route excat path="/home" component={ClientHome} />
     <Route exact path="/logout" component={Logout} />
     <Route exact path="/device/:id" component={Device} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/client/devices" component={ClientDevices} />
+    <Route exact path="/activate" component={ActivateAccount}/>
+    <Route exact path="/resetpassword" component={ResetPassword} />
+    <Route exact path="/forgetpassword" component={ForgetPassword}/>
+    <Route path="/clients" component={ClientList} />
+    <Route path="/devices" component={Devices} />
     <Route path="*" component={NotFound}/>
     </Switch>
     </Router>

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import EditEmail from './component_edit.js/EditEmail'
 import EditFields from './component_edit.js/EditFields'
 import { Redirect } from 'react-router-dom'
 import ChangePassword from './component_edit.js/ChangePassword'
-import './client_style.css'
-
-
+import styles from './client_style.css'
+import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
 
 
@@ -17,6 +14,7 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             client: {},
+            loading: true
         }
     }
 
@@ -47,12 +45,10 @@ export default class Profile extends Component {
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
-                    client: responseData
+                    client: responseData,
+                    loading: false
                 });
-                console.log("Fetched Successfully " + responseData.name)
             })
-
-        console.log("This is the id ")
 
     }
     componentWillMount(props) {
@@ -66,104 +62,98 @@ export default class Profile extends Component {
              return <Redirect to="/login" />
          }
 
-    return(
-        <div className="wrapper">
+        return (
+
             <div>
-            <SideNav/>
-            </div>
-            <div className="main">
-                <div className="container-fluid">
-                    <h2>User Profile</h2>
-                    <div className="row ">
-                        <div className="col-md-4 col-lg-3 profile_card">
-                            <div className="card mb-3">
-                                <div className="card-body text-center">
-                                    <div className="sidebar-user">
-                                        <div className="user-image"><i class="fas fa-user"></i></div>                                        
-                                        <div className="font-weight-bold">Welcome {this.state.client.name}</div>
-                                        <small>IOT Client</small>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div className="card">
-                                <div className="card-header">Recent</div></div>
-                                <div className="card-body">
-                                    <h5>Tasks</h5>
-                                    <h5>Notifications</h5>
-                                </div>
-                            </div>
+                <div>
+                    <SideNav />
+                </div>
+                <div class="main">
+
+                    <div class="loaderTemp" hidden={!this.state.loading}>
+
+                        <div>
+                            <BounceLoader
+
+                                size={100}
+                                color={"grey"}
+                                loading={this.state.loading}
+
+                            />
                         </div>
 
-                    
-                        <div className="col-lg-9">
-                            <div className="card profile_card">
-                                <div className="card-header">
-                                    <h5 className="card-title">Profile Details</h5>
-                                </div>
-                                <div className="card-body h-100">
-                                    <div className="row row_card">
-                                        <div className="col-6">
-                                            <h6 className="font-weight-bold"><i class="fas fa-envelope-square icon" ></i>Email Address</h6>
-                                            <hr/>
-                                            <h6>{this.state.client.emailAddress}</h6>
-                                        </div>
-                                        <div className="col-6">
-                                            <h6 className="font-weight-bold"><i class="fas fa-map-marker-alt icon"></i>Address</h6>
-                                            <hr/>
-                                            <h6>{this.state.client.address}</h6>
-                                        </div>
-                                    </div>
-                                    <div className="row row_card">
-                                        <div className="col-6">
-                                            <h6 className="font-weight-bold"> <i class="fas fa-mobile icon"></i>Phone Number</h6>
-                                            
-                                            <hr/>
-                                            <h6>{this.state.client.phoneNumber}</h6>
-                                        </div>
-                                        <div className="col-6">
-                                            <h6 className="font-weight-bold"><i class="fas fa-sort-numeric-up icon"></i>Number Of Devices</h6>
-                                            <hr/>
-                                            <h6>{this.state.client.numberOfDevices}</h6>
+                    </div>
+                    <div hidden={this.state.loading}>
+                        <div class="col-md-12">
+                            <div class="vh-100">
+                                <div class="row">
+
+
+                                    <div class="col-md-12 mt-3">
+                                        <div class="card round-small card-default">
+                                            <div class="card-body p-5">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="pic">
+                                                            <img src="images/dummyprofile.jpg"></img>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <h1 class="mb-5">{this.state.client.name}</h1>
+
+                                                        <p><i class="fas fa-envelope"></i> &nbsp; {this.state.client.emailAddress}</p>
+                                                        <p><i class="fas fa-mobile"></i> &nbsp; {this.state.client.phoneNumber}</p>
+                                                        <p><i class="fas fa-map-marker-alt"></i> &nbsp; {this.state.client.address}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="card profile_card">
-                                <div className="card-header">
-                                <h5 className="card-title">Edit Information</h5>
-                                </div>
-                                <div className="card-body h-100">
-                                <div className="row row_card">
-                                <div className="col-3">
-                                        <h6 className="font-weight-bold">
-                                            <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                                            Change Password</h6>
-                                        </div>
-                                        <div className="col-3">
-                                            <h6 className="text-center">
-                                            <a href="/logout"><i class="fas fa-sign-out-alt icon"></i></a>
-                                            <h6 className="font-weight-bold ">Logout</h6></h6>
-                                        </div>
-                                        <div className="col-3 profileIcon">
-                                            <h6 className="font-weight-bold text-center">
-                                            <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
-                                            Edit Profile</h6>
-                                        </div>
-                                        <div className="col-3 profileIcon">
-                                            <h6 className="font-weight-bold">
-                                            <i class="fas fa-angle-double-right icon"></i>
-                                            <h6 className="font-weight-bold ">{this.state.client.active ? "Active" : "Suspended"}</h6></h6>
+
+                                    <div class="col-md-12">
+                                        <div class="row row-eq-height">
+                                            <div class="col-md-3 mt-3">
+                                                <div class="card eqh round-small default">
+                                                    <div class="card-body text-center">
+
+                                                        <h2 class=" bigicon mb-3"> {this.state.client.numberOfDevices} </h2>
+                                                        <p>Number of devices</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3 mt-3 action">
+                                                <EditFields fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
+                                            </div>
+
+                                            <div class="col-md-3 mt-3 action">
+
+                                                <ChangePassword fetchData={this.fetchData} handleEdit={this.handleEdit} data={this.state.client} />
+
+
+                                            </div>
+
+                                            <a href="/logout" class="col-md-3 mt-3 action">
+                                                <div class="card eqh round-small card-default">
+                                                    <div class="card-body text-center">
+                                                        <i class="fas fa-sign-out-alt bigicon mb-3"></i>
+                                                        <p>Log out</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-    );
-}
-}
 
+        );
+    }
+}
 

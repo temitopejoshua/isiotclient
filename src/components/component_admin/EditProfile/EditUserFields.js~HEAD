@@ -1,14 +1,15 @@
 import React from 'react'
 import SkyLight from 'react-skylight'
-import { Redirect } from 'react-router-dom'
 
 
-class EditEmail extends React.Component {
+class EditUserFields extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            emailAddress: '',
+            name:'',
+            address: '',
+            phoneNumber:''
         }
     }
 
@@ -21,10 +22,13 @@ class EditEmail extends React.Component {
     // Save Email and close modal form
     handleSubmit = (event) => {
         event.preventDefault();
-        var newEmail = { emailAddress: this.state.emailAddress };
-        this.props.handleEdit(newEmail);
+        var address = { address: this.state.address, 
+                        name: this.state.name,
+                        phoneNumber:this.state.phoneNumber};
+        this.props.handleEdit(address);
         this.refs.addDialog.hide();
         this.props.fetchData()
+        
     }
 
     cancelSubmit = (event) => {
@@ -39,15 +43,19 @@ class EditEmail extends React.Component {
             <div>
                 <SkyLight hideOnOverlayClicked ref="addDialog">
                     <form>
+                        <input type='text' placeholder="address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
+                        <input type='text' placeholder="name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
+                        <input type='text' placeholder="phoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
 
-                        <input type='text' placeholder={this.props.placeholder} name='emailAddress' onChange={this.handleChange} defaultValue={this.props.data.emailAddress}/>
+
                         <button onClick={this.handleSubmit} type="Submit">Save</button>
                         <button onClick={this.cancelSubmit}>Cancel</button>
                     </form>
                 </SkyLight>
                 <div>
-                    <button  class="btn btn-outline-info"
-                        onClick={() => this.refs.addDialog.show()}>Edit</button>
+                <button
+                        onClick={() => this.refs.addDialog.show()} className="btn btn-primary">Edit Profile
+                </button>
 
 
                 </div>
@@ -55,4 +63,4 @@ class EditEmail extends React.Component {
         );
     }
 }
-export default EditEmail;
+export default EditUserFields;

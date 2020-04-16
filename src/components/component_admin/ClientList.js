@@ -1,17 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Pagination from './Pagination';
 import ClientsTable from './ClientsTable';
 
 
-export default class ClientList extends React.Component {
+
+//client's table card for admin page
+export default class Clients extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             clients: [],
             loading: true,
             clientsPerPage: 5,
-            currentPage: 1,
         }
     }
     fetchClients = () => {
@@ -35,33 +34,24 @@ export default class ClientList extends React.Component {
         this.fetchClients()
     }
     render() {
-    const {loading, currentPage, clientsPerPage, clients} = this.state;
-    const indexOfLastClient = currentPage * clientsPerPage;
-    const indexofFirstClient = indexOfLastClient - clientsPerPage;
-    const currentClients = clients.slice(indexofFirstClient, indexOfLastClient);
-    const paginate =(pageNumber) => this.pageNumber;
+    const {loading,clients, clientsPerPage} = this.state;
+
         return (
         <div>
             <div className="row mb-4">
-                <div className="col-sm-12 grid-margin">
+            <div className="col-sm-12 grid-margin">
                 <div className="card h-100">
-                <h4 className="card-header">Client List</h4>
+                <h4 className="card-header">Clients</h4>
                 <div className="card-body">
                 <ClientsTable
                 loading={loading}
                 clients={clients}
-                />
-                <Pagination 
-                objectsPerPage={clientsPerPage} 
-                totalObjects={clients.length} 
-                paginate={paginate}
-                lastIndex={indexOfLastClient} 
-                firstIndex={indexofFirstClient + 1}
+                clientsPerPage={clientsPerPage}
                 />
                 </div>
                 </div>
-                </div>
-                </div>
+            </div>
+            </div>
         </div>
         );
     }

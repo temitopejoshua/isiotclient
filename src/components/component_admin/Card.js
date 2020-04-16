@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import user1 from './user.svg'
-import devices from './devices.png'
-import temperature from './temperature.png'
-import geolocation from './location.png'
 
 
+
+//component to display number of available devices
 export default class Card extends Component{
   constructor(props){
     super(props);
@@ -80,7 +78,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={user1} alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
+                          <img src="/images/user.svg" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
                         </div>
                         </div>
                       </div>
@@ -102,7 +100,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={temperature} alt="temp" style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src="/images/temperature.png" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
                         </div>
                         </div>
                       </div>
@@ -124,7 +122,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={geolocation} alt="geo" style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src="/images/location.png" alt="user" style={{ height: "50px", width: "50px"}}/>
                         </div>
                         </div>
                       </div>
@@ -145,7 +143,7 @@ fetchClients = () => {
                         </div>
                         <div className="col-4 ml-auto text-right">
                           <div className="d-inline-block mt-2">
-                          <img src={devices} alt="devices" style={{height: "50px", width: "50px", color: "red"}}/>
+                          <img src="/images/devices.png" alt="user" style={{ height: "50px", width: "50px"}}/>
                         </div>
                         </div>
                       </div>

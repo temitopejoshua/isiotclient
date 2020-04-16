@@ -52,7 +52,7 @@ export default class TopNavBar extends Component{
                             <img src="images/user.png" alt="user" className="avatar img-fluid rounded mr-1" style={{ height: "30px", width: "30px"}}/><span class="text-dark">{this.state.client.name}</span>
                             </a>
 							<div className="dropdown-menu dropdown-menu-right">
-								<a className="dropdown-item" href="pages-profile.html">Profile</a>
+								<a className="dropdown-item" href="/profile">Profile</a>
 								<div className="dropdown-divider"></div>
 								<a className="dropdown-item" href="/profile">My Profile</a>
                                 <a className="dropdown-item" href="/logout">Sign Out</a>

@@ -1,16 +1,15 @@
-import React from 'react'
+import React,{Component} from 'react'
 import SkyLight from 'react-skylight'
 
 
 
-class EditDeviceFields extends React.Component {
+export default class AssignDevice extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name:'',
-            devEui:'',
-            device_class:'',
+            device: {},
+            client: {}
         }
     }
 
@@ -23,9 +22,8 @@ class EditDeviceFields extends React.Component {
     // Save details
     handleSubmit = (event) => {
         event.preventDefault();
-        var details = { name: this.state.name,
-                        devEui: this.state.devEui,
-                        device_class: this.state.device_class
+        var details = { device: this.state.device,
+                        client: this.state.client
                         };
         this.props.handleEdit(details);
         this.refs.addDialog.hide();
@@ -46,12 +44,10 @@ class EditDeviceFields extends React.Component {
                 <SkyLight hideOnOverlayClicked ref="addDialog">
                     <form className="">
                         <h4 className="text-center">Edit Device Information</h4>
-                        <label>Device Name</label>
-                        <input type='text' className="form-control" placeholder="Enter Name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} /><br/>
-                        <label>Device EUI</label>
-                        <input type='text' className="form-control" placeholder="Enter Device Eui" defaultValue={this.props.data.devEui} name='devEui' onChange={this.handleChange} /><br/>
-                        <label>Device Class</label>
-                        <input type='text' className="form-control" placeholder="Enter Device Class" defaultValue={this.props.data.device_class} name='deviceClass' onChange={this.handleChange} /><hr/>
+                        <label>Client ID</label>
+                        <input type='text' className="form-control" placeholder="Enter Name" defaultValue={this.props.data.client} name='name' onChange={this.handleChange} /><br/>
+                        <label>Device ID</label>
+                        <input type='text' className="form-control" placeholder="Enter Device Eui" defaultValue={this.props.data.device} name='devEui' onChange={this.handleChange} /><br/><hr/>
                         <div className="text-center">
                         <button onClick={this.cancelSubmit} className="btn btn-danger modal-btn">Cancel</button>
                         <button onClick={this.handleSubmit} type="Submit" className="btn btn-primary modal-btn">Save</button>
@@ -59,11 +55,10 @@ class EditDeviceFields extends React.Component {
                     </form>
                 </SkyLight>
                 <div>
-                <button onClick={() => this.refs.addDialog.show()} className="btn btn-primary">Update Device</button>
+                <button onClick={() => this.refs.addDialog.show()} className="btn btn-primary">Assign Device</button>
                 </div>
             </div>
         );
     }
 }
-export default EditDeviceFields;
 

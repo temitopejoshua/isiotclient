@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './nav.css';
-import user1 from './user.svg';
 
 
-export default class TopNavBar extends Component{
+export default class AdminTopNavBar extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -51,16 +50,15 @@ export default class TopNavBar extends Component{
 								</div>
 							</a>
 							<a className="nav-link nav-link-user dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-            <img src={user1} className="avatar img-fluid rounded mr-1" style={{ height: "30px", width: "30px"}}/><span class="text-dark">{this.state.client.name}</span>
+                            <img src="/images/user.svg" className="avatar img-fluid rounded mr-1" style={{ height: "30px", width: "30px"}}/><span class="text-dark">{this.state.client.name}</span>
                             </a>
 							<div className="dropdown-menu dropdown-menu-right">
-								<a className="dropdown-item" href="pages-profile.html">Profile</a>
+								<a className="dropdown-item" href="#">Profile</a>
 								<div className="dropdown-divider"></div>
 								<a className="dropdown-item" href="/admin/profile">My Profile</a>
-                                <a className="dropdown-item" href="/#">Activity Log</a>
-								<a className="dropdown-item" href="/#">Account Settings</a>
+                                {/* <a className="dropdown-item" href="/#">Activity Log</a>
+								<a className="dropdown-item" href="/#">Account Settings</a> */}
                                 <a className="dropdown-item" href="/logout">Sign Out</a>
-                                
 							</div>
 						</li>
                         <li className="nav-item dropdown">

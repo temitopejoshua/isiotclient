@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SideNav from './Sidenav'; 
-import user1 from './user.svg';
 import EditFields from './EditProfile/EditUserFields';
 import {Redirect} from 'react-router-dom';
 
@@ -50,7 +49,7 @@ export default class AdminProfile extends Component{
     }
 
     render(){
-        if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+        if (sessionStorage.getItem("isAdmin") !== 'true') {
             return <Redirect to="/admin/login" />
         }
 
@@ -68,9 +67,8 @@ export default class AdminProfile extends Component{
                                 <div className="card mb-3">
                                     <div className="card-body text-center">
                                     <div className="sidebar-user">
-					                    <img src={user1} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
-                                        <div className="font-weight-bold">{this.state.admin.name}</div>
-					                    <small>IOT Admin</small>
+                                        <img src="/images/user.svg" className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
+			                            <small>IOT Admin</small>
 				                        </div>
                                     </div>
                                     <hr/>
@@ -118,7 +116,10 @@ export default class AdminProfile extends Component{
                                         </div>
                                     </div>
                                     <div className="card-footer">
-                                            <EditFields fetchData={this.fetchAdmin} handleEdit={this.handleEdit} data={this.state.admin} />
+                                            <EditFields 
+                                            fetchData={this.fetchAdmin} 
+                                            handleEdit={this.handleEdit} 
+                                            data={this.state.admin} />
                                         </div>
                                 </div>
                                 <div className="card profile_card">
@@ -128,7 +129,7 @@ export default class AdminProfile extends Component{
                                     <div className="card-body h-100">
                                     <div className="row row_card">
                                             <div className="col-2">
-                                            <img src={user1} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
+                                            <img src="/images/user.svg" className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
                                             </div>
                                             <div className="col-5">
                                                 <h6 className="font-weight-bold">Full Name</h6>
@@ -144,7 +145,7 @@ export default class AdminProfile extends Component{
                                         </div>
                                         <div className="row row_card">
                                         <div className="col-2">
-                                            <img src={user1} className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "50px", width: "50px", fill:'%23000'}}/>
+                                            <img src="/images/user.svg" className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
                                             </div>
                                             <div className="col-5">
                                                 <h6 className="font-weight-bold">Full Name</h6>
@@ -153,7 +154,6 @@ export default class AdminProfile extends Component{
                                             </div>
                                             <div className="col-5">
                                                 <h6 className="font-weight-bold">Email Address</h6>
-                                                
                                                 <hr/>
                                                 <h6>adetosine6@gmail.com</h6>
                                             </div>

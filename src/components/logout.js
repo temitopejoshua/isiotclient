@@ -6,12 +6,15 @@ export default class Logout extends React.Component {
 
     logout = () => {
         sessionStorage.removeItem("jwt");
-        sessionStorage.removeItem("isAuthenticated")
+        sessionStorage.removeItem("isAuthenticated");
+        sessionStorage.removeItem("isAdmin");
+        sessionStorage.removeItem("status");
     }
     componentWillMount() {
       this.logout();
     }
+
     render() {
-        return <Redirect to="/admin" />
+        return <Redirect to="/login"/>
     }
 }

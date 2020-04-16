@@ -36,7 +36,7 @@ export default class UserDetail extends Component {
     console.log("This is the id " + params.id)
   }
   render() {
-    if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+    if (sessionStorage.getItem("isAdmin") !== 'true') {
       return <Redirect to="/admin/login" />
     }
 

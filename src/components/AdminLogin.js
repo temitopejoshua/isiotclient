@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { Redirect } from 'react-router-dom'
-import styles from './client_style.css'
 import ClipLoader from "react-spinners/ClipLoader";
 
 
-export default class ClientLogin extends React.Component {
+
+export default class AdminLogin extends React.Component {
 
     constructor(props) {
         super(props)
@@ -13,25 +13,25 @@ export default class ClientLogin extends React.Component {
             emailAddress: '',
             password: '',
             isAuthenticated: false,
-            loginButtonDisabled: true,
-            errors: '',
-            loading: false
+            error: '',
+            loading: false,
         }
     }
     handleChange = (event) => {
-
         this.setState(
             {
                 [event.target.name]: event.target.value,
-                loginButtonDisabled: false,
-                errors: ''
-
+                error: ''
             }
         );
     }
 
     login = () => {
-        this.setState({ loading: true })
+
+        this.setState({
+            loading: true,
+            error: ''
+        })
         const user = { emailAddress: this.state.emailAddress, password: this.state.password };
         fetch('http://localhost:8081/login', {
             method: 'POST',
@@ -41,25 +41,56 @@ export default class ClientLogin extends React.Component {
                 const jwtToken = res.headers.get('Authorization');
                 if (jwtToken !== null) {
                     sessionStorage.setItem("jwt", jwtToken);
-                    sessionStorage.setItem("isAuthenticated", true);
                     this.setState({
                         isAuthenticated: true,
                     });
+
+                    this.checkAdmin()
+
                 }
+
                 else {
+
                     this.setState({
-                        errors: "Sorry, that didn\'t work please try again",
-                        loading: false
+                        error: 'Email Address and Password  match',
+                        loading: false,
+
                     })
                 }
             })
-            .catch(errors => console.error(errors))
+            .catch(err => console.error(err));
+        
+
+
     }
+
+    checkAdmin = () => {
+
+        if (validateAdmin()) {
+
+            sessionStorage.setItem("isAuthenticated", true);
+            this.setState({
+                isAuthenticated: true,
+            });
+
+        }
+
+        else {
+
+            this.setState({
+                error: 'Access Denied',
+                loading: false
+            });
+
+        }
+
+
+    }
+
+
     render() {
-
         if (sessionStorage.getItem("isAuthenticated") === 'true') {
-
-            return <Redirect to="/home" />
+            return <Redirect to="/admin/home" />
         }
         else {
             return (
@@ -67,12 +98,11 @@ export default class ClientLogin extends React.Component {
                     <div class="container">
                         <div class="signin-content">
                             <div class="signin-image">
-                                <figure><img src="images/signin-image.jpg" alt="sing up image"></img></figure>
+                                <figure><img src="images/signin-image.jpg" alt="sign up"></img></figure>
                                 <a href="/register" class="signup-image-link">Create an account</a>
-
                             </div>
                             <div class="signin-form">
-                                <h2 class="form-title">Sign In</h2>
+                                <h2 class="form-title">Admin Sign in</h2>
                                 <form method="POST" class="register-form" id="login-form">
                                     <div class="form-group">
                                         <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -83,34 +113,51 @@ export default class ClientLogin extends React.Component {
                                         <input type='password' placeholder='Enter Password' name='password' onChange={this.handleChange}></input>
                                     </div>
                                     <div class="form-group">
-                                        <a href="/forgetpassword" class="signup-image-link text-right">Forget Password?</a>
+                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                                     </div>
 
                                 </form>
-                                <div class="row">
-                                    <div class="form-group form-button col-md-6">
-                                        <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
-                                    </div>
-
-                                    <div class="text-right col-md-6">
-                                        <ClipLoader
-                                            size={15}
-                                            color={"blue"}
-                                            loading={this.state.loading}
-                                        />
-                                    </div>
+                                <div class="form-group form-button">
+                                    <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
                                 </div>
                                 <p class="validationError">{this.state.errors}</p>
-
-
-
                             </div>
                         </div>
                     </div>
                 </section>
             );
-
         }
     }
 }
 
+function validateAdmin() {
+
+    const token = window.sessionStorage.getItem("jwt");
+
+    fetch('http://localhost:8081/api/clients/access',
+        {
+            headers: { 'Authorization': token }
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+
+            sessionStorage.setItem("status", responseData.admin)
+
+
+        })
+        .catch(err => console.error(err));
+
+    const status = sessionStorage.getItem("status")
+    sessionStorage.removeItem("status")
+
+    if (status === "true") {
+        return true;
+    }
+
+    else {
+        return false
+    }
+
+
+}

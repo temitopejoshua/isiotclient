@@ -11,7 +11,8 @@ export default class AdminLogin extends React.Component {
             emailAddress: '',
             password: '',
             isAuthenticated: false,
-            error: ''
+            loginButtonDisabled: true,
+            errors: ''
         }
     }
 
@@ -19,12 +20,19 @@ export default class AdminLogin extends React.Component {
         this.setState(
             {
                 [event.target.name]: event.target.value,
-                error: ''
+                loginButtonDisabled: false,
+                errors: ''
             }
         );
     }
 
     login = () => {
+
+        this.setState({
+            loading: true,
+            error: ''
+        })
+
         const user = { emailAddress: this.state.emailAddress, password: this.state.password };
         fetch('http://localhost:8081/login', {
             method: 'POST',
@@ -34,49 +42,55 @@ export default class AdminLogin extends React.Component {
                 const jwtToken = res.headers.get('Authorization');
                 if (jwtToken !== null) {
                     sessionStorage.setItem("jwt", jwtToken);
+                    this.setState({
+                        isAuthenticated: true,
+                    });
                     this.checkAdmin()
+
                 }
                 else {
-                    this.setState({ error: "Email address and password does not match" })
+                    this.setState({ errors: "Check your email address and password" })
                 }
             })
             .catch(errors => console.error(errors))
+
     }
 
+    checkAdmin = () => {
 
-    checkAdmin = () =>{
-        
-        if (validateAdmin()){
-            sessionStorage.setItem("isAuthenticated", true);
+        if (validateAdmin()) {
+
+            sessionStorage.setItem("isAdmin", true);
             this.setState({
                 isAuthenticated: true,
             });
+
         }
-        else{
+
+        else {
+
             this.setState({
-                error: "Access Denied"
-            })
+                errors: 'Access Denied',
+                loading: false
+            });
+                console.log(this.state.errors)
         }
     }
 
-
     render() {
 
-        if (sessionStorage.getItem("isAuthenticated") === 'true') {
+        if (sessionStorage.getItem("isAdmin") === 'true') {
             return <Redirect to="/admin/home" />
         }
         else {
             return (
-                <section class="sign-in">
-                    <div class="container">
-                        <div class="signin-content">
-                            <div class="signin-image">
-                                <figure><img src="images/signin-image.jpg" alt="sign up"></img></figure>
-                                <a href="/register" class="signup-image-link">Create an account</a>
-                            </div>
-                            <div class="signin-form">
-                                <h2 class="form-title">Admin Sign in</h2>
-                                <form method="POST" class="register-form" id="login-form">
+                <section>
+                    <div class="container_admin">
+                                <div className="image_container">
+                                    <img src="images/is-logo.png" alt="logo" className="signin_img"></img>
+                                    <h2 class="form_title">Internet Solutions</h2>
+                                </div>
+                                <form method="POST" class="" id="login-form">
                                     <div class="form-group">
                                         <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type='text' placeholder='Enter email' name='emailAddress' onChange={this.handleChange}></input>
@@ -85,22 +99,14 @@ export default class AdminLogin extends React.Component {
                                         <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                         <input type='password' placeholder='Enter Password' name='password' onChange={this.handleChange}></input>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                                    </div>
-
                                 </form>
-                                <div class="form-group form-button">
-                                    <button onClick={this.login} class="form-submit">Login</button>
-                                </div>
-                                <p class="validationError">{this.state.error}</p>
+                                <div class="form_group form_button">
+                                    <p class="validationError">{this.state.errors}</p>
+                                    <button onClick={this.login} class="form_submit">Log in</button>
                             </div>
                         </div>
-                    </div>
                 </section>
             );
-
         }
     }
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import SkyLight from 'react-skylight'
+import { Redirect } from 'react-router-dom'
+import { ThemeProvider } from 'react-bootstrap';
 
 
 class EditUserFields extends React.Component {
@@ -8,8 +10,8 @@ class EditUserFields extends React.Component {
         super(props);
         this.state = {
             name:'',
+            phoneNumber:'',
             address: '',
-            phoneNumber:''
         }
     }
 
@@ -22,10 +24,10 @@ class EditUserFields extends React.Component {
     // Save Email and close modal form
     handleSubmit = (event) => {
         event.preventDefault();
-        var address = { address: this.state.address, 
-                        name: this.state.name,
-                        phoneNumber:this.state.phoneNumber};
-        this.props.handleEdit(address);
+        var details = { name: this.state.name,
+                        phoneNumber:this.state.phoneNumber,
+                        address: this.state.address};
+        this.props.handleEdit(details);
         this.refs.addDialog.hide();
         this.props.fetchData()
         
@@ -42,23 +44,25 @@ class EditUserFields extends React.Component {
         return (
             <div>
                 <SkyLight hideOnOverlayClicked ref="addDialog">
-                    <form>
-                        <input type='text' placeholder="address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
-                        <input type='text' placeholder="name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
-                        <input type='text' placeholder="phoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
-
-
-                        <button onClick={this.handleSubmit} type="Submit">Save</button>
-                        <button onClick={this.cancelSubmit}>Cancel</button>
-                    </form>
+                    <div class="p-5">
+                        <form class="form">
+                            <div class="form-group mb-3">
+                                <input type='text' class="form-control input-a" placeholder="Enter Name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
+                            </div>
+                            <div class="form-group mb-3">
+                                <input type='text' class="form-control input-a" placeholder="Enter PhoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
+                            </div>
+                            <div class="form-group">
+                                <input type='text' class="form-control input-a" placeholder="Enter Address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
+                            </div>
+                            <button onClick={this.cancelSubmit} class="btn btn-danger">Cancel</button>
+                            <button onClick={this.handleSubmit} type="Submit" class="btn btn-success  ml-3">Save</button>
+                        </form>
+                    </div>
                 </SkyLight>
-                <div>
                 <button
                         onClick={() => this.refs.addDialog.show()} className="btn btn-primary">Edit Profile
                 </button>
-
-
-                </div>
             </div>
         );
     }

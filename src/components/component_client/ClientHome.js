@@ -1,8 +1,11 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import GoogleApiWrapper from './Map';
-import SideNav from './SideNav';
-import TopNavBar from './TopNavBar';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import styles from './client_style.css'
+import BounceLoader from 'react-spinners/BounceLoader'
+import SideNav from './SideNav'
+
+import GoogleApiWrapper from './Map'
 
 
 
@@ -13,8 +16,9 @@ export default class ClientHome extends React.Component {
         super(props)
         this.state = {
             client: {},
-            devices: [],
-            deviceIsEmpty: false,
+            loading: true,
+            devices: []
+            
         }
     }
 
@@ -31,40 +35,34 @@ export default class ClientHome extends React.Component {
             .then((responseData) => {
                 this.setState({
                     client: responseData,
-                    devices: responseData.devices
+                    devices: responseData.devices,
+                    loading: false
                 });
             })
             .catch(err => console.error(err));
     }
 
-    checkDevices = () => {
 
-        if (this.state.devices.length < 1)
-            this.setState({ deviceIsEmpty: true })
-
-        else {
-            this.setState({ deviceIsEmpty: false })
-        }
-    }
 
     componentDidMount() {
         this.fetchUsers()
-        this.checkDevices()
     }
 
     render() {
 
-        var i = 1;
-        // var id = this.state.client.id
-        const tableRows = this.state.devices.map(
+        const data = this.state.devices.slice(0, 5)
+        const tableRows = data.map(
+
             (device, index) =>
                 <tr key={index}>
-                    <td>{i++}</td>
+
+
+                    <td></td>
                     <td>{device.name}</td>
                     <td>{device.category.name}</td>
                     <div>
-                        <Link to={"/device/" + device.devEui}>view </Link> /
-                        <Link to={"/device/" + device.devEui}>delete</Link>
+                        <Link to={"/device/" + device.devEui}>View </Link>
+
                     </div>
                 </tr>)
 
@@ -76,122 +74,109 @@ export default class ClientHome extends React.Component {
             return (
                 <div>
                     <div>
-                    <SideNav/>
+                        <SideNav />
                     </div>
                     <div class="main">
-                        <TopNavBar/>
-                        <div class="card-space">
+                        <div class="loaderTemp" hidden={!this.state.loading}>
                             <div>
-                                <div class="row">
-                                <div className="col-12 col-md-6 col-xl d-flex">
-                                    <div className="card flex-fill">
-                                        <div className="card-body py-4">
-                                            <div className="row">
-                                            <div className="col-4 ml-auto">
-                                            <div className="d-inline-block mt-2">
-                                            <i class="fab fa-ethereum homeIcon"></i>
-                                            </div>
-                                            </div>
-                                            <div className="col-8 ml-auto text-right">
-                                            <div className="d-inline-block mt-2">
-                                            <h3 className="mb-2">{this.state.client.numberOfDevices}</h3>
-                                            <div className="mb-0">Others</div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-xl d-flex">
-                                    <div className="card flex-fill">
-                                        <div className="card-body py-4">
-                                            <div className="row">
-                                            <div className="col-4 ml-auto">
-                                            <div className="d-inline-block mt-2">
-                                            <i class="fas fa-thermometer homeIcon"></i>
-                                            </div>
-                                            </div>
-                                            <div className="col-8 ml-auto text-right">
-                                            <div className="d-inline-block mt-2">
-                                            <h3 className="mb-2">{this.state.client.numberOfDevices}</h3>
-                                            <div className="mb-0">Temperature Sensor</div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-xl d-flex">
-                                    <div className="card flex-fill">
-                                        <div className="card-body py-4">
-                                            <div className="row">
-                                            <div className="col-4 ml-auto">
-                                            <div className="d-inline-block mt-2">
-                                            <i class="fas fa-mobile-alt homeIcon"></i>
-                                            </div>
-                                            </div>
-                                            <div className="col-8 ml-auto text-right">
-                                            <div className="d-inline-block mt-2">
-                                            <h3 className="mb-2">{this.state.client.numberOfDevices}</h3>
-                                            <div className="mb-0">Devices</div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-xl d-flex">
-                                    <div className="card flex-fill">
-                                        <div className="card-body py-4">
-                                            <div className="row">
-                                            <div className="col-4 ml-auto">
-                                            <div className="d-inline-block mt-2">
-                                            <i class="fas fa-map-marker-alt col homeIcon"></i>
-                                            </div>
-                                            </div>
-                                            <div className="col-8 ml-auto text-right">
-                                            <div className="d-inline-block mt-2">
-                                            <h3 className="mb-2">{this.state.client.numberOfDevices}</h3>
-                                            <div className="mb-0">Geolocation Sensor</div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </div>
+                                <BounceLoader
+                                    size={100}
+                                    color={"grey"}
+                                    loading={this.state.loading}
+                                />
                             </div>
-                            <div  className="card-space">
-                               <div className="card flex-fill w-100">
-                                    <h4 className="card-header">Locations</h4>
-                                    <div className="card-body p-2"></div>
-                                    <div style={{height: "400px"}}>
-                                    <GoogleApiWrapper/>
+
+                        </div>
+
+                        <div hidden={this.state.loading}>
+                            <div class="col-12 otherSec">
+                                <div>
+                                    <div class="row no-border">
+                                        <div class="col-md-3 mt-3">
+                                            <div class="card card-default">
+                                                <div class="card-body">
+                                                    <i class="fas fa-mobile-alt homeIcon"></i>
+                                                    <h5 class="card-title">Devices</h5>
+                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3 mt-3">
+                                            <div class="card card-default">
+                                                <div class="card-body">
+                                                    <i class="fas fa-thermometer homeIcon"></i>
+                                                    <h5 class="card-title">Temperature Sensor</h5>
+                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 mt-3">
+                                            <div class="card card-default">
+                                                <div class="card-body">
+                                                    <i class="fas fa-map-marker-alt col homeIcon"></i>
+
+                                                    <h5 class="card-title">Geolocation Sensor</h5>
+                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3 mt-3">
+                                            <div class="card card-default">
+                                                <div class="card-body">
+                                                    <i class="fab fa-ethereum homeIcon"></i>
+                                                    <h5 class="card-title">Others</h5>
+
+                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-md-12">
+                                        <h5>Welcome {this.state.client.name}!</h5>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-5">
+                                        <GoogleApiWrapper />
                                     </div>
                                 </div>
-                                <div className="card flex-fill w-100 card-space">
-                                <h4 className="card-header">Device Table</h4>
-                                <div className="card-body">
-                                <div hidden={!this.state.deviceIsEmpty} class="deviceTable">
-                                <table class="table table-bordered">
-                                    <thead class="table tableHead">
-                                        <tr>
-                                            <th scope="col">S/N</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Device Type</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>{tableRows}</tbody>
-                                </table>
+
+
+                                <div class="row deviceTable">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered text-center serial">
+                                            <thead class="tableHead">
+
+                                                <th scope="col">S/N</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Device Type</th>
+                                                <th scope="col">Action</th>
+
+
+
+                                            </thead>
+
+                                            <tbody>{tableRows}</tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                </div>
-                                </div>
-                                <h3 hidden={this.state.deviceIsEmpty}>You don't have any devices Yet!</h3>
                             </div>
                         </div>
                     </div>
