@@ -3,6 +3,7 @@ import {Redirect } from 'react-router-dom';
 import EditDeviceFields from './EditProfile/EditDeviceFields';
 import SideNav from './Sidenav'; 
 import { Button } from 'react-bootstrap';
+import DeviceMap from './DeviceMap';
 
 
 export default class DeviceInfo extends Component {
@@ -11,8 +12,12 @@ export default class DeviceInfo extends Component {
     this.state = {
       device: {},
       category: {},
+      userLocation: {
+        lat: 6.465422,
+        lng: 3.406448 },
     }
   }
+
 
   handleEdit = (data) => {
     const url = "http://localhost:8081/api/devices2/" + this.state.device.id
@@ -40,34 +45,33 @@ fetchData = () => {
       .then((response) => response.json())
       .then((responseData) => {
           this.setState({
-              client: responseData
+            device: responseData,
+            category: responseData.category,
           });
           console.log("Fetched Successfully " + responseData.name)
       })
   console.log("This is the id ")
+}
 
+componentWillMount(){
+  this.fetchData();
 }
 
 
-componentWillMount(props) {
-    // The dynamic URL segment we're interested in, "id",
-    // is stored in the "params" property.
-    const { match: { params } } = this.props;
+componentDidMount(props){
+  navigator.geolocation.getCurrentPosition(
+      position => {
+          const { latitude, longitude } = position.coords;
 
-    const token = window.sessionStorage.getItem("jwt");
-    fetch('http://localhost:8081/api/devices2/' + params.id,
-      {
-        headers: { 'Authorization': token }
-      })
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          device: responseData,
-          category: responseData.category,
-        });
-      })
-    console.log("This is the id " + params.id)
-    this.fetchData()
+          this.setState({
+              userLocation: { lat: latitude, lng: longitude },
+              loading: false
+          });
+      },
+      () => {
+          this.setState({loading: false});
+      }
+  );
 }
   
 
@@ -87,85 +91,111 @@ componentWillMount(props) {
       </div>
       <div className="main">
       <div className="card flex-fill w-100">
-        <h4 className="card-header">Device Information(IS Database)</h4>
+        <h4 className="card-header">Device</h4>
           <div className="card-body  device-info">
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Name</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" placeholder={this.state.device.name} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Eui</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control"  placeholder={this.state.device.devEui} readOnly></input>
-              </div>
-          </div>
-
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Activation</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" placeholder={this.state.device.activation} readOnly></input>
-              </div>
-          </div>
-
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Application Eui</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" placeholder={this.state.device.app_eui} readOnly></input>
-              </div>
-          </div>
-
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Applications Keys</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control" placeholder={this.state.device.appskey} readOnly></input>
-              </div>
-          </div>
-
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Band</label>
-                  <div class="col-lg-8 col-sm-9">
-                  <input type='text' class="form-control"  placeholder={this.state.device.band} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Class</label>
-                  <div class="col-lg-8 col-sm-9 ">
-                  <input type='text' class="form-control" placeholder={this.state.device.deviceClass} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Device Category</label>
-                  <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" placeholder={this.state.category.name} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Assigned</label>
-                  <div class="col-sm-9 col-lg-8 ">
-                  {this.state.device.assigned? greenButton:redButton}
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Last Updated</label>
-                  <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" placeholder={this.state.device.uploadedDate} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-4 col-sm-3 col-form-label">Date Created</label>
-                  <div class="col-sm-9 col-lg-8 ">
-                  <input type='text' class="form-control" placeholder={this.state.device.uploadedDate} readOnly></input>
-              </div>
-          </div>
-          <div className="form-group row col-lg-6" >
+          <div className="form-row">
+            <div className="col">
+              <h4>Device Management</h4>
+            </div>
+          <div className="col-lg-6" >
             <EditDeviceFields 
             fetchData={this.fetchData}
             handleEdit={this.handleEdit}
             data={this.state.device}
             />
+            <button className="btn btn-primary" onClick={this.handleEdit}>Save</button>
+            </div>
+            </div>
+          <hr/>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Device Name</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.name} ></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label htmlFor="">Device EUI</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.devEui}></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">Application EUI</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.app_eui} readOnly></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label htmlFor="">Tag</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.tags}></input>
+              </div>
           </div>
+
+          <h4>Security</h4><hr/>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Application Key</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.app_key} ></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label htmlFor="">Device Address</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.dev_addr} readOnly></input>
+              </div>
+          </div>
+
+
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Network Session Key</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.nwkskey} readOnly></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">Application Session Key</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.appskey} readOnly></input>
+              </div>
+          </div>
+
+          <h4>Radio</h4><hr/>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Last Update</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.updatedDate} readOnly></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label htmlFor="">Band</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.band} ></input>
+              </div>
+          </div>
+
+          <h4>LORA</h4><hr/>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Device Class</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.device_class}></input>
+              </div>
+              <div class="form-group col-md-6">
+                  <label htmlFor="">Counter Size</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.counters_size} readOnly></input>
+              </div>
+          </div>
+          
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Assigned</label>
+                  <h5>{this.state.device.assigned? greenButton:redButton}</h5>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="">Category</label>
+                  <input type='text' class="form-control" defaultValue={this.state.category.name} readOnly></input>
+              </div>
+          </div>
+
+          <h4>Adr</h4>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="">Mode</label>
+                  <input type='text' class="form-control" defaultValue={this.state.device.mode} readOnly></input>
+              </div>
+          </div>
+          <div className="div_margin"> 
+              <DeviceMap
+              />
+          </div>      
           </div>
           </div>
       </div>

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link , Redirect} from 'react-router-dom'
 import EditFields from './component_edit.js/EditFields'
-import { Redirect } from 'react-router-dom'
 import ChangePassword from './component_edit.js/ChangePassword'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
-
 
 
 export default class Profile extends Component {
@@ -55,6 +53,7 @@ export default class Profile extends Component {
     componentWillMount(props) {
         this.fetchData()
     }
+
 
 
     render() {
@@ -159,5 +158,6 @@ export default class Profile extends Component {
         );
     }
 }
+
 
 

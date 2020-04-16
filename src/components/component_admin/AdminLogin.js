@@ -12,7 +12,7 @@ export default class AdminLogin extends React.Component {
             password: '',
             isAuthenticated: false,
             loginButtonDisabled: true,
-            errors: ''
+            error: ''
         }
     }
 
@@ -21,7 +21,7 @@ export default class AdminLogin extends React.Component {
             {
                 [event.target.name]: event.target.value,
                 loginButtonDisabled: false,
-                errors: ''
+                error: ''
             }
         );
     }
@@ -49,7 +49,7 @@ export default class AdminLogin extends React.Component {
 
                 }
                 else {
-                    this.setState({ errors: "Email address and password does not match" })
+                    this.setState({ error: "Email address and password does not match" })
                 }
             })
             .catch(errors => console.error(errors))
@@ -61,6 +61,8 @@ export default class AdminLogin extends React.Component {
         if (validateAdmin()) {
 
             sessionStorage.setItem("isAdmin", true);
+            sessionStorage.setItem("isAuthenticated", true);
+
             this.setState({
                 isAuthenticated: true,
             });
@@ -71,7 +73,7 @@ export default class AdminLogin extends React.Component {
         else {
 
             this.setState({
-                errors: 'Access Denied',
+                error: 'Access Denied',
                 loading: false
             });
             console.log(this.state.errors)
@@ -116,7 +118,7 @@ export default class AdminLogin extends React.Component {
                                 <div class="form-group form-button">
                                     <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
                                 </div>
-                                <p class="validationError">{this.state.errors}</p>
+                                <p class="validationError">{this.state.error}</p>
                             </div>
                         </div>
                     </div>

@@ -6,10 +6,7 @@ import MapContainer from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
-
-
-
-
+import Deletedevice from './Deletedevice'
 
 
 export default class ClientDevices extends React.Component {
@@ -50,7 +47,7 @@ export default class ClientDevices extends React.Component {
             .catch(err => console.error(err));
     }
 
-
+  
     componentDidMount() {
 
         this.fetchUsers()
@@ -84,7 +81,8 @@ export default class ClientDevices extends React.Component {
                                     <td></td>
                                     <td>{device.name}</td>
                                     <td>{device.category.name}</td>
-                                    <Link to={"/device/" + device.devEui}>view</Link>
+                                    <button class="btn btn-success"><Link to={"/device/" + device.devEui}>View </Link> </button>
+                                    <button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)} >Delete</button>
 
                                 </tr>
 

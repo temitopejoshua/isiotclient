@@ -10,7 +10,7 @@ class EditDeviceFields extends React.Component {
         this.state = {
             name:'',
             devEui:'',
-            deviceClass:'',
+            device_class:'',
         }
     }
 
@@ -20,12 +20,12 @@ class EditDeviceFields extends React.Component {
         );
     }
 
-    // Save Email and close modal form
+    // Save details
     handleSubmit = (event) => {
         event.preventDefault();
         var details = { name: this.state.name,
                         devEui: this.state.devEui,
-                        deviceClass: this.state.deviceClass
+                        device_class: this.state.device_class
                         };
         this.props.handleEdit(details);
         this.refs.addDialog.hide();
@@ -51,7 +51,7 @@ class EditDeviceFields extends React.Component {
                         <label>Device EUI</label>
                         <input type='text' className="form-control" placeholder="Enter Device Eui" defaultValue={this.props.data.devEui} name='devEui' onChange={this.handleChange} /><br/>
                         <label>Device Class</label>
-                        <input type='text' className="form-control" placeholder="Enter Device Class" defaultValue={this.props.data.deviceClass} name='deviceClass' onChange={this.handleChange} /><hr/>
+                        <input type='text' className="form-control" placeholder="Enter Device Class" defaultValue={this.props.data.device_class} name='deviceClass' onChange={this.handleChange} /><hr/>
                         <div className="text-center">
                         <button onClick={this.cancelSubmit} className="btn btn-danger modal-btn">Cancel</button>
                         <button onClick={this.handleSubmit} type="Submit" className="btn btn-primary modal-btn">Save</button>
@@ -66,3 +66,4 @@ class EditDeviceFields extends React.Component {
     }
 }
 export default EditDeviceFields;
+

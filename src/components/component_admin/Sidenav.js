@@ -24,7 +24,7 @@ export default class SideNav extends Component{
 						<i className="fa fa-fw fa-users nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Clients</span>
             		</a>
 					</li>
-					<li className="nav-item">
+					{/* <li className="nav-item">
 						<a href="#ui" data-toggle="collapse" className="font-weight-bold nav-link collapsed">
 						<i className="fa fa-bar-chart nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Devices</span>
             			</a>
@@ -33,13 +33,12 @@ export default class SideNav extends Component{
 							<li className="nav-item"><a className="nav-link" data-toggle="pills" href="#">Temperature Sensor</a></li>
 							<li className="nav-item"><a className="nav-link" href="#">Geolocation Sensor</a></li>
 						</ul>
-					</li>
-					{/* <li className="nav-item">
-						<a href="/#" className="font-weight-bold nav-link">
-						<i className="fa fa-fw fa-bell" style={{fontSize: '1.5em' }}/><span className="align-middle">Notifications</span>
-              			<span className="sidebar-badge badge badge-warning">New</span>
-            			</a>
 					</li> */}
+					<li className="nav-item">
+						<a href="/admin/devices" data-toggle="" className="font-weight-bold nav-link">
+						<i className="fas fa-bar-chart nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Devices</span>
+            		</a>
+					</li>
 					<li className="nav-item">
 						<a href="/admin/maps" data-toggle="" className="font-weight-bold nav-link">
 						<i className="fas fa-map-marker-alt nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Location</span>

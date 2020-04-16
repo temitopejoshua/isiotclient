@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
-import GoogleApiWrapper from './Map'
 import MapContainer from './Map'
-
+import Deletedevice from './Deletedevice'
 
 
 export default class Device extends Component {
@@ -18,6 +17,8 @@ export default class Device extends Component {
 
     }
   }
+
+
 
   componentWillMount(props) {
     // The dynamic URL segment we're interested in, "id",
@@ -38,7 +39,6 @@ export default class Device extends Component {
         
       })
 
-    sessionStorage.setItem("devices", this.state.devices)
   }
 
     render() {
@@ -107,7 +107,7 @@ export default class Device extends Component {
                           <div class="check">
                             <input type="checkbox" id="ch1" class="checkbox-custom" />
                             <label for="ch1"></label>
-                          </div>
+                          </div>                      
                         </div>
 
                         <div class="col-md-4">
@@ -118,12 +118,8 @@ export default class Device extends Component {
                           </div>
                         </div>
 
-                        <div class="col-md-4">
-                          <p><small>Strict counters</small></p>
-                          <div class="check">
-                            <input type="checkbox" id="ch4" class="checkbox-custom" />
-                            <label for="ch4"></label>
-                          </div>
+                        <div class="col-md-4 mt-4">
+                            <button type="button" class=" btn-danger mt-3" onClick={Deletedevice.bind(this, this.state.device.dev_eui)} >Delete</button>
                         </div>
                       </div>
                     </div>

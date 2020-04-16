@@ -48,15 +48,15 @@ class EditFields extends React.Component {
 
                             <div class="form-group mb-3">
                                 
-                                <input type='text' class="form-control input-a" placeholder="address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
+                                <input type='text' class="form-control input-a" placeholder="Address" defaultValue={this.props.data.address} name='address' onChange={this.handleChange} />
                             </div>
                             <div class="form-group mb-3">
                                 
-                                <input type='text' class="form-control input-a" placeholder="name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
+                                <input type='text' class="form-control input-a" placeholder="Name" defaultValue={this.props.data.name} name='name' onChange={this.handleChange} />
                             </div>
                             <div class="form-group">
                                 
-                                <input type='text' class="form-control input-a" placeholder="phoneNumber" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
+                                <input type='text' class="form-control input-a" placeholder="Phone Number" defaultValue={this.props.data.phoneNumber} name='phoneNumber' onChange={this.handleChange} />
                             </div>
 
 

@@ -55,7 +55,7 @@ export default class ClientPage extends React.Component {
             </tr>
     )
 
-    if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+    if (sessionStorage.getItem("isAdmin") !== 'true') {
         return <Redirect to="/admin/login" />
     }
 

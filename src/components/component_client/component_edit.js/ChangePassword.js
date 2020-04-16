@@ -20,7 +20,7 @@ class ChangePassword extends React.Component {
         );
     }
 
-    // Save Email and close modal form
+    // Save Password and close modal form
     handleSubmit = (event) => {
         event.preventDefault();
         var password = { password: this.state.password, };

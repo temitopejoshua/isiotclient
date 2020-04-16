@@ -6,7 +6,7 @@ const mapStyles={
     height: '50%'
 };
 
-export class MapContainer extends Component{
+export class DeviceMap extends Component{
 
     state ={
         userLocation: {lat: 6.465422,lng: 3.406448 },
@@ -37,17 +37,27 @@ export class MapContainer extends Component{
           </div>;
         }
         return(
-            <Map google={google}
-                initialCenter={userLocation}
-                styles={mapStyles}
-                zoom={16}
-            >
-            <Marker/>
-            </Map>
+            <div className="row">
+                <div className="col-12 col-lg-12 d-flex">
+                <div className="card flex-fill w-100">
+                <h4 className="card-header">Locations</h4>
+                    <div className="card-body p-2"></div>
+                    <div style={{height: "350px"}}>
+                    <Map google={google}
+                    initialCenter={userLocation}
+                    zoom={16}
+                    styles={mapStyles}
+                    >
+                    <Marker/>
+                     </Map>
+                     </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
 
 export default GoogleApiWrapper({
     apiKey:'AIzaSyAsNfHrXa6btGOb7L6Pz5mW-WaUkz8Swq8&libraries=geometry,drawing,places'
-})(MapContainer);
+})(DeviceMap);

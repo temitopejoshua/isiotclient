@@ -5,7 +5,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 
 
-
 export default class Register extends React.Component {
 
     constructor(props) {
@@ -25,7 +24,7 @@ export default class Register extends React.Component {
             loading: false
         }
     }
-
+    
     handleChange = (event) => {
 
         // event.preventDefault()
@@ -102,7 +101,6 @@ export default class Register extends React.Component {
     }
 
     handleSubmit = (event) => {
-
         event.preventDefault();
         const client = {
             emailAddress: this.state.emailAddress,
