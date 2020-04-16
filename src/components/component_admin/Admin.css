@@ -153,11 +153,23 @@
   /* background-size: 700px 700px; */
   background-size: 100% 100%;
   background-position: center;
+  padding-top: 150px;
 }
 
 .not_found_text{
+
+  /* background-image: url("/images/404_page.jpg"); */
   text-align: center;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 600px;
+  height: 300px;
+  padding: 130px;
+  
 }
+
 
 .device-icon{
   color:white;
@@ -173,6 +185,69 @@
   margin: 5px;
 }
 
+.signin_img{
+  height: 100px;
+  width: 100px;
+}
+
+.image_container{
+  text-align: center;
+  display: block;
+}
+
+
+.form_title {
+  margin-bottom: 33px;
+  text-align: center;
+  color: #1f77c9;  
+}
+
+
+.form-title {
+    text-align: center; }
+
+.container_admin {
+      width: 400px;
+      background: #fff;
+      margin: 60px auto;
+      padding: 30px;
+      box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+      -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+      -o-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+      -ms-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+      border-radius: 20px;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -o-border-radius: 20px;
+      -ms-border-radius: 20px; 
+    }
+
+
+.form_submit {
+        display: inline-block;
+        background: #1f77c9;
+        color: #fff;
+        border-bottom: none;
+        width: auto;
+        padding: 10px 30px;
+        border-radius: 8px;
+        cursor: pointer; 
+        text-align: center;
+      }
+.form_submit:hover {
+  background: #4292dc; 
+}
+
+.form_button {
+  text-align: center; }
+
+.form_group {
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .device-info{
-  width: 700px;
+  width: 600px;
 }

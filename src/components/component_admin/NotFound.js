@@ -6,11 +6,9 @@ export default class NotFound extends React.Component{
         return(
         <div className="not_found">
         <div className="not_found_text container">
-        <h1>Not Found</h1>
-        <Link to="/home">Return to home page</Link>
+        <Link to="/home"> <button  className="btn btn-primary">Return to Home Page</button></Link>
         </div>
         </div>
         );
     }
-
 }

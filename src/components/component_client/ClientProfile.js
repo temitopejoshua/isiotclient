@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link , Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import EditFields from './component_edit.js/EditFields'
 import ChangePassword from './component_edit.js/ChangePassword'
 import styles from './client_style.css'
@@ -13,7 +13,8 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             client: {},
-            loading: true
+            loading: true,
+            devices: []
         }
     }
 
@@ -45,7 +46,8 @@ export default class Profile extends Component {
             .then((responseData) => {
                 this.setState({
                     client: responseData,
-                    loading: false
+                    loading: false,
+                    devices: responseData.devices
                 });
             })
 
@@ -119,7 +121,7 @@ export default class Profile extends Component {
                                                 <div class="card eqh round-small default">
                                                     <div class="card-body text-center">
 
-                                                        <h2 class=" bigicon mb-3"> {this.state.client.numberOfDevices} </h2>
+                                                        <h2 class=" bigicon mb-3"> {this.state.devices.length} </h2>
                                                         <p>Number of devices</p>
                                                     </div>
                                                 </div>
@@ -158,6 +160,5 @@ export default class Profile extends Component {
         );
     }
 }
-
 
 

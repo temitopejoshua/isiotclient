@@ -77,20 +77,13 @@ export default class ClientHome extends React.Component {
                     <div>
                         <SideNav />
                     </div>
-
-
-
                     <div class="main">
-
                         <div class="loaderTemp" hidden={!this.state.loading}>
-
                             <div>
                                 <BounceLoader
-
                                     size={100}
                                     color={"grey"}
                                     loading={this.state.loading}
-
                                 />
                             </div>
 
@@ -100,14 +93,12 @@ export default class ClientHome extends React.Component {
                             <div class="col-12 otherSec">
                                 <div>
                                     <div class="row no-border">
-
-
                                         <div class="col-md-3 mt-3">
                                             <div class="card card-default">
                                                 <div class="card-body">
                                                     <i class="fas fa-mobile-alt homeIcon"></i>
                                                     <h5 class="card-title">Devices</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{this.state.devices.length}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +109,7 @@ export default class ClientHome extends React.Component {
                                                 <div class="card-body">
                                                     <i class="fas fa-thermometer homeIcon"></i>
                                                     <h5 class="card-title">Temperature Sensor</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,7 +120,7 @@ export default class ClientHome extends React.Component {
                                                     <i class="fas fa-map-marker-alt col homeIcon"></i>
 
                                                     <h5 class="card-title">Geolocation Sensor</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
                                             </div>
 
@@ -141,7 +132,7 @@ export default class ClientHome extends React.Component {
                                                     <i class="fab fa-ethereum homeIcon"></i>
                                                     <h5 class="card-title">Others</h5>
 
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
 
                                             </div>

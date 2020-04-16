@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 import SideNav from './Sidenav';
+import {Redirect} from 'react-router-dom';
 
 const mapStyles={
     width: '50%',
@@ -29,8 +30,13 @@ export class MapPage extends Component{
         );
     }
     render(){
+        
         const {userLocation} = this.state;
         const {google} = this.props;
+
+        if (sessionStorage.getItem("isAdmin") !== 'true') {
+            return <Redirect to="/admin/login" />
+        }else{
 
         return(
             <div className="wrapper">
@@ -57,6 +63,7 @@ export class MapPage extends Component{
             </div>
         );
     }
+}
 }
 
 export default GoogleApiWrapper({

@@ -1,9 +1,10 @@
 import React from 'react';
-import Pagination from './Pagination';
 import DeviceTable from './DeviceTable';
 import UploadDevice from './UploadDevice';
 import SideNav from './Sidenav';
 import './Admin.css'; 
+import DeviceChart from './deviceChart';
+
 
 
 export default class DevicePage extends React.Component {
@@ -13,8 +14,6 @@ export default class DevicePage extends React.Component {
         this.state = {
             devices: [],
             loading: true,
-            devicesPerPage: 5,
-            currentPage: 1,
         }
     }
     fetchDevices = () => {
@@ -35,21 +34,26 @@ export default class DevicePage extends React.Component {
             })
             .catch(err => console.error(err));
     }
-    componentDidMount() {
-        this.fetchDevices()
+
+    deleteDevice = () => {
+        const url = "http://localhost:8081/api/devices2/" + this.state.device.id
+        fetch(url, {
+            crossOrigin: true,
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response))
+    
     }
 
+    componentDidMount() {
+        this.fetchDevices();
+
+    }
     render() {
 
-        const {loading,currentPage, devicesPerPage, devices} = this.state;
-
-        const indexOfLastDevice = currentPage * devicesPerPage;
-        const indexofFirstDevice = indexOfLastDevice - devicesPerPage;
-        const currentDevices = devices.slice(indexofFirstDevice, indexOfLastDevice);
-         
-        //ChangePage on click
-        const paginate =(pageNumber) => this.setState({currentPage: pageNumber})
-    
+        const {loading,devices} = this.state;
         return (
         <div className="wrapper">
             <div>
@@ -57,25 +61,25 @@ export default class DevicePage extends React.Component {
             </div>
             <div className="main">
             <div className="row">
-                <div className="col-sm-12 col-lg-12 grid-margin">
-                <div className="card h-100">
-                <h4 className="card-header">Device List</h4>
-                <div style={{marginLeft: "15px"}}><UploadDevice /></div>
-                <div className="card-body">
-                <DeviceTable 
-                devices={currentDevices} 
-                loading={loading}
-                
-                />
-                <Pagination 
-                objectsPerPage={devicesPerPage} 
-                lastIndex={indexOfLastDevice} 
-                totalObjects={devices.length} 
-                paginate={paginate}
-                firstIndex={indexofFirstDevice + 1}
-                />
+                <div className="col-sm-12 col-lg-8 grid-margin">
+                    <div className="card h-100">
+                    <h4 className="card-header">Device Board</h4>
+                        <div style={{marginLeft: "15px"}}><UploadDevice /></div>
+                        <div className="card-body">
+                            <DeviceTable 
+                            devices={devices} 
+                            loading={loading}
+                        />
+                        </div>
+                    </div>
                 </div>
-                </div>
+                <div className="col-sm-12 col-lg-4 grid-margin">
+                    <div className="card h-100">
+                    <h4 className="card-header">Assigned Device</h4>
+                            <div>
+                                <DeviceChart/>
+                        </div>
+                    </div>
                 </div>
             </div>
             </div>

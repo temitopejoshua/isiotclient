@@ -36,12 +36,12 @@ export default class Device extends Component {
           device: responseData.device,
           loading: false,
         });
-        
+
       })
 
   }
 
-    render() {
+  render() {
 
     if (sessionStorage.getItem("isAuthenticated") !== 'true') {
 
@@ -107,7 +107,7 @@ export default class Device extends Component {
                           <div class="check">
                             <input type="checkbox" id="ch1" class="checkbox-custom" />
                             <label for="ch1"></label>
-                          </div>                      
+                          </div>
                         </div>
 
                         <div class="col-md-4">
@@ -119,7 +119,7 @@ export default class Device extends Component {
                         </div>
 
                         <div class="col-md-4 mt-4">
-                            <button type="button" class=" btn-danger mt-3" onClick={Deletedevice.bind(this, this.state.device.dev_eui)} >Delete</button>
+                          <button type="button" class=" btn-danger mt-3" onClick={Deletedevice.bind(this, this.state.device.dev_eui)} >Delete</button>
                         </div>
                       </div>
                     </div>
@@ -203,11 +203,11 @@ export default class Device extends Component {
                 </div>
 
                 <div class="col-md-6">
-                  
+
                 </div>
 
                 <div class="col-md-12 mb-5">
-                  <MapContainer location= {this.state.location}/>
+                  <MapContainer location={this.state.location} />
                 </div>
               </div>
             </div>

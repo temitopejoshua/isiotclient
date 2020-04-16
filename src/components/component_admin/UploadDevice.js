@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Redirect } from 'react-router-dom'
 import { validateAll } from 'indicative/validator'
 import './form_style.css';
 import './Admin.css';
@@ -17,21 +16,22 @@ export default class UploadDevice extends Component {
             app_eui: "",
             activation: "",
             encryption: "",
-            devAddr: "",
+            dev_addr: "",
             nwkskey: "",
             appskey: "",
             app_key: "",
-            deviceClass: "",
-            countersSize: 0,
+            device_class: "",
+            counters_size: 0,
             band: "",
             categories:[],
+            tags:[],
             categoryId: 0,
             isUploaded: false,
             errors: {},
             errs: '',
             success: "",
             reset: false,
-            adr: "{\"mode\": \"on\"}",
+            adr: "{\"datarate\": null,\"mode\": \"on\",\"tx_power\": null}",
         }
     }
     
@@ -49,16 +49,14 @@ export default class UploadDevice extends Component {
             app_eui: 'string|min:16',
             activation: 'string|min:3',
             encryption: 'string',
-            devAddr: 'string',
+            dev_addr: 'string',
             nwkskey: 'string',
             appskey: 'string',
             app_key: 'string',
-            deviceClass: 'string',
+            device_class: 'string',
             band: 'string',
             categoryId: 'required',
         }
-        console.log("mode is "+this.state.adr.mode)
-        console.log("adr is "+this.state.adr.mode)
         const messages = {
             required: 'This {{field}} is required',
             string: 'Input contains invalid characters',
@@ -69,15 +67,11 @@ export default class UploadDevice extends Component {
         validateAll(data, rules, messages).then(() =>{
             console.log('success')
         }).catch((errors) =>{
-
-            console.log(errors);
-            //show errors to user
             const formattedErrors={}
             errors.forEach( error => formattedErrors[error.field] = error.message)
             this.setState({errors:formattedErrors})
         })
     }
-
     upload = (data) =>{
 
         fetch('http://localhost:8081/api/devices2/',
@@ -125,18 +119,19 @@ export default class UploadDevice extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state.categoryId)
         const device = {
             name : this.state.name,
             devEui: this.state.devEui,
             app_eui: this.state.app_eui,
             activation: this.state.activation,
             encryption: this.state.encryption,
-            devAddr: this.state.devAddr,
+            dev_addr: this.state.dev_addr,
             nwkskey: this.state.nwkskey,
             appskey: this.state.app_key,
             app_key: this.state.app_key,
-            deviceClass: this.state.deviceClass,
-            countersSize: this.state.countersSize,
+            device_class: this.state.device_class,
+            counters_size: this.state.counters_size,
             band: this.state.band,
             categoryId:this.state.categoryId,
             adr: this.state.adr
@@ -148,12 +143,13 @@ export default class UploadDevice extends Component {
     handleReset =(event) =>{
         this.setState(
             {
-                reset:true,
                 success: <SuccessAlert
-                        reset={this.state.reset}
+                        reset={true}
                         />,
             }
+            
         );
+        console.log(this.state.reset)
     }
 
     componentDidMount(){
@@ -162,20 +158,20 @@ export default class UploadDevice extends Component {
 
     render() {
         const categoryOptions = this.state.categories.map((deviceCategory, key) =>
-                <option key={key} value={deviceCategory.id}>
+                <option key={deviceCategory.id} value={deviceCategory.id}>
                     {deviceCategory.name}
                 </option>
         );
 
             return (
                 <div>
-                <i class="fas fa-plus device-icon" data-toggle="modal" data-target="#exampleModalScrollable">Create Device</i>  
+                <button class="btn btn-success mt-4" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fas fa-plus"></i> &nbsp; Create Device</button>
 
                 <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalScrollableTitle">Upload Device</h5>
+                    <h5 className="modal-title text-center" id="exampleModalScrollableTitle">Upload Device</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -192,7 +188,7 @@ export default class UploadDevice extends Component {
                         </div>
             
                         <div className="form-group col-md-6">
-                            <label htmlFor="">Device Eui</label>
+                            <label htmlFor="">Device EUI</label>
                             <input placeholder="Device eui" name="devEui" onChange={this.handleChange} className="form-control" required></input>
                             <p className="validationError">{this.state.errors.devEui}</p>
                         </div>
@@ -203,7 +199,7 @@ export default class UploadDevice extends Component {
                             <input type='text' class="form-control" name='app_key'  placeholder="Application Key" onChange={this.handleChange} required></input>
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="">Application Eui</label>
+                            <label htmlFor="">Application EUI</label>
                             <input type="text" class="form-control"  name='app_eui'  placeholder="App eui" onChange={this.handleChange} required></input>
                         </div>
                         </div>
@@ -223,7 +219,7 @@ export default class UploadDevice extends Component {
                         </div>
                         <div class="form-group col-md-6">
                             <label htmlFor="">Device Addr</label>
-                            <input type='text' class="form-control" name='devAddr' placeholder="Device Addr" onChange={this.handleChange} required></input>
+                            <input type='text' class="form-control" name='dev_addr' placeholder="Device Addr" onChange={this.handleChange} required></input>
                         </div>
                         </div>
                         <div class="form-row">
@@ -239,7 +235,7 @@ export default class UploadDevice extends Component {
                         <div class="form-row">
                         <div class="form-group col-md-6">
                             <label htmlFor="">Counter Size</label>
-                            <input type='number' class="form-control" name='countersSize' placeholder="Counter Size" onChange={this.handleChange} required></input>
+                            <input type='number' class="form-control" name='counters_size' placeholder="Counter Size" onChange={this.handleChange} required></input>
                         </div>
                         <div class="form-group col-md-6">
                             <label htmlFor="activation">Device Category</label>
@@ -254,18 +250,13 @@ export default class UploadDevice extends Component {
                             <label htmlFor="">Band</label>
                             <input type='text' class="form-control" name='band' placeholder="Enter band" onChange={this.handleChange} required></input>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label htmlFor="">Device Adr</label>
-                            <input type='' class="form-control" name='mode' placeholder="Enter Adr mode" onChange={this.handleChange} required></input>
-                        </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-6">
                             <label htmlFor="">Device Class</label>
-                            <input type='text' class="form-control" name='deviceClass' placeholder="Enter Device Class" onChange={this.handleChange} required></input>
+                            <input type='text' class="form-control" name='device_class' placeholder="Enter Device Class" onChange={this.handleChange} required></input>
                         </div>
                         </div>
                         <div className="modal-footer">
-                        {/* <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> */}
-                        <button type="reset" class="btn btn-secondary" onClick={this.handleReset}>Reset</button>
+                        <button type="reset" class="btn btn-danger" onClick={this.handleReset}>Reset</button>
                         <button type="submit" class="btn btn-primary" >Save</button>
                         </div>
                     </form>

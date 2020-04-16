@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import styles from './client_style.css'
 import MapContainer from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
 import Deletedevice from './Deletedevice'
+import UploadDevice from '../component_admin/UploadDevice'
 
 
 export default class ClientDevices extends React.Component {
@@ -22,7 +22,7 @@ export default class ClientDevices extends React.Component {
             devices: [],
             location: [
                 { latitude: 47.359423, longitude: -122.021071 },
-              ]
+            ]
 
         }
     }
@@ -47,7 +47,7 @@ export default class ClientDevices extends React.Component {
             .catch(err => console.error(err));
     }
 
-  
+
     componentDidMount() {
 
         this.fetchUsers()
@@ -61,9 +61,6 @@ export default class ClientDevices extends React.Component {
             list={this.state.devices}
             itemsPerPage={5}
             renderList={(list) => (
-
-
-
                 <div row deviceTable>
                     <table class="table table-bordered serial text-center">
                         <thead class="tableHead">
@@ -107,9 +104,9 @@ export default class ClientDevices extends React.Component {
 
 
                 <div>
-                   <div>
-                    <SideNav />
-                </div>
+                    <div>
+                        <SideNav />
+                    </div>
 
                     <div class="main">
 
@@ -133,9 +130,9 @@ export default class ClientDevices extends React.Component {
                                         <MapContainer location={this.state.location} />
                                     </div>
                                 </div>
-
-                                <button class="btn btn-secondary mt-4 mb-5"><i class="fas fa-plus"></i> &nbsp; Create Device</button>
-
+                                <div className="mb-5">
+                                    <UploadDevice />
+                                </div>
                                 <div>
                                     {tableData}
                                 </div>

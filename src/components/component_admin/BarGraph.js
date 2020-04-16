@@ -6,8 +6,7 @@ class BarGraph extends Component{
         super(props);
         this.state={
             devices: [],
-            chartData:{},
-            cal:'',
+            chartData:{}
         }
     };
 
@@ -22,27 +21,24 @@ class BarGraph extends Component{
             .then((response) => response.json())
             .then((responseData) => {
                 const device_object = responseData._embedded.devices;
-                let label = [];
                 let number_tempSensor = [];
                 let number_geoSensor = [];
 
                 device_object.forEach(temp => {
-                    label.push(new Date().getMonth()+1);
                     number_tempSensor.push(temp.id);
 
                     if(temp.name === "Temperature Sensor"){
                         console.log(temp.name);
-                        number_tempSensor.push(number_tempSensor.length);
+                        number_tempSensor.push(temp.id);
                         console.log(number_tempSensor.length);
                     }
                 });
 
                 device_object.forEach(geo => {
-
                     if(geo.name === "Geolocation Sensor"){
 
                         console.log(geo.name);
-                        number_geoSensor.push(number_geoSensor.length);
+                        number_geoSensor.push(geo.id);
                         console.log(number_geoSensor.length);
                     }
                 });
@@ -62,7 +58,7 @@ class BarGraph extends Component{
                                     label: "Geolocation Sensor",
                                     backgroundColor: 'blue',
                                     borderColor: 'blue',
-                                    data: number_geoSensor,
+                                    data:number_tempSensor,
                                     }
                                 ]
                     }
@@ -70,17 +66,9 @@ class BarGraph extends Component{
             })
             .catch(err => console.error(err));
     }
-    getCal =() =>{
-        var month = new Date().getMonth()+1;
-        var date = new Date().getDate();
-        var year = new Date().getFullYear();
-        var cal = month + "/"+ date+"/"+ year
-        this.setState({ cal: cal })
-        }
 
     componentDidMount() {
         this.fetchDevices();
-        this.getCal();
     }
 
 render(){

@@ -86,8 +86,8 @@
     color: red;
   }
   .tableHead{
-
-    background-color: #0e2cda;
+    background-color: #01e2ff;
+    /* background-color: #0e2cda; */
     color: white;
   }
   .mapMargin{
@@ -131,8 +131,6 @@
 }
 
 .bigicon{
-
-
     font-size: 300%;
     color: #0e2cda;
 
@@ -141,13 +139,13 @@
   height: 180px;
   cursor: pointer;
 }
-h4{
+/* h4{
 
   font-family: fantasy;
   font-style: italic;
   font-weight: bold;
   color: #0e2cda;
-}
+} */
 .input-a{
   border-top: 0;
   border-left: 0;
@@ -230,12 +228,6 @@ h4{
   color:#01e2ff;
   padding-right: 10px;
 } */
-
-
-.device-info{
-  width: 500px;
-}
-
 
 
 /* MINE STYLE */

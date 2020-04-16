@@ -12,7 +12,7 @@ export default class AdminLogin extends React.Component {
             password: '',
             isAuthenticated: false,
             loginButtonDisabled: true,
-            error: ''
+            errors: ''
         }
     }
 
@@ -21,7 +21,7 @@ export default class AdminLogin extends React.Component {
             {
                 [event.target.name]: event.target.value,
                 loginButtonDisabled: false,
-                error: ''
+                errors: ''
             }
         );
     }
@@ -49,7 +49,7 @@ export default class AdminLogin extends React.Component {
 
                 }
                 else {
-                    this.setState({ error: "Email address and password does not match" })
+                    this.setState({ errors: "Check your email address and password" })
                 }
             })
             .catch(errors => console.error(errors))
@@ -80,8 +80,6 @@ export default class AdminLogin extends React.Component {
 
             return false
         }
-
-
     }
 
     render() {
@@ -91,16 +89,13 @@ export default class AdminLogin extends React.Component {
         }
         else {
             return (
-                <section class="sign-in">
-                    <div class="container">
-                        <div class="signin-content">
-                            <div class="signin-image">
-                                <figure><img src="images/signin-image.jpg" alt="sign up"></img></figure>
-                                <a href="/register" class="signup-image-link">Create an account</a>
-                            </div>
-                            <div class="signin-form">
-                                <h2 class="form-title">Admin</h2>
-                                <form method="POST" class="register-form" id="login-form">
+                <section>
+                    <div class="container_admin">
+                                <div className="image_container">
+                                    <img src="images/is-logo.png" alt="logo" className="signin_img"></img>
+                                    <h2 class="form_title">Internet Solutions</h2>
+                                </div>
+                                <form method="POST" class="" id="login-form">
                                     <div class="form-group">
                                         <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type='text' placeholder='Enter email' name='emailAddress' onChange={this.handleChange}></input>
@@ -109,22 +104,14 @@ export default class AdminLogin extends React.Component {
                                         <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                         <input type='password' placeholder='Enter Password' name='password' onChange={this.handleChange}></input>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                                    </div>
-
                                 </form>
-                                <div class="form-group form-button">
-                                    <button onClick={this.login} disabled={this.state.loginButtonDisabled} class="form-submit">Login</button>
-                                </div>
-                                <p class="validationError">{this.state.error}</p>
+                                <div class="form_group form_button">
+                                    <p class="validationError">{this.state.errors}</p>
+                                    <button onClick={this.login} class="form_submit">Log in</button>
                             </div>
                         </div>
-                    </div>
                 </section>
             );
-
         }
     }
 }

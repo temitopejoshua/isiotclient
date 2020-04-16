@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import ClientList from './ClientList';
+import Clients from './ClientList';
 import Devices from './Devices';
 import GraphCard from './Card';
 import BarGraph from './BarGraph';
 import MapContainer from './map';
-import TopNavBar from './TopNavbar';
+import AdminTopNavBar from './TopNavbar';
 import SideNav from './Sidenav'; 
 import Footer from './footer';
 import { Redirect } from 'react-router-dom';
@@ -28,7 +28,7 @@ export default class AdminPage extends Component{
                 </div>
                 <div className="main">
                     <div>
-                        <TopNavBar/>
+                        <AdminTopNavBar/>
                     </div>
                     <div className="div_margin"> 
                         <GraphCard/>
@@ -37,7 +37,7 @@ export default class AdminPage extends Component{
                         <BarGraph/>
                     </div>
                     <div className="row div_margin">
-                        <div className="col-lg-6"> <ClientList/></div>
+                        <div className="col-lg-6"> <Clients/></div>
                         <div className="col-lg-6"><Devices/></div>   
                     </div>
                     <div className="div_margin"> 

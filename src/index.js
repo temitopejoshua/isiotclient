@@ -22,11 +22,10 @@ import ForgetPassword from './components/component_client/ForgetPassword'
 import ResetPassword from './components/component_client/ResetPassword'
 import ClientList from './components/component_admin/ClientList'
 import Devices from './components/component_admin/Devices'
-
-
 import AdminPage from './components/component_admin/AdminPage';
 import DeviceInfo from './components/component_admin/DeviceInfo';
 import NotFound from './components/component_admin/NotFound';
+
 
 
 const routing = (
@@ -56,15 +55,8 @@ const routing = (
     <Route exact path="/activate" component={ActivateAccount}/>
     <Route exact path="/resetpassword" component={ResetPassword} />
     <Route exact path="/forgetpassword" component={ForgetPassword}/>
-
-
-
-
     <Route path="/clients" component={ClientList} />
     <Route path="/devices" component={Devices} />
-    {/* <Route exact path="/admin/home" component={Table}/> */}
-    {/* <Route exact path="/admin/home" component={DashBoard}/> */}
-    <Route exact path="/admin/home" component={AdminPage} />
     <Route path="*" component={NotFound}/>
     </Switch>
     </Router>

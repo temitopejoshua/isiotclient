@@ -19,7 +19,7 @@ export default class DeviceInfo extends Component {
   }
 
 
-  handleEdit = (data) => {
+handleEdit = (data) => {
     const url = "http://localhost:8081/api/devices2/" + this.state.device.id
     fetch(url, {
         crossOrigin: true,
@@ -32,6 +32,33 @@ export default class DeviceInfo extends Component {
         .then(response => console.log('Success:', response))
         .then(this.fetchData);
 
+}
+
+upload = (data) =>{
+  const url = "http://localhost:8081/api/clients/assigndevice" + this.state.device.id
+  fetch(url,
+  {
+      crossDomain: true,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  })
+  .then((response) => {
+      if (response.status === 201) {
+          this.setState({
+              isUploaded: true,
+          })
+      }
+      else{
+          this.setState({errs:this.state.devEui+ "\n device eui already exists"})
+      }
+  })
+  .catch((error) => {
+      console.error(error);
+      this.setState({errs:error.toString()})
+  });
 }
 
 fetchData = () => {
@@ -76,13 +103,12 @@ componentDidMount(props){
   
 
   render() {
-    if (sessionStorage.getItem("isAuthenticated") !== 'true') {
+    if (sessionStorage.getItem("isAdmin") !== 'true') {
         return <Redirect to="/admin/login" />
     }
 
     const redButton = <Button className="btn btn-danger"></Button>
     const greenButton = <Button className="btn btn-success"></Button>
-
 
     return (
       <div>
@@ -92,18 +118,17 @@ componentDidMount(props){
       <div className="main">
       <div className="card flex-fill w-100">
         <h4 className="card-header">Device</h4>
-          <div className="card-body  device-info">
+          <div className="card-body">
           <div className="form-row">
-            <div className="col">
+            <div className="col col-sm-6">
               <h4>Device Management</h4>
             </div>
-          <div className="col-lg-6" >
+          <div className="col-lg-3 col-sm-3" >
             <EditDeviceFields 
             fetchData={this.fetchData}
             handleEdit={this.handleEdit}
             data={this.state.device}
             />
-            <button className="btn btn-primary" onClick={this.handleEdit}>Save</button>
             </div>
             </div>
           <hr/>
@@ -137,7 +162,6 @@ componentDidMount(props){
                   <input type='text' class="form-control" defaultValue={this.state.device.dev_addr} readOnly></input>
               </div>
           </div>
-
 
           <div class="form-row">
               <div class="form-group col-md-6">
@@ -175,24 +199,17 @@ componentDidMount(props){
           </div>
           
           <div class="form-row">
-              <div class="form-group col-md-6">
-                  <label for="">Assigned</label>
-                  <h5>{this.state.device.assigned? greenButton:redButton}</h5>
-              </div>
+          
               <div class="form-group col-md-6">
                   <label for="">Category</label>
                   <input type='text' class="form-control" defaultValue={this.state.category.name} readOnly></input>
               </div>
-          </div>
-
-          <h4>Adr</h4>
-          <div class="form-row">
               <div class="form-group col-md-6">
-                  <label for="">Mode</label>
-                  <input type='text' class="form-control" defaultValue={this.state.device.mode} readOnly></input>
+                  <label for="">Assigned</label>
+                  <h5>{this.state.device.assigned? greenButton:redButton}</h5>
               </div>
           </div>
-          <div className="div_margin"> 
+          <div className="div_margin">
               <DeviceMap
               />
           </div>      

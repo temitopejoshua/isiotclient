@@ -1,7 +1,6 @@
 import React from 'react';
-import Pagination from './Pagination';
 import DeviceTable from './DeviceTable';
-import './Admin.css'; 
+import './Admin.css';
 
 
 export default class Devices extends React.Component {
@@ -12,7 +11,6 @@ export default class Devices extends React.Component {
             devices: [],
             loading: true,
             devicesPerPage: 5,
-            currentPage: 1,
         }
     }
     fetchDevices = () => {
@@ -38,40 +36,27 @@ export default class Devices extends React.Component {
 
     render() {
 
-        const {loading,currentPage, devicesPerPage, devices} = this.state;
+        const { loading, devices, devicesPerPage } = this.state;
 
-        const indexOfLastDevice = currentPage * devicesPerPage;
-        const indexofFirstDevice = indexOfLastDevice - devicesPerPage;
-        const currentDevices = devices.slice(indexofFirstDevice, indexOfLastDevice);
-         
-        //ChangePage on click
-        const paginate =(pageNumber) => this.setState({currentPage: pageNumber})
-    
         return (
-        <div className="">
             <div className="">
-            <div className="row">
-                <div className="col-sm-12 col-lg-12 grid-margin">
-                <div className="card h-100">
-                <h4 className="card-header">Device List</h4>
-                <div className="card-body">
-                <DeviceTable 
-                devices={currentDevices} 
-                loading={loading}
-                />
-                <Pagination 
-                objectsPerPage={devicesPerPage} 
-                lastIndex={indexOfLastDevice} 
-                totalObjects={devices.length} 
-                paginate={paginate}
-                firstIndex={indexofFirstDevice + 1}
-                />
-                </div>
-                </div>
+                <div className="">
+                    <div className="row">
+                        <div className="col-sm-12 col-lg-12 grid-margin">
+                            <div className="card h-100">
+                                <h4 className="card-header">Devices</h4>
+                                <div className="card-body">
+                                    <DeviceTable
+                                        devices={devices}
+                                        loading={loading}
+                                        devicesPerPage={devicesPerPage}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
         );
     }
 }
