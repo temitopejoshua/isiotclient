@@ -5,7 +5,7 @@ import styles from './client_style.css'
 import GoogleApiWrapper from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
-import SideNav from './SideNav';
+import SideNav from './SideNav'
 import UploadDevice from '../component_admin/UploadDevice'
 
 
@@ -190,7 +190,7 @@ export default class ClientDevices extends React.Component {
 
                 <div>
                    <div>
-                    <SideNav />
+                    <SideNav/>
                 </div>
 
                     <div class="main">

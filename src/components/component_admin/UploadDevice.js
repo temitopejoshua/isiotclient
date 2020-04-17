@@ -136,7 +136,6 @@ export default class UploadDevice extends Component {
             categoryId:this.state.categoryId,
             adr: this.state.adr
         };
-        console.log("after submit"+this.state.adr.mode)
         this.upload(device)
     }
 
