@@ -16,6 +16,8 @@ export default class ClientLogin extends React.Component {
             loginButtonDisabled: true,
             errors: '',
             loading: false
+
+
         }
     }
     handleChange = (event) => {
@@ -67,7 +69,7 @@ export default class ClientLogin extends React.Component {
                     <div class="container">
                         <div class="signin-content">
                             <div class="signin-image">
-                                <figure><img src="images/signin-image.jpg" alt="sing up image"></img></figure>
+                                <figure><img src="images/is-logo.png" alt="sing up image"></img></figure>
                                 <a href="/register" class="signup-image-link">Create an account</a>
 
                             </div>

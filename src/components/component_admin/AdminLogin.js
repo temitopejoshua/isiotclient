@@ -1,6 +1,6 @@
 import React from 'react';
-import  { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import './form_style.css';
 
 export default class AdminLogin extends React.Component {
 
@@ -61,19 +61,24 @@ export default class AdminLogin extends React.Component {
         if (validateAdmin()) {
 
             sessionStorage.setItem("isAdmin", true);
+            sessionStorage.setItem("isAuthenticated", true);
+
             this.setState({
                 isAuthenticated: true,
             });
 
+            return true
         }
 
         else {
 
             this.setState({
-                errors: 'Access Denied',
+                error: 'Access Denied',
                 loading: false
             });
-                console.log(this.state.errors)
+            console.log(this.state.errors)
+
+            return false
         }
     }
 
@@ -112,27 +117,33 @@ export default class AdminLogin extends React.Component {
 }
 
 
+function validateAdmin() {
 
-function validateAdmin () {
     const token = window.sessionStorage.getItem("jwt");
-    axios.get('http://localhost:8081/api/clients/access',
-    {
-        headers: {'Authorization': token}
-    })
-    .then((response) => {
-        sessionStorage.setItem("status", response.data.admin)
-        console.log("admin status"+response.data.admin)
-    })
-    .catch(e => console.error(e));
 
+    fetch('http://localhost:8081/api/clients/access',
+        {
+            headers: { 'Authorization': token }
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+
+            sessionStorage.setItem("status", responseData.admin)
+
+
+        })
+        .catch(err => console.error(err));
 
     const status = sessionStorage.getItem("status")
     sessionStorage.removeItem("status")
-    if(status === "true"){
-        console.log(status)
-        return true
+
+    if (status === "true") {
+        return true;
     }
-    else{
+
+    else {
         return false
     }
+
+
 }

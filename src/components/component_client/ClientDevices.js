@@ -1,16 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import styles from './client_style.css'
-import GoogleApiWrapper from './Map'
+import MapContainer from './Map'
 import { PaginatedList } from 'react-paginated-list'
 import BounceLoader from 'react-spinners/BounceLoader'
-import SideNav from './SideNav'
+import SideNav from './SideNav';
+import Deletedevice from './Deletedevice'
 import UploadDevice from '../component_admin/UploadDevice'
-
-
-
-
 
 
 export default class ClientDevices extends React.Component {
@@ -23,92 +19,10 @@ export default class ClientDevices extends React.Component {
         this.state = {
             client: {},
             loading: true,
-            devices: [
-                {
-                    name: "Test1",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test2",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test3",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test4",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test5",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test6",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test7",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test8",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test9",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test10",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test11",
-                    category: {
-                        name: "Test"
-                    }
-
-                },
-                {
-                    name: "Test12",
-                    category: {
-                        name: "Test"
-                    }
-
-                }
-            ],
+            devices: [],
+            location: [
+                { latitude: 47.359423, longitude: -122.021071 },
+            ]
 
         }
     }
@@ -164,7 +78,8 @@ export default class ClientDevices extends React.Component {
                                     <td></td>
                                     <td>{device.name}</td>
                                     <td>{device.category.name}</td>
-                                    <Link to={"/device/" + device.devEui}>view</Link>
+                                    <button class="btn btn-success"><Link to={"/device/" + device.devEui}>View </Link> </button>
+                                    <button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)} >Delete</button>
 
                                 </tr>
 
@@ -189,9 +104,9 @@ export default class ClientDevices extends React.Component {
 
 
                 <div>
-                   <div>
-                    <SideNav/>
-                </div>
+                    <div>
+                        <SideNav />
+                    </div>
 
                     <div class="main">
 
@@ -212,16 +127,15 @@ export default class ClientDevices extends React.Component {
                             <div class="col-12 otherSec">
                                 <div class="row mapMargin">
                                     <div class="col-md-12">
-                                        <GoogleApiWrapper />
+                                        <MapContainer location={this.state.location} />
                                     </div>
                                 </div>
                                 <div className="mb-5">
-                                <UploadDevice/>
+                                    <UploadDevice />
                                 </div>
                                 <div>
                                     {tableData}
                                 </div>
-                                
 
                             </div>
                         </div>

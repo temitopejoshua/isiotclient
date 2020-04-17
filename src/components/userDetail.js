@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SideNav from './component_admin/Sidenav';
-import {Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 
@@ -46,70 +46,70 @@ export default class UserDetail extends Component {
 
     return (
       <div>
-      <div>
-        <SideNav/>
-      </div>
-      <div className="main">
-      <div className="card flex-fill w-100">
-        <h4 className="card-header">User Information(IS Database)</h4>
-          <div className="card-body">
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Name</label>
-                  <div class="col-lg-4 col-sm-9">
+        <div>
+          <SideNav />
+        </div>
+        <div className="main">
+          <div className="card flex-fill w-100">
+            <h4 className="card-header">User Information(IS Database)</h4>
+            <div className="card-body">
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Name</label>
+                <div class="col-lg-4 col-sm-9">
                   <input type='text' class="form-control" placeholder={this.state.user.name} readOnly></input>
+                </div>
               </div>
-          </div>
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Email Address</label>
-                  <div class="col-lg-4 col-sm-9">
-                  <input type='text' class="form-control"  placeholder={this.state.user.emailAddress} readOnly></input>
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Email Address</label>
+                <div class="col-lg-4 col-sm-9">
+                  <input type='text' class="form-control" placeholder={this.state.user.emailAddress} readOnly></input>
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Phone Number</label>
-                  <div class="col-lg-4 col-sm-9">
-                  <input type='text' class="form-control"  placeholder={this.state.user.phoneNumber} readOnly></input>
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Phone Number</label>
+                <div class="col-lg-4 col-sm-9">
+                  <input type='text' class="form-control" placeholder={this.state.user.phoneNumber} readOnly></input>
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Address</label>
-                  <div class="col-lg-4 col-sm-9">
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Address</label>
+                <div class="col-lg-4 col-sm-9">
                   <textarea type='text' class="form-control" placeholder={this.state.user.address} readOnly></textarea>
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Assigned Devices</label>
-                  <div class="col-lg-4 col-sm-9">
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Assigned Devices</label>
+                <div class="col-lg-4 col-sm-9">
                   <input type='text' class="form-control" placeholder={this.state.numberOfDevices} readOnly></input>
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Active</label>
-                  <div class="col-lg-4 col-sm-9">
-                  {this.state.user.active? greenButton : redButton}
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Active</label>
+                <div class="col-lg-4 col-sm-9">
+                  {this.state.user.active ? greenButton : redButton}
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Last Login</label>
-                  <div class="col-lg-4 col-sm-9">
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Last Login</label>
+                <div class="col-lg-4 col-sm-9">
                   <input type='text' class="form-control" placeholder={this.state.user.lastLogIn} readOnly></input>
+                </div>
               </div>
-          </div>
 
-          <div className="form-group row">
-                  <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Created Date</label>
-                  <div class="col-lg-4 col-sm-9">
-                  <input type='text' class="form-control" name='app_key'  placeholder={this.state.user.createdAt} readOnly></input>
+              <div className="form-group row">
+                <label htmlFor="" className="col-lg-2 col-sm-3 col-form-label">Created Date</label>
+                <div class="col-lg-4 col-sm-9">
+                  <input type='text' class="form-control" name='app_key' placeholder={this.state.user.createdAt} readOnly></input>
+                </div>
               </div>
+            </div>
           </div>
-          </div>
-          </div>
-      </div>
+        </div>
       </div>
     );
   }

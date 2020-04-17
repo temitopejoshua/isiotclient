@@ -1,6 +1,6 @@
 import React from 'react';
 import DeviceTable from './DeviceTable';
-import './Admin.css'; 
+import './Admin.css';
 
 
 export default class Devices extends React.Component {
@@ -36,27 +36,27 @@ export default class Devices extends React.Component {
 
     render() {
 
-        const {loading,devices, devicesPerPage} = this.state;
-    
+        const { loading, devices, devicesPerPage } = this.state;
+
         return (
-        <div className="">
             <div className="">
-            <div className="row">
-                <div className="col-sm-12 col-lg-12 grid-margin">
-                <div className="card h-100">
-                <h4 className="card-header">Devices</h4>
-                <div className="card-body">
-                <DeviceTable 
-                devices={devices} 
-                loading={loading}
-                devicesPerPage={devicesPerPage}
-                />
-                </div>
-                </div>
+                <div className="">
+                    <div className="row">
+                        <div className="col-sm-12 col-lg-12 grid-margin">
+                            <div className="card h-100">
+                                <h4 className="card-header">Devices</h4>
+                                <div className="card-body">
+                                    <DeviceTable
+                                        devices={devices}
+                                        loading={loading}
+                                        devicesPerPage={devicesPerPage}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
         );
     }
 }

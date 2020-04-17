@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
-import ClipLoader from "react-spinners/ClipLoader";
 
 
 

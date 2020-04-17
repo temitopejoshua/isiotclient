@@ -72,15 +72,18 @@ export default class UploadDevice extends Component {
             this.setState({errors:formattedErrors})
         })
     }
-4
     upload = (data) =>{
 
-        fetch('http://localhost:8081/api/devices2/',
+        const token = window.sessionStorage.getItem("jwt");
+
+
+        fetch('http://localhost:8081/api/devices2/', 
         {
             crossDomain: true,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(data)
         })
@@ -120,6 +123,7 @@ export default class UploadDevice extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state.categoryId)
         const device = {
             name : this.state.name,
             devEui: this.state.devEui,
@@ -157,7 +161,7 @@ export default class UploadDevice extends Component {
 
     render() {
         const categoryOptions = this.state.categories.map((deviceCategory, key) =>
-                <option key={key} value={deviceCategory.id}>
+                <option key={deviceCategory.id} value={deviceCategory.id}>
                     {deviceCategory.name}
                 </option>
         );
@@ -255,7 +259,6 @@ export default class UploadDevice extends Component {
                         </div>
                         </div>
                         <div className="modal-footer">
-                        {/* <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> */}
                         <button type="reset" class="btn btn-danger" onClick={this.handleReset}>Reset</button>
                         <button type="submit" class="btn btn-primary" >Save</button>
                         </div>

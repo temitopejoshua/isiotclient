@@ -1,23 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PaginatedList } from 'react-paginated-list'
-import DeleteDevice from './DeleteDevice';
+import Deletedevice from '../component_client/Deletedevice'
 
 
 const DeviceTable = ({devices, loading, devicesPerPage}) =>{
 
-
-    function deleteDevice(id){
-        const url = "http://localhost:8081/api/devices2/" + id
-        fetch(url, {
-            crossOrigin: true,
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .catch(error => console.error('Error:', error))
-            .then(response => console.log('Success:', response))
-    
-    }
 
     if (loading){
         return <div class="spinner-border text-info" role="status">
@@ -49,7 +37,7 @@ const DeviceTable = ({devices, loading, devicesPerPage}) =>{
                             <td>{device.name}</td>
                             <td>{device.devEui}</td>
                             <td>{device.assigned ? "Yes": "No"}</td>
-                            <td><i class="fa fa-close" onClick={() => <DeleteDevice id={device.id}/>}>Delete</i></td>
+                            <td><button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)} >Delete</button></td>
                             <td><Link to ={"/admin/deviceinfo/"+device.id}>View</Link></td>
                         </tr>
                     );

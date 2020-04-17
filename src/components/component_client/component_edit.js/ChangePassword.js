@@ -1,5 +1,7 @@
 import React from 'react'
 import SkyLight from 'react-skylight'
+import {ToastsContainer, ToastsStore} from 'react-toasts';
+
 
 
 class ChangePassword extends React.Component {
@@ -18,7 +20,7 @@ class ChangePassword extends React.Component {
         );
     }
 
-    // Save Email and close modal form
+    // Save Password and close modal form
     handleSubmit = (event) => {
         event.preventDefault();
         var password = { password: this.state.password, };

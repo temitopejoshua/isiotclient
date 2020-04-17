@@ -4,10 +4,8 @@ import { Redirect } from 'react-router-dom'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav'
-
-import GoogleApiWrapper from './Map'
-
-
+import MapContainer from './Map'
+import Deletedevice from './Deletedevice'
 
 
 export default class ClientHome extends React.Component {
@@ -17,8 +15,11 @@ export default class ClientHome extends React.Component {
         this.state = {
             client: {},
             loading: true,
-            devices: []
-            
+            devices: [],
+            location: [
+                { latitude: 47.359423, longitude: -122.021071 },
+            ]
+
         }
     }
 
@@ -43,7 +44,6 @@ export default class ClientHome extends React.Component {
     }
 
 
-
     componentDidMount() {
         this.fetchUsers()
     }
@@ -61,7 +61,8 @@ export default class ClientHome extends React.Component {
                     <td>{device.name}</td>
                     <td>{device.category.name}</td>
                     <div>
-                        <Link to={"/device/" + device.devEui}>View </Link>
+                       <button class="btn btn-success"><Link to={"/device/" + device.devEui}>View </Link> </button>
+                       <button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)} >Delete</button>
 
                     </div>
                 </tr>)
@@ -97,7 +98,7 @@ export default class ClientHome extends React.Component {
                                                 <div class="card-body">
                                                     <i class="fas fa-mobile-alt homeIcon"></i>
                                                     <h5 class="card-title">Devices</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{this.state.devices.length}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +109,7 @@ export default class ClientHome extends React.Component {
                                                 <div class="card-body">
                                                     <i class="fas fa-thermometer homeIcon"></i>
                                                     <h5 class="card-title">Temperature Sensor</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,7 +120,7 @@ export default class ClientHome extends React.Component {
                                                     <i class="fas fa-map-marker-alt col homeIcon"></i>
 
                                                     <h5 class="card-title">Geolocation Sensor</h5>
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
                                             </div>
 
@@ -131,7 +132,7 @@ export default class ClientHome extends React.Component {
                                                     <i class="fab fa-ethereum homeIcon"></i>
                                                     <h5 class="card-title">Others</h5>
 
-                                                    <p class="card-text">{this.state.client.numberOfDevices}</p>
+                                                    <p class="card-text">{0}</p>
                                                 </div>
 
                                             </div>
@@ -154,7 +155,7 @@ export default class ClientHome extends React.Component {
 
                                 <div class="row">
                                     <div class="col-md-12 mb-5">
-                                        <GoogleApiWrapper />
+                                        <MapContainer location={this.state.location} />
                                     </div>
                                 </div>
 

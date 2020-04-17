@@ -24,7 +24,6 @@ import ClientList from './components/component_admin/ClientList'
 import Devices from './components/component_admin/Devices'
 import AdminPage from './components/component_admin/AdminPage';
 import DeviceInfo from './components/component_admin/DeviceInfo';
-import DeleteDevice from './components/component_admin/DeleteDevice';
 import NotFound from './components/component_admin/NotFound';
 
 
@@ -33,7 +32,6 @@ const routing = (
 
     <Router>
     <Switch>
-    <Route exact path="/admin/device/:id" component={DeleteDevice}/>
     <Route exact path="/admin/deviceinfo/:id" component={DeviceInfo}/>
     <Route exact path="/admin/profile" component={AdminProfile} />
     <Route exact path="/admin/maps" component={AdminMap}/>
