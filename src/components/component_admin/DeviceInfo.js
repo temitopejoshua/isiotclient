@@ -4,6 +4,7 @@ import EditDeviceFields from './EditProfile/EditDeviceFields';
 import SideNav from './Sidenav'; 
 import { Button } from 'react-bootstrap';
 import DeviceMap from './DeviceMap';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class DeviceInfo extends Component {
@@ -20,7 +21,7 @@ export default class DeviceInfo extends Component {
 
 
 handleEdit = (data) => {
-    const url = "http://localhost:8081/api/devices2/" + this.state.device.id
+    const url = SERVER_URL + "/api/devices2/" + this.state.device.id
     fetch(url, {
         crossOrigin: true,
         method: 'PUT',
@@ -35,7 +36,7 @@ handleEdit = (data) => {
 }
 
 upload = (data) =>{
-  const url = "http://localhost:8081/api/clients/assigndevice" + this.state.device.id
+  const url = SERVER_URL + "/api/clients/assigndevice" + this.state.device.id
   fetch(url,
   {
       crossDomain: true,
@@ -65,7 +66,7 @@ fetchData = () => {
 
   const { match: { params } } = this.props;
   const token = window.sessionStorage.getItem("jwt");
-  fetch('http://localhost:8081/api/devices2/' + params.id,
+  fetch(SERVER_URL + '/api/devices2/' + params.id,
     {
       headers: { 'Authorization': token }
     })

@@ -1,6 +1,7 @@
 import React from 'react';
 import DeviceTable from './DeviceTable';
 import './Admin.css';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class Devices extends React.Component {
@@ -17,7 +18,7 @@ export default class Devices extends React.Component {
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/devices',
+        fetch(SERVER_URL+ '/api/devices',
             {
                 headers: { 'Authorization': token }
             })

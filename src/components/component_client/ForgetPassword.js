@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './client_style.css'
 import MoonLoader from "react-spinners/MoonLoader";
+import SERVER_URL from '../ServerUrl';
 
 
 
@@ -23,7 +24,7 @@ export default class ForgetPassword extends React.Component {
     handleSubmit = () => {
 
         this.setState({ loading: true })
-        fetch('http://localhost:8081/api/clients/forgetpassword?emailAddress=' + this.state.emailAddress,
+        fetch( SERVER_URL+ '/api/clients/forgetpassword?emailAddress=' + this.state.emailAddress,
             {
                 crossDomain: true,
                 method: 'POST',

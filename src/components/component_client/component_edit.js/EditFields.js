@@ -2,7 +2,7 @@ import React from 'react'
 import SkyLight from 'react-skylight'
 import styles from '../client_style.css'
 
-//React Component for editing clients name, address and phone number
+//React Component for editing clients name, address and phone number only
 class EditFields extends React.Component {
 
     constructor(props) {

@@ -21,7 +21,7 @@ export class MapContainer extends React.Component {
                 lat: store.latitude,
                 lng: store.longitude
             }}
-                title={"Hi ISN"} />
+                title={"Hello Internet Solutions"} />
         })
     }
 

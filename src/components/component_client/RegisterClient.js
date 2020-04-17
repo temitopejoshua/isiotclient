@@ -2,6 +2,7 @@ import React from 'react'
 import { validateAll } from 'indicative/validator'
 import styles from './client_style.css'
 import ClipLoader from "react-spinners/ClipLoader";
+import SERVER_URL from '../ServerUrl';
 
 
 
@@ -27,7 +28,6 @@ export default class Register extends React.Component {
     
     handleChange = (event) => {
 
-        // event.preventDefault()
         this.setState(
             {
                 [event.target.name]: event.target.value,
@@ -68,7 +68,7 @@ export default class Register extends React.Component {
     register = (data) => {
 
         this.setState({ loading: true })
-        fetch('http://localhost:8081/api/clients/',
+        fetch(SERVER_URL + '/api/clients/',
             {
                 crossDomain: true,
                 method: 'POST',

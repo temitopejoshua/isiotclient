@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
+import SERVER_URL from '../ServerUrl'
 
 
 export default class ResetPassword extends React.Component {
@@ -23,7 +24,7 @@ export default class ResetPassword extends React.Component {
 
         const param = params(window.location.search)
 
-        fetch('http://localhost:8081/api/clients/verifypasswordtoken?token=' + param)
+        fetch( SERVER_URL + '/api/clients/verifypasswordtoken?token=' + param)
 
             .then((response) => response.json())
             .then(responseData =>{
@@ -48,7 +49,7 @@ export default class ResetPassword extends React.Component {
 
     handleEdit = (data) => {
 
-        const url = "http://localhost:8081/api/clients/" + this.state.client.id
+        const url = SERVER_URL + "/api/clients/" + this.state.client.id
 
         fetch(url, {
             crossOrigin: true,

@@ -3,6 +3,8 @@ import { validateAll } from 'indicative/validator'
 import './form_style.css';
 import './Admin.css';
 import SuccessAlert from './succes_alert';
+import SERVER_URL from '../ServerUrl';
+
 
 
 export default class UploadDevice extends Component {
@@ -77,7 +79,7 @@ export default class UploadDevice extends Component {
         const token = window.sessionStorage.getItem("jwt");
 
 
-        fetch('http://localhost:8081/api/devices2/', 
+        fetch(SERVER_URL+ '/api/devices2/', 
         {
             crossDomain: true,
             method: 'POST',
@@ -108,7 +110,7 @@ export default class UploadDevice extends Component {
     fetchDeviceCategories = () => {
 
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/device/categories/',
+        fetch(SERVER_URL+ '/api/device/categories/',
             {
                 headers: { 'Authorization': token }
             })

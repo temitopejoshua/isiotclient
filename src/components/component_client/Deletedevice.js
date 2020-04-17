@@ -1,6 +1,8 @@
 import React from 'react'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import SERVER_URL from '../ServerUrl';
+
 
 
 
@@ -15,7 +17,7 @@ const confirmDelete = (devEui) => {
                         {
                                 label: 'Yes',
                                 onClick: () => {
-                                        fetch("http://localhost:8081/api/devices2/" + devEui, {
+                                        fetch(SERVER_URL+ '/api/devices2/' + devEui, {
 
                                                 headers: { 'Authorization': token },
                                                 method: 'DELETE'

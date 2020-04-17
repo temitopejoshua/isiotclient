@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Bar as DeviceBar} from 'react-chartjs-2';
+import SERVER_URL from '../ServerUrl';
 
 class BarGraph extends Component{
     constructor(props){
@@ -14,7 +15,7 @@ class BarGraph extends Component{
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/devices',
+        fetch(SERVER_URL+ '/api/devices',
             {
                 headers: { 'Authorization': token }
             })

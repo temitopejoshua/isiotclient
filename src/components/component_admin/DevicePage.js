@@ -4,6 +4,7 @@ import UploadDevice from './UploadDevice';
 import SideNav from './Sidenav';
 import './Admin.css'; 
 import DeviceChart from './deviceChart';
+import SERVER_URL from '../ServerUrl';
 
 
 
@@ -20,7 +21,7 @@ export default class DevicePage extends React.Component {
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/devices',
+        fetch(SERVER_URL + '/api/devices',
             {
                 headers: { 'Authorization': token }
             })
@@ -36,7 +37,7 @@ export default class DevicePage extends React.Component {
     }
 
     deleteDevice = () => {
-        const url = "http://localhost:8081/api/devices2/" + this.state.device.id
+        const url = SERVER_URL + "/api/devices2/" + this.state.device.id
         fetch(url, {
             crossOrigin: true,
             method: 'DELETE',

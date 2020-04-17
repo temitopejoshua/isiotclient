@@ -9,11 +9,11 @@ export default class SideNav extends Component{
 		<nav className="sidebar">
 			<div className="sidebar-content">
 				<div className="sidebar-brand" href="/">
-				<img src="images/is-logo.png" alt="logo" className="img-fluid rounded-circle mb-2" style={{ height: "50px", width: "50px", fill:'%23000'}}/><span>Internet Solutions</span>
+				<img src="/images/is-logo.png" alt="logo" className="img-fluid rounded-circle mb-2" style={{ height: "50px", width: "50px", fill:'%23000'}}/><span>Internet Solutions</span>
                 </div>
 				<ul className="nav flex-column nav-pills">
 				<li className="nav-item">
-						<a href="/home" className="font-weight-bold nav-link" className="">
+						<a href="/home" className="font-weight-bold nav-link">
 						<i className="fa fa-fw fa-home nav-icon" style={{fontSize: '1.5em' }}/><span className="align-middle">Home</span>
             		</a>
 					</li>

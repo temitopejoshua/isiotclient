@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import styles from './client_style.css'
 import ClipLoader from "react-spinners/ClipLoader";
+import SERVER_URL from '../ServerUrl';
 
 
 export default class ClientLogin extends React.Component {
@@ -35,7 +36,7 @@ export default class ClientLogin extends React.Component {
     login = () => {
         this.setState({ loading: true })
         const user = { emailAddress: this.state.emailAddress, password: this.state.password };
-        fetch('http://localhost:8081/login', {
+        fetch(SERVER_URL + '/login', {
             method: 'POST',
             body: JSON.stringify(user)
         })

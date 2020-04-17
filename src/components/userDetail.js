@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SideNav from './component_admin/Sidenav';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import SERVER_URL from './ServerUrl';
 
 
 export default class UserDetail extends Component {
@@ -20,7 +21,7 @@ export default class UserDetail extends Component {
     // is stored in the "params" property.
     const { match: { params } } = this.props;
     const token = window.sessionStorage.getItem("jwt");
-    fetch('http://localhost:8081/api/clients/' + params.id,
+    fetch(SERVER_URL+ '/api/clients/' + params.id,
       {
         headers: { 'Authorization': token }
       })

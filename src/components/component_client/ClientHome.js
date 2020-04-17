@@ -6,6 +6,7 @@ import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav'
 import MapContainer from './Map'
 import Deletedevice from './Deletedevice'
+import SERVER_URL from '../ServerUrl'
 
 
 export default class ClientHome extends React.Component {
@@ -28,7 +29,7 @@ export default class ClientHome extends React.Component {
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
 
-        fetch('http://localhost:8081/api/clients/access',
+        fetch( SERVER_URL + '/api/clients/access',
             {
                 headers: { 'Authorization': token }
             })

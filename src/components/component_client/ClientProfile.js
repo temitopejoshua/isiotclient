@@ -5,6 +5,7 @@ import ChangePassword from './component_edit.js/ChangePassword'
 import styles from './client_style.css'
 import BounceLoader from 'react-spinners/BounceLoader'
 import SideNav from './SideNav';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class Profile extends Component {
@@ -20,7 +21,7 @@ export default class Profile extends Component {
 
     handleEdit = (data) => {
 
-        const url = "http://localhost:8081/api/clients/" + this.state.client.id
+        const url = SERVER_URL + '/api/clients/' + this.state.client.id
 
         fetch(url, {
             crossOrigin: true,
@@ -38,7 +39,7 @@ export default class Profile extends Component {
     fetchData = () => {
 
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/clients/access',
+        fetch( SERVER_URL+ '/api/clients/access',
             {
                 headers: { 'Authorization': token }
             })

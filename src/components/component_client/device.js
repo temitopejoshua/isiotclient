@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
 import MapContainer from './Map'
 import Deletedevice from './Deletedevice'
+import SERVER_URL from '../ServerUrl';
 
 
 export default class Device extends Component {
@@ -26,7 +27,7 @@ export default class Device extends Component {
     const { match: { params } } = this.props;
 
     const token = window.sessionStorage.getItem("jwt");
-    fetch('http://localhost:8081/api/devices/' + params.id,
+    fetch( SERVER_URL+ '/api/devices/' + params.id,
       {
         headers: { 'Authorization': token }
       })

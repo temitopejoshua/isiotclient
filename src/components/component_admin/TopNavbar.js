@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './nav.css';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class AdminTopNavBar extends Component{
@@ -12,7 +13,7 @@ export default class AdminTopNavBar extends Component{
 
     fetchClient = () => {
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/clients/access',
+        fetch(SERVER_URL+ '/api/clients/access',
             {
                 headers: { 'Authorization': token }
             })

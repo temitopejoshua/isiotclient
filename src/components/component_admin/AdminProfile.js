@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SideNav from './Sidenav'; 
 import EditFields from './EditProfile/EditUserFields';
 import {Redirect} from 'react-router-dom';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class AdminProfile extends Component{
@@ -14,7 +15,7 @@ export default class AdminProfile extends Component{
 
     fetchAdmin = () => {
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/clients/access',
+        fetch(SERVER_URL + '/api/clients/access',
             {
                 headers: { 'Authorization': token }
             })
@@ -29,7 +30,7 @@ export default class AdminProfile extends Component{
 
     handleEdit = (data) => {
 
-        const url = "http://localhost:8081/api/clients/" + this.state.admin.id
+        const url = SERVER_URL + "/api/clients/" + this.state.admin.id
 
         fetch(url, {
             crossOrigin: true,

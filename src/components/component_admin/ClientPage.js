@@ -1,6 +1,7 @@
 import React from 'react';
 import SideNav from './Sidenav';
 import ClientsTable from './ClientsTable';
+import SERVER_URL from '../ServerUrl';
 
 
 export default class ClientPage extends React.Component {
@@ -16,7 +17,7 @@ export default class ClientPage extends React.Component {
         // Read the token from the session storage
         // and include it to Authorization header
         const token = window.sessionStorage.getItem("jwt");
-        fetch('http://localhost:8081/api/clients',
+        fetch(SERVER_URL+ '/api/clients',
             {
                 headers: { 'Authorization': token }
             })

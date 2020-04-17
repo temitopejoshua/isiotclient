@@ -38,7 +38,6 @@ const routing = (
     <Route exact path="/admin/clients" component={ClientPage}/>
     <Route exact path="/admin/devices" component={DevicePage}/>
     <Route exact path="/admin/home" component={AdminPage}/>
-    <Route exact path="/admin/login" component={AdminLogin}/>
     <Route exact path="/admin/logout" component={Logout}/>
     <Route exact path="/admin" component={App} />
     <Route exact path="/register" component={Register} />

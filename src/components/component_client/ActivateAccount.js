@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
+import SERVER_URL from '../ServerUrl'
 
 export default class ActivateAccount extends React.Component {
 
@@ -21,7 +22,7 @@ export default class ActivateAccount extends React.Component {
 
         const param = params(window.location.search)
 
-        fetch('http://localhost:8081/api/clients/verify?token=' + param)
+        fetch(SERVER_URL + '/api/clients/verify?token=' + param)
 
             .then((response) => {
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import './form_style.css';
+import SERVER_URL from '../ServerUrl';
 
 export default class AdminLogin extends React.Component {
 
@@ -34,7 +35,7 @@ export default class AdminLogin extends React.Component {
         })
 
         const user = { emailAddress: this.state.emailAddress, password: this.state.password };
-        fetch('http://localhost:8081/login', {
+        fetch(SERVER_URL + '/login', {
             method: 'POST',
             body: JSON.stringify(user)
         })
@@ -121,7 +122,7 @@ function validateAdmin() {
 
     const token = window.sessionStorage.getItem("jwt");
 
-    fetch('http://localhost:8081/api/clients/access',
+    fetch( SERVER_URL+ '/api/clients/access',
         {
             headers: { 'Authorization': token }
         })
