@@ -1,0 +1,340 @@
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #0e2cda;
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .client-profile {
+
+    width:'25%'; 
+    height:'100%';
+     margin:0;
+      display:'inline-block';
+       line-height:'80px';
+        vertical-align:'middle';
+         text-align:'center';
+  }
+  .fgmv {
+    background-color:'white';
+    height:'47%';
+    border-radius:'10px'; 
+    margin: '8px'; 
+    width:'100%';
+    word-wrap:'break-word';
+  }
+
+  .cardB {
+
+    background-color: white;
+    margin-top: 10px;
+    width: max-content;
+    margin: 15px;
+    margin-left: 0;
+
+  
+  }
+.no-border .card{
+  border: 0;
+  border-radius: 10px;
+}
+  .homeIcon {
+    color: blue;
+    font-size: 35px;
+    padding: 0px;
+
+  }
+
+  .card-space {
+    margin-top: 15px;
+  }
+
+  .deviceTable {
+
+    width: inherit;
+    margin-top: unset;
+  }
+  .validationError{
+
+    color: red;
+  }
+  .tableHead{
+    background-color: #01e2ff;
+    /* background-color: #0e2cda; */
+    color: white;
+  }
+  .mapMargin{
+
+    margin-top: 20px;
+  }
+  .customProfile{
+    background-color: white;
+    margin-left: 20px;
+    border-radius: 10px;
+    padding: 0;
+    word-wrap: break-word;
+    margin: 8px;
+    height: 47%;
+    width: 100%;
+  }
+  .customProfile2{
+    background-color: white;
+    border-radius: 10px;
+    word-wrap: break-word;
+    height: 47%;
+    margin: 7px;
+    width: 100%;
+    padding: 0;
+  }
+  .profileIcon{
+
+    width: 25%;
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    line-height: 80px;
+    vertical-align:middle;
+    text-align: center;
+
+  }
+.icon{
+   color: black ;
+   font-size: 10px;
+   padding: 10px;
+}
+
+.bigicon{
+    font-size: 300%;
+    color: #0e2cda;
+
+}
+.eqh{
+  height: 180px;
+  cursor: pointer;
+}
+/* h4{
+
+  font-family: fantasy;
+  font-style: italic;
+  font-weight: bold;
+  color: #0e2cda;
+} */
+.input-a{
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+.map-a, .map-a > div{
+  position: relative !important;
+  height: auto;
+}
+.card-s{
+  height: 70vh;
+  text-align: center;
+  position: relative;
+}
+.card-s h3{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.vh-100{
+	height: 100vh;
+}
+
+.round-small{
+	border-radius: 10px;
+}
+.big-text{
+	font-size: 600%;
+/*	color: blue;
+*/}
+.action{
+	text-decoration: none !important;
+	transition: all 0.2s linear;
+}
+.action:hover > .uk-card-default{
+	background-color: #f5f5f5;
+}
+
+/* Table Counter */
+.serial{
+  counter-reset: serial-number;
+}
+
+.serial td:first-child:before{
+  counter-increment: serial-number;
+  content: counter(serial-number);
+}
+
+.loaderTemp{
+
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.loaderTemp > div{
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar-user {
+  padding: 3px;
+  color: #01e2ff;
+  text-align: center;
+  height: 50;
+}
+
+.user-image {
+  font-size: 150px;
+}
+
+/* .nav-icon{
+  color:#01e2ff;
+  padding-right: 10px;
+} */
+
+
+/* MINE STYLE */
+
+.mine * {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: #666666;
+  font-weight: normal;
+  text-decoration-style: none;
+  font-style: normal;
+  outline: 0;
+}
+
+.mine .input-a:focus{
+  outline: 0 !important;
+}
+
+.device{
+  position: relative;
+  height: auto;
+  border: 1px solid #a7aab8;
+  background-color: rgba(81, 177, 180, 0.05);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+.device .head{
+  /* height: 50px; */
+  font-size: 80%;
+  margin-bottom: 40px;
+}
+.device .head span{
+  border: 1px solid #01e2ff;
+  padding: 1px 7px;
+  border-radius: 100px;
+  margin: 3px;
+}
+
+/* FOR STYLING THE CHECKBOX */
+input[type="checkbox"].checkbox-custom{
+  display: none;
+}
+.check input[type="checkbox"] + label{
+  width: 90px;
+  height: 30px;
+  background-color: #db1515;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+}
+.check input[type="checkbox"] + label::after{
+  content: 'OFF';
+  width: 50px;
+  height: 24px;
+  background-color: white;
+  border-radius: 100px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  text-align: center;
+  line-height: 24px;
+  vertical-align: middle;
+  color: #db1515;
+  animation-name: unchecking;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-delay: 0;
+}
+.check input[type="checkbox"]:checked + label{
+  background-color: rgb(35, 206, 35);
+}
+.check input[type="checkbox"]:checked + label::after{
+  content: 'ON';
+  left: 37px;
+  animation-name: checking;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-delay: 0;
+  color: rgb(35, 206, 35);
+}
+@keyframes checking{
+  0%{
+    left: 3px;
+    width: 50px;
+  }
+  30%{
+    left: 3px;
+    width: 84px;
+  }
+  100%{
+    left: 37px;
+    width: 50px;
+  }
+}
+
+@keyframes unchecking{
+  0%{
+    left: 37px;
+    width: 50px;
+  }
+  30%{
+    left: 3px;
+    width: 84px;
+  }
+  100%{
+    left: 3px;
+    width: 50px;
+  }
+}
