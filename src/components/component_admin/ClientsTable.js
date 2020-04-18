@@ -22,7 +22,6 @@ const ClientsTable = ({ clients, loading, clientsPerPage }) => {
                             <th scope="col">Name</th>
                             <th scope="col">Email Address</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
                             <th scope="col">User Details</th>
                         </tr>
                     </thead>
@@ -33,8 +32,7 @@ const ClientsTable = ({ clients, loading, clientsPerPage }) => {
                                 <td>{client.name}</td>
                                 <td>{client.emailAddress}</td>
                                 <td>{client.active ? "Active" : "Suspended"}</td>
-                                <td><Link to={"/admin/clients/" + client.id}><i class="fa fa-close">Suspend</i></Link></td>
-                                <td><Link to={"/admin/clients/" + client.id}>View</Link></td>
+                                <td><button className="btn btn-primary"><Link className="btn_table" to={"/admin/clients/" + client.id}>View</Link></button></td>
                             </tr>
                         );
                     })}

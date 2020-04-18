@@ -16,7 +16,7 @@ export default class AdminPage extends Component{
     render(){
 
         if (sessionStorage.getItem("isAdmin") !== 'true') {
-            return <Redirect to="/admin/login" />
+            return <Redirect to="/admin/login"/>
         }
 
         else {

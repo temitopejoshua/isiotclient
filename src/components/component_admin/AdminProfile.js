@@ -62,14 +62,14 @@ export default class AdminProfile extends Component{
                 </div>
                 <div className="main">
                     <div className="container-fluid">
-                        <h2>User Profile</h2>
+                        <h2>Admin Profile</h2>
                         <div className="row ">
                             <div className="col-md-4 col-lg-3 profile_card">
                                 <div className="card mb-3">
                                     <div className="card-body text-center">
                                     <div className="sidebar-user">
                                         <img src="/images/user.svg" className="img-fluid rounded-circle mb-2" alt="user" style={{ height: "100px", width: "100px"}}/>
-			                            <small>IOT Admin</small>
+			                            <h6>Admin</h6>
 				                        </div>
                                     </div>
                                     <hr/>
@@ -151,12 +151,12 @@ export default class AdminProfile extends Component{
                                             <div className="col-5">
                                                 <h6 className="font-weight-bold">Full Name</h6>
                                                 <hr/>
-                                                <h6>Adebiyi Victor</h6>
+                                                <h6>Temitope Joshua</h6>
                                             </div>
                                             <div className="col-5">
                                                 <h6 className="font-weight-bold">Email Address</h6>
                                                 <hr/>
-                                                <h6>adetosine6@gmail.com</h6>
+                                                <h6>iamoyemadeteepee@gmail.com</h6>
                                             </div>
                                         </div>
                                     </div>

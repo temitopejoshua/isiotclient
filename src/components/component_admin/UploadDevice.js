@@ -125,7 +125,6 @@ export default class UploadDevice extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.categoryId)
         const device = {
             name : this.state.name,
             devEui: this.state.devEui,
@@ -142,7 +141,6 @@ export default class UploadDevice extends Component {
             categoryId:this.state.categoryId,
             adr: this.state.adr
         };
-        console.log("after submit"+this.state.adr.mode)
         this.upload(device)
     }
 
@@ -177,7 +175,7 @@ export default class UploadDevice extends Component {
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                    <h5 className="modal-title text-center" id="exampleModalScrollableTitle">Upload Device</h5>
+                    <h5 className="text-center" id="exampleModalScrollableTitle">Upload Device</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -262,8 +260,10 @@ export default class UploadDevice extends Component {
                         </div>
                         </div>
                         <div className="modal-footer">
+                        
                         <button type="reset" class="btn btn-danger" onClick={this.handleReset}>Reset</button>
                         <button type="submit" class="btn btn-primary" >Save</button>
+                        {this.state.success}
                         </div>
                     </form>
                     <p className="validationError text-center">{this.state.errs}</p>

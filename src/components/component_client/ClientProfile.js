@@ -147,7 +147,6 @@ export default class Profile extends Component {
                                                     </div>
                                                 </div>
                                             </a>
-
                                         </div>
                                     </div>
                                 </div>

@@ -6,7 +6,6 @@ import App from './App';
 import {MapPage as AdminMap} from './components/component_admin/MapPage';
 import ClientPage from './components/component_admin/ClientPage'
 import { Route, BrowserRouter as Router, Switch} from 'react-router-dom'
-import AdminLogin from './components/component_admin/AdminLogin'
 import DevicePage from './components/component_admin/DevicePage';
 import AdminProfile from './components/component_admin/AdminProfile';
 import Register from './components/component_client/RegisterClient'

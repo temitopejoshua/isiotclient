@@ -32,7 +32,6 @@ export default class UserDetail extends Component {
           devices: responseData.devices,
           numberOfDevices: responseData.devices.length
         });
-        console.log("Fetched Successfully " + responseData.firstName + this.state.user.firstName)
       })
     console.log("This is the id " + params.id)
   }

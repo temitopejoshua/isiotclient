@@ -26,15 +26,10 @@ class DeviceChart extends Component{
 
                 device.forEach(dev => {
                     if(dev.assigned){
-                        console.log("assigned: "+dev.name);
                         assigned.push(dev.id);
-                        console.log(assigned.length);
                     }
                     else{
-                        console.log(dev.assigned);
-                        console.log("unassinged: "+ dev.name);
                         unassigned.push(dev.id);
-                        console.log(unassigned.length);
                     }
                 });
 

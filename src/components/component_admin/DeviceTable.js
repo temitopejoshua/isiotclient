@@ -37,8 +37,8 @@ const DeviceTable = ({devices, loading, devicesPerPage}) =>{
                             <td>{device.name}</td>
                             <td>{device.devEui}</td>
                             <td>{device.assigned ? "Yes": "No"}</td>
-                            <td><button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)} >Delete</button></td>
-                            <td><Link to ={"/admin/deviceinfo/"+device.id}>View</Link></td>
+                            <td><button type="button" class="btn btn-danger ml-2" onClick={Deletedevice.bind(this, device.devEui)}>Delete</button></td>
+                            <td><buttton className="btn btn-primary"><Link className="btn_table" to ={"/admin/deviceinfo/"+device.id}>View</Link></buttton></td>
                         </tr>
                     );
                 })}
