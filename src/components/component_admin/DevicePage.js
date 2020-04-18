@@ -4,6 +4,7 @@ import UploadDevice from './UploadDevice';
 import SideNav from './Sidenav';
 import './Admin.css'; 
 import DeviceChart from './deviceChart';
+import AssignDevice from './AssignDevice';
 
 
 
@@ -64,7 +65,14 @@ export default class DevicePage extends React.Component {
                 <div className="col-sm-12 col-lg-8 grid-margin">
                     <div className="card h-100">
                     <h4 className="card-header">Device Board</h4>
-                        <div style={{marginLeft: "15px"}}><UploadDevice /></div>
+                    <div className="row">
+                        <div style={{marginLeft: "38px"}}>
+                            <UploadDevice />
+                        </div>
+                        <div style={{marginLeft: "15px"}}>
+                            <AssignDevice/>
+                        </div>
+                    </div>
                         <div className="card-body">
                             <DeviceTable 
                             devices={devices} 

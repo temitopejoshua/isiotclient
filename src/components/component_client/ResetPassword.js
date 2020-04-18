@@ -40,8 +40,6 @@ export default class ResetPassword extends React.Component {
     }
 
     componentDidMount() {
-
-
         this.verifyToken()
     }
 

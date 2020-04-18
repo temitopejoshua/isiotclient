@@ -251,3 +251,17 @@
 .device-info{
   width: 600px;
 }
+
+.btn_table{
+
+  color: white;
+  text-decoration: none;
+
+}
+
+.btn_table:hover{
+
+  color: white;
+  text-decoration: none;
+
+}
